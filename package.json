@@ -19,6 +19,7 @@
     "ionicons": "^5.2.3",
     "mongodb": "^3.6.2",
     "netlify-identity-widget": "^1.9.1",
+    "node-fetch": "^2.6.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-router": "^5.1.2",
