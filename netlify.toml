@@ -1,2 +1,5 @@
 [build]
     functions = "./src/lambda/"
+
+[[plugins]]
+    package = "@netlify/plugin-functions-install-core"
