@@ -1,0 +1,34 @@
+.photo-grid__photo {
+    display: block;
+    width: 100%;
+    position: relative;
+    padding-bottom: 100%;
+    background-size: cover;
+    background-blend-mode: color-burn;
+}
+.photo-grid__photo:not(.published) {
+    background-blend-mode: saturation;
+}
+  
+.photo-grid__photo.has-products:not(.published)::after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: yellow;
+    bottom: 8px;
+    right: 8px;
+    border-radius: 20px;
+}
+
+.disclaimer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 14px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+}
