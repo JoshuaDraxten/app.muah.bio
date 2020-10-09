@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import {
-  IonBackButton,
-  IonButtons,
   IonContent,
   IonHeader,
   IonItem,
   IonInput,
-  IonItemDivider,
   IonPage,
   IonTitle,
   IonToolbar,
-  IonLabel
+  IonLabel,
+  IonTextarea,
+  IonButton
 } from '@ionic/react';
 
 import netlifyIdentity from 'netlify-identity-widget';
@@ -25,41 +24,6 @@ const logOut = async () => {
 
   netlifyIdentity.logout();
   window.location = window.location.origin;
-}
-
-const ValidatableInput = ({ type="input", rows=4, validate=()=>true, errorMessage="", label, initialValue, updateValue }) => {
-  const [ error, setError ] = useState("");
-  const onBlur = e => {
-    const value = e.target.value;
-    if ( !validate(value) ) {
-      setError( errorMessage );
-    }
-  }
-  const onChange = e => {
-    const value = e.target.value;
-    if ( error && validate( value ) ) {
-      setError("");
-    }
-    updateValue( value );
-  }
-
-  return <div className={"validatable-input"+(error ? " error" : "")}>
-    <label>{label}</label>
-    { type === "input" ? <input value={initialValue ? initialValue : ''} onChange={onChange} onBlur={onBlur} /> : null }
-    { type === "textarea" ? <textarea rows={rows} value={initialValue} onChange={onChange} onBlur={onBlur}></textarea> : null }
-    { error ? <span>{error}</span> : null }
-  </div>
-}
-
-function isValidUrl(string) {
-  if ( string === '' ) return true;
-
-  try {
-    new URL(string);
-  } catch (e) {
-    return false;  
-  }
-  return true;
 }
 
 const SettingsPage = ({ history, userInformation, setUserInformation }) => {
@@ -77,7 +41,7 @@ const SettingsPage = ({ history, userInformation, setUserInformation }) => {
 
   // Autosave
   useEffect(() => {
-    const autoSaveTimer = setInterval( saveSettings, 3000 );
+    const autoSaveTimer = setInterval( saveSettings, 500 );
     return () => clearInterval( autoSaveTimer );
   })
 
@@ -85,21 +49,18 @@ const SettingsPage = ({ history, userInformation, setUserInformation }) => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonButtons slot="start">
-            <IonBackButton defaultHref="/profile" />
-          </IonButtons>
           <IonTitle>Settings</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Profile</IonTitle>
+            <IonTitle size="large">Settings</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonItemDivider>Link on top of profile</IonItemDivider>
+        {/* <IonItemDivider>Button on top of your profile</IonItemDivider> */}
         <IonItem>
-          <IonLabel>Link URL</IonLabel>
+          <IonLabel position="fixed">Your Website</IonLabel>
           <IonInput
             type="url"
             inputMode="url"
@@ -109,7 +70,7 @@ const SettingsPage = ({ history, userInformation, setUserInformation }) => {
             onIonChange={ e => setLinkInBioPage(x => ({...x, website: e.target.value}) ) }></IonInput>
         </IonItem>
         <IonItem>
-          <IonLabel>Button Text</IonLabel>
+          <IonLabel position="fixed">Button Text</IonLabel>
           <IonInput
             type="text"
             inputMode="text"
@@ -117,43 +78,17 @@ const SettingsPage = ({ history, userInformation, setUserInformation }) => {
             placeholder="Visit Website"
             onIonChange={ e => setLinkInBioPage(x => ({...x, visitSiteButtonText: e.target.value}) ) }></IonInput>
         </IonItem>
+        <IonItem>
+          <IonLabel position="stacked">Affiliate Disclaimer Text</IonLabel>
+          <IonTextarea
+            value={ linkInBioPage.disclaimer }
+            onIonChange={ e => setLinkInBioPage(x => ({...x, disclaimer: e.target.value}) ) }></IonTextarea>
+        </IonItem>
+        <br />
+        <IonButton expand="block" color="danger" onClick={logOut}>Log Out</IonButton>
       </IonContent>
     </IonPage>
-  )
-
-  return <div>
-    {/* <Header
-        backIcon={<KeyboardArrowLeftRoundedIcon />}
-        backText="Profile"
-        backAction={ () => {saveSettings(); history.push('/')} }
-        title="Settings"
-        forwardText="Preview"
-        forwardHref={"https://muah.bio/"+username} /> */}
-    <div className="page settings">
-      <ValidatableInput
-        label="Website URL"
-        validate={isValidUrl}
-        errorMessage="Please insert a valid URL"
-        initialValue={ linkInBioPage.website }
-        updateValue={website => setLinkInBioPage(x => ({...x, website}) ) }
-      />
-      { linkInBioPage.website ?
-        <ValidatableInput
-          label="Button text"
-          initialValue={ linkInBioPage.visitSiteButtonText }
-          updateValue={visitSiteButtonText => setLinkInBioPage(x => ({...x, visitSiteButtonText}) ) }
-        />
-      : null}
-      <ValidatableInput
-        type="textarea"
-        label="Affiliate Disclaimer text"
-        initialValue={ linkInBioPage.disclaimer }
-        updateValue={disclaimer => setLinkInBioPage(x => ({...x, disclaimer}) ) }
-      />
-      <br />
-      <button style={{width: "100%", color: 'red', borderColor: "red"}} onClick={logOut}>Log out</button>
-    </div>
-  </div>
+  );
 };
 
 export default SettingsPage;

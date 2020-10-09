@@ -5,8 +5,8 @@ import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
 
-import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonBadge } from '@ionic/react';
-import { personCircle, map, informationCircle, cog, statsChart } from 'ionicons/icons';
+import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
+import { personCircle, cog, statsChart } from 'ionicons/icons';
 
 // Pages
 import Profile from "./pages/profile";
@@ -22,7 +22,7 @@ import netlifyIdentity from 'netlify-identity-widget';
 import getUser from './api/getUser';
 import getIGMedia from "./api/getIGMedia";
 import addUserPost from "./api/addUserPost";
-import updateUserPost from './api/updateUserPost'
+// import updateUserPost from './api/updateUserPost'
 
 import { Route, Redirect } from "react-router-dom";
 
@@ -65,23 +65,24 @@ export default () => {
     });
   }
 
-  const updatePost = ( postId, postData ) => {
-    const { posts } = userInformation;
-    const postIndex = posts.map( post => post.id ).indexOf( postId );
+  // const updatePost = ( postId, postData ) => {
+  //   const { posts } = userInformation;
+  //   const postIndex = posts.map( post => post.id ).indexOf( postId );
     
-    let postsCopy = [...posts];
-    postsCopy[postIndex] = postData;
+  //   let postsCopy = [...posts];
+  //   postsCopy[postIndex] = postData;
 
-    let userInformationCopy = { ...userInformation }
-    userInformationCopy.posts = postsCopy;
-    setUserInformation( userInformationCopy );
+  //   let userInformationCopy = { ...userInformation }
+  //   userInformationCopy.posts = postsCopy;
+  //   setUserInformation( userInformationCopy );
 
-    updateUserPost({ post: postData, userId: currentUser.id });
-  }
+  //   updateUserPost({ post: postData, userId: currentUser.id });
+  // }
 
   // The first time userInformation loads
+  const userInformationIsNotNull = userInformation !== null;
   useEffect(() => {
-    if ( userInformation === null ) return;
+    if ( !userInformationIsNotNull ) return;
 
     // Check if the instagram data has been updated
     if ( userInformation.instagram && userInformation.instagram.token ) {
@@ -101,7 +102,9 @@ export default () => {
     } else {
       console.log( userInformation )
     }
-  }, [userInformation !== null])
+  // I dont want any other variables as a dependancy so this only fires once
+  // eslint-disable-next-line
+  }, [userInformationIsNotNull])
 
   if ( !currentUser ) {
     return <LoginScreen setCurrentUser={setCurrentUser} setUserInformation={setUserInformation} />

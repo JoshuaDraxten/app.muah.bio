@@ -7,10 +7,6 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonButtons,
-  IonButton,
-  IonIcon,
-  IonImg,
   IonGrid,
   IonRow,
   IonCol
@@ -59,24 +55,5 @@ const Profile = ({ history, username, posts}) => {
       </IonContent>
     </IonPage>
   );
-  return (
-    <div>
-      {/* <Header
-        title="Profile"
-        backText="settings"
-        backAction={ () => history.push('/settings') }
-        forwardText="preview"
-        forwardHref={"https://muah.bio/"+username}/> */}
-      <div className="page profile">
-        <div className="photo-grid">{posts.map( post =>
-          <Link to={"/edit/"+post.id}
-            key={post.id}
-            className={"photo-grid__photo" + (post.isPublished ? " published" : "") + (post.products.length!==0 ? " has-products" : "")}
-            style={{ backgroundImage: `linear-gradient(white, white), url('${ post.media_url }')` }}
-          ></Link>
-        )}</div>
-      </div>
-    </div>
-  )
 }
 export default Profile;
