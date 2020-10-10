@@ -22,7 +22,7 @@ import netlifyIdentity from 'netlify-identity-widget';
 import getUser from './api/getUser';
 import getIGMedia from "./api/getIGMedia";
 import addUserPost from "./api/addUserPost";
-// import updateUserPost from './api/updateUserPost'
+import updateUserPost from './api/updateUserPost'
 
 import { Route, Redirect } from "react-router-dom";
 
@@ -48,6 +48,7 @@ import './theme/variables.css';
 export default () => {
   const [ currentUser, setCurrentUser ] = useState( netlifyIdentity.currentUser() );
   const [ userInformation, setUserInformation ] = useState( null );
+  const [ showTabBar, setShowTabBar ] = useState( true );
 
   // eslint-disable-next-line
   const addPost = ({ post, position=0 }) => {
@@ -139,7 +140,7 @@ export default () => {
             }/>
             <Route exact path="/" render={() => <Redirect to="/profile" />} />
           </IonRouterOutlet>
-          <IonTabBar slot="bottom">
+          <IonTabBar slot="bottom" style={{ display: showTabBar ? "flex" : "none" }}>
             <IonTabButton tab="profile" href="/profile">
               <IonIcon icon={personCircle} />
               <IonLabel>Profile</IonLabel>

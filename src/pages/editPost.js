@@ -10,6 +10,9 @@ import {
     IonContent,
     IonHeader,
     IonItem,
+    IonItemOption,
+    IonItemOptions,
+    IonItemSliding,
     IonLabel,
     IonPage,
     IonReorder,
@@ -18,6 +21,7 @@ import {
     IonTitle,
     IonToolbar,
 } from '@ionic/react';
+import { remove } from 'ionicons/icons';
 
 const Handle = ({image}) =>
     <div className="product__img" style={{backgroundImage: `url('${image}')`}}></div>
@@ -104,8 +108,6 @@ function EditPost({ history, match, posts, updatePost } ){
         });
     }
 
-    console.log( post )
-
     return (
       <IonPage>
         <IonContent fullscreen>
@@ -121,16 +123,24 @@ function EditPost({ history, match, posts, updatePost } ){
           </IonHeader>
           <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
           {post.products.map((product, i) => (
-            <IonItem key={ product.url }>
-              <IonThumbnail slot="start">
-                <img src={product.image} style={{objectFit: "contain"}} />
-              </IonThumbnail>
-              <IonLabel className="ion-text-wrap">
-                <h3>{product.name}</h3>
-                <p>{ product.retailer.name }{ product.price.number ? " | "+product.price.symbol: ""}{ product.price.number }</p>
-              </IonLabel>
-              <IonReorder slot="end" />
-            </IonItem>
+            <IonItemSliding onIonDrag={({detail}) => detail.ratio <= -3 ? removeProduct(i) : null }>
+              <IonItemOptions side="start">
+                <IonItemOption color="danger" expandable>
+                  Delete
+                </IonItemOption>
+              </IonItemOptions>
+
+              <IonItem key={ product.url }>
+                <IonThumbnail slot="start">
+                  <img src={product.image} style={{objectFit: "contain"}} />
+                </IonThumbnail>
+                <IonLabel className="ion-text-wrap">
+                  <h3>{product.name}</h3>
+                  <p>{ product.retailer.name }{ product.price.number ? " | "+product.price.symbol: ""}{ product.price.number }</p>
+                </IonLabel>
+                <IonReorder slot="end" />
+              </IonItem>
+            </IonItemSliding>
           ))}
           </IonReorderGroup>
         </IonContent>
