@@ -128,12 +128,17 @@ function EditPost({ post, updatePost, closePost } ){
           ))}
           </IonReorderGroup>
         </IonContent>
-        <IonModal isOpen={productSearchIsOpen}>
+        <IonModal
+          isOpen={productSearchIsOpen}
+          onDidDismiss={() => setProductSearchIsOpen(false)}
+          swipeToClose={true} >
             <ProductSearch />
         </IonModal>
         <IonFooter className="ion-no-border">
           <IonToolbar>
-            <IonSearchbar placeholder="Search for makeup products" onIonFocus={() => setProductSearchIsOpen(true)}></IonSearchbar>
+            <IonSearchbar
+              placeholder="Search for makeup products"
+              onMouseDown={ e => {e.stopPropagation(); setProductSearchIsOpen(true)} }></IonSearchbar>
           </IonToolbar>
         </IonFooter>
       </IonPage>

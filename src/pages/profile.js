@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   IonContent,
   IonHeader,
@@ -21,7 +21,7 @@ const PostPreview = ({ post, onClick }) => (
   ></div>
 )
 
-const Profile = ({ history, username, posts, updatePost}) => {
+const Profile = ({ router, username, posts, updatePost}) => {
   const [ openedPost, setOpenedPost ] = useState( false );
   return (
     <IonPage>
@@ -50,7 +50,7 @@ const Profile = ({ history, username, posts, updatePost}) => {
             ))}
           </IonRow>
         </IonGrid>
-        { openedPost ? <IonModal isOpen={openedPost} swipeToClose={true} onDidDismiss={() => setOpenedPost(false)}>
+        { openedPost ? <IonModal isOpen={openedPost} onDidDismiss={() => setOpenedPost(false)}>
           <EditPost post={openedPost} updatePost={updatePost} closePost={() => setOpenedPost(false)} />
         </IonModal> : null}
       </IonContent>

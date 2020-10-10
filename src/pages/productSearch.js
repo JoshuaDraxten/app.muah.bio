@@ -11,13 +11,8 @@ export default () => {
   const searchInput = useRef(null);
 
   useEffect(() => {
-    // current property is refered to input element
-    console.log( searchInput.current );
-    (async () => {
-      const searchInputElem = await searchInput.current.setFocus();
-      console.log( searchInputElem )
-    })();
-
+    // Wait till animation is done to focus on input
+    setTimeout( ()=>searchInput.current.setFocus(), 600 )
  },[searchInput])
 
   return (
