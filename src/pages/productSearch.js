@@ -30,7 +30,7 @@ export default ({ addProduct, closeSearch }) => {
 
   useEffect(() => {
     // Wait till animation is done to focus on input
-    setTimeout( ()=>searchInput.current.setFocus(), 600 )
+    setTimeout( ()=>searchInput.current.setFocus(), 2000 )
   },[searchInput])
 
   useEffect(() => {
