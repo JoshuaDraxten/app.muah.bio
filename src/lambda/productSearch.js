@@ -62,7 +62,7 @@ async function searchAmazon( keyword ) {
 }
 
 exports.handler = async ( event, context ) => {
-    const keyword = event.queryStringParameters.toLowerCase();
+    const keyword = event.queryStringParameters.keyword.toLowerCase();
     const client = await connectToDatabase(uri);
 
     // Check if keyword is cached. If not, search for it

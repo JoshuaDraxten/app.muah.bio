@@ -65,6 +65,7 @@ export default () => {
   }
 
   const updatePost = ( postId, postData ) => {
+    console.log("Calling update post")
     const { posts } = userInformation;
     const postIndex = posts.map( post => post.id ).indexOf( postId );
     
@@ -98,8 +99,6 @@ export default () => {
         });
 
       });
-    } else {
-      console.log( userInformation )
     }
   // I dont want any other variables as a dependancy so this only fires once
   // eslint-disable-next-line
@@ -127,14 +126,14 @@ export default () => {
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route path="/:tab(profile)" exact={true} render={props => 
+            <Route path="/:tab(profile)" exact={true} render={props => <div>
               <Profile
                 {...props}
                 username={userInformation.instagram.username}
                 posts={userInformation.posts}
                 currentUser={currentUser}
                 updatePost={updatePost} />
-            } />
+            </div>} />
             <Route path="/:tab(settings)" exact={true} render={ props =>
               <Settings {...props} userInformation={userInformation} setUserInformation={setUserInformation}/>
             }/>

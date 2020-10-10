@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
   IonContent,
   IonHeader,
@@ -21,8 +21,9 @@ const PostPreview = ({ post, onClick }) => (
   ></div>
 )
 
-const Profile = ({ router, username, posts, updatePost}) => {
+const Profile = ({ username, posts, updatePost}) => {
   const [ openedPost, setOpenedPost ] = useState( false );
+
   return (
     <IonPage>
       <IonHeader>
@@ -45,13 +46,13 @@ const Profile = ({ router, username, posts, updatePost}) => {
           <IonRow>
             {posts.map((post, index) => (
               <IonCol size="4" key={index}>
-                <PostPreview post={post} onClick={ () => setOpenedPost(post) }/>
+                <PostPreview post={post} onClick={ () => setOpenedPost(index) }/>
               </IonCol>
             ))}
           </IonRow>
         </IonGrid>
-        { openedPost ? <IonModal isOpen={openedPost} onDidDismiss={() => setOpenedPost(false)}>
-          <EditPost post={openedPost} updatePost={updatePost} closePost={() => setOpenedPost(false)} />
+        { posts[openedPost] ? <IonModal isOpen={posts[openedPost]} onDidDismiss={() => setOpenedPost(null)}>
+          <EditPost post={posts[openedPost]} updatePost={updatePost} closePost={() => setOpenedPost(null)} />
         </IonModal> : null}
       </IonContent>
     </IonPage>

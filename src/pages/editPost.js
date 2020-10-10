@@ -59,6 +59,12 @@ const SwipeableProduct = ({ product, index, removeProduct }) => (
 
 function EditPost({ post, updatePost, closePost } ){
   const [ productSearchIsOpen, setProductSearchIsOpen ] = useState( false );
+  const [ products, setProducts ] = useState( post.products );
+
+  useEffect(() => {
+    setProducts(post.products)
+  }, [post]);
+
   useEffect(() => {
     document.querySelector("ion-tab-bar").style.display = "none";
     // TODO: Make this smoother
@@ -67,20 +73,21 @@ function EditPost({ post, updatePost, closePost } ){
 
     // const [ showSearchBar, setShowSearchBar ] = useState(false);
 
-    // function addProduct( product ) {
-    //     console.log( product )
-    //     setProducts( products => products.concat( product ) )
-    // }
+    function addProduct( product ) {
+        setProductsInDb( products => products.concat( product ) )
+    }
 
     async function removeProduct( productIndex ) {
-        setProducts( post.products.filter( (x,index) => index!==productIndex ) )
+      console.log( 'removing product' )
+      setProductsInDb( post.products.filter( (x,index) => index!==productIndex ) )
     }
 
     // function onSortEnd({oldIndex, newIndex}){
     //     setProducts( products => arrayMove( products, oldIndex, newIndex ) );
     // }
 
-    function setProducts( products ){
+    function setProductsInDb( products ){
+        setProducts( products )
         let postCopy = { ...post };
         if ( typeof products === "function" ) {
             updatePost( post.id, {
@@ -116,24 +123,27 @@ function EditPost({ post, updatePost, closePost } ){
             </IonButtons> 
           </IonToolbar>
         </IonHeader>
+
         <IonContent fullscreen>
           <IonHeader collapse="condense">
             <IonToolbar>
-              <IonTitle size="large">Edit post</IonTitle>
+            <IonTitle size="large">Edit post {post.products.length}</IonTitle>
             </IonToolbar>
           </IonHeader>
           <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
-          {post.products.map((product, i) => (
+          {products.map((product, i) => (
             <SwipeableProduct product={product} index={i} removeProduct={removeProduct} key={i} />
           ))}
           </IonReorderGroup>
         </IonContent>
+
         <IonModal
           isOpen={productSearchIsOpen}
           onDidDismiss={() => setProductSearchIsOpen(false)}
           swipeToClose={true} >
-            <ProductSearch />
+            <ProductSearch closeSearch={() => setProductSearchIsOpen(false)} addProduct={addProduct} />
         </IonModal>
+
         <IonFooter className="ion-no-border">
           <IonToolbar>
             <IonSearchbar
