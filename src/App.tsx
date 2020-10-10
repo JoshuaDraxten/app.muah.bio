@@ -23,7 +23,7 @@ import getIGMedia from "./api/getIGMedia";
 import addUserPost from "./api/addUserPost";
 import updateUserPost from './api/updateUserPost'
 
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 // Core CSS required for Ionic components to work properly
 import '@ionic/react/css/core.css';
@@ -133,20 +133,20 @@ export default () => {
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route path="/:tab(profile)" exact={true} render={props => <div>
+            <Route path="/:tab(settings)" exact={true} render={ props =>
+              <Settings {...props} userInformation={userInformation} setUserInformation={setUserInformation}/>
+            }/>
+            <Route path="/:tab(profile)?" exact={true} render={props => <div>
               <Profile
                 {...props}
                 username={userInformation.instagram.username}
                 posts={userInformation.posts}
                 updatePost={updatePost} />
             </div>} />
-            <Route path="/:tab(settings)" exact={true} render={ props =>
-              <Settings {...props} userInformation={userInformation} setUserInformation={setUserInformation}/>
-            }/>
-            <Route exact path="/" render={() => <Redirect to="/profile" />} />
           </IonRouterOutlet>
+
           <IonTabBar slot="bottom">
-            <IonTabButton tab="profile" href="/profile">
+            <IonTabButton tab="profile" href="/">
               <IonIcon icon={personCircle} />
               <IonLabel>Profile</IonLabel>
             </IonTabButton>

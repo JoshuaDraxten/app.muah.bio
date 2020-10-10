@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import ProductSearch from './productSearch';
+
+import './editPost.css';
+
 // import Header from '../components/header';
 // import {arrayMove, SortableContainer, SortableElement, sortableHandle} from 'react-sortable-hoc';
 // import swal from 'sweetalert';
@@ -9,7 +12,7 @@ import {
   IonButtons,
   IonContent,
   IonFooter,
-  IonHeader,
+  IonIcon,
   IonItem,
   IonItemOption,
   IonItemOptions,
@@ -21,9 +24,9 @@ import {
   IonReorderGroup,
   IonSearchbar,
   IonThumbnail,
-  IonTitle,
   IonToolbar,
 } from '@ionic/react';
+import { closeCircle } from 'ionicons/icons';
 
 function doReorder(event) {
   // The `from` and `to` properties contain the index of the item
@@ -131,26 +134,19 @@ function EditPost({ post, updatePost, closePost } ){
       //   // inputElement.setAttribute("autofocus", true)
       // }, 1000)
     }
+    console.log( post )
 
     return (
       <IonPage>
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Edit Post</IonTitle>
-            <IonButtons slot="end">
-              <IonButton>
-                <div onClick={closePost}>Done</div>
-              </IonButton>
-            </IonButtons> 
-          </IonToolbar>
-        </IonHeader>
-
         <IonContent fullscreen>
-          <IonHeader collapse="condense">
-            <IonToolbar>
-            <IonTitle size="large">Edit post {post.products.length}</IonTitle>
-            </IonToolbar>
-          </IonHeader>
+          <div className=".header-buttons">
+            <IonButtons slot="end" className="header-buttons">
+              <IonButton onClick={closePost}>
+                <IonIcon icon={closeCircle} size="large" />
+              </IonButton>
+            </IonButtons>
+          </div>
+          <div className="edit-post-header" style={{ backgroundImage: `url(${post.media_url})` }}></div>
           <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
           {products.map((product, i) => (
             <SwipeableProduct product={product} index={i} removeProduct={removeProduct} key={i} />

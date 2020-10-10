@@ -1,0 +1,22 @@
+{
+    "short_name": "Muah.bio",
+    "name": "Muah.bio: Monitize your Instagram Bio",
+    "description": "A new income source for beauty influencers",
+    "icons": [
+      {
+        "src": "/images/icons-192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/images/icons-512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/?source=pwa",
+    "background_color": "#E75556",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#E75556"
+  }

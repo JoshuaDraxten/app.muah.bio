@@ -16,7 +16,7 @@ import EditPost from './editPost'
 const PostPreview = ({ post, onClick }) => (
   <div onClick={onClick} to={"/edit/"+post.id}
     key={post.id}
-    className={"photo-grid__photo" + (post.isPublished ? " published" : "") + (post.products.length!==0 ? " has-products" : "")}
+    className={"photo-grid__photo" + (post.products.length!==0 ? " published" : "")}
     style={{ backgroundImage: `linear-gradient(white, white), url('${ post.media_url }')` }}
   ></div>
 )
@@ -42,7 +42,7 @@ const Profile = ({ username, posts, updatePost}) => {
             </IonButtons> */}
           </IonToolbar>
         </IonHeader>
-        <IonGrid>
+        <IonGrid style={{maxWidth: 900}}>
           <IonRow>
             {posts.map((post, index) => (
               <IonCol size="4" key={index}>

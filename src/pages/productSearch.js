@@ -6,7 +6,8 @@ import {
   IonSearchbar,
   IonItem,
   IonThumbnail,
-  IonLabel
+  IonLabel,
+  IonToolbar
 } from '@ionic/react';
 
 import productSearch from '../api/productSearch';
@@ -47,16 +48,18 @@ export default ({ addProduct, closeSearch }) => {
   return (
     <IonPage onClick={() => searchInput.current.setFocus()}>
       <IonHeader>
-        <IonSearchbar
-          className="product-search-bar"
-          showCancelButton="always"
-          placeholder="Search for makeup products"
-          onIonCancel={closeSearch}
-          ref={searchInput}
-          value={query}
-          onIonChange={e=>setQuery(e.target.value)}
-          debounce={300}
-        ></IonSearchbar>
+        <IonToolbar>
+          <IonSearchbar
+            className="product-search-bar"
+            showCancelButton="always"
+            placeholder="Search for makeup products"
+            onIonCancel={closeSearch}
+            ref={searchInput}
+            value={query}
+            onIonChange={e=>setQuery(e.target.value)}
+            debounce={300}
+          ></IonSearchbar>
+        </IonToolbar>
       </IonHeader>
       <IonContent>
         { results.map( (product, i) => 
