@@ -107,7 +107,7 @@ export default () => {
   if ( !currentUser ) {
     if ( window.location.origin.match("http://") ) {
       setCurrentUser({
-        id: "1b20ebbf-3308-40c5-80c6-4a2235571b5e"
+        id: "a6b974c7-397e-4f0e-8e59-70495cd7ce17"
       })
       return <p>Setting dev user...</p>
     } else {
