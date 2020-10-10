@@ -45,8 +45,6 @@ function EditPost({ history, match, posts, updatePost } ){
     // }
 
     async function removeProduct( productIndex ) {
-        const remove = window.confirm(`Remove ${post.products[productIndex].name} from list?`)
-        if ( !remove ) return;
         setProducts( post.products.filter( (x,index) => index!==productIndex ) )
     }
 
@@ -93,14 +91,14 @@ function EditPost({ history, match, posts, updatePost } ){
           </IonHeader>
           <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
           {post.products.map((product, i) => (
-            <IonItemSliding onIonDrag={({detail}) => detail.ratio <= -3 ? removeProduct(i) : null }>
+            <IonItemSliding key={ product.url } onIonSwipe={()=>removeProduct(i)}>
               <IonItemOptions side="start">
-                <IonItemOption color="danger" expandable>
+                <IonItemOption color="danger" expandable onClick={()=>removeProduct(i)}>
                   Delete
                 </IonItemOption>
               </IonItemOptions>
 
-              <IonItem key={ product.url }>
+              <IonItem>
                 <IonThumbnail slot="start">
                   <img src={product.image} alt="" style={{objectFit: "contain"}} />
                 </IonThumbnail>
