@@ -1,6 +1,4 @@
-import React from 'react';
-// import Header from '../components/header';
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
 import {
   IonContent,
   IonHeader,
@@ -9,19 +7,22 @@ import {
   IonToolbar,
   IonGrid,
   IonRow,
-  IonCol
+  IonCol,
+  IonModal,
 } from '@ionic/react';
 import './profile.css';
+import EditPost from './editPost'
 
-const PostPreview = ({ post }) => (
-  <Link to={"/edit/"+post.id}
+const PostPreview = ({ post, onClick }) => (
+  <div onClick={onClick} to={"/edit/"+post.id}
     key={post.id}
     className={"photo-grid__photo" + (post.isPublished ? " published" : "") + (post.products.length!==0 ? " has-products" : "")}
     style={{ backgroundImage: `linear-gradient(white, white), url('${ post.media_url }')` }}
-  ></Link>
+  ></div>
 )
 
-const Profile = ({ history, username, posts}) => {
+const Profile = ({ history, username, posts, updatePost}) => {
+  const [ openedPost, setOpenedPost ] = useState( false );
   return (
     <IonPage>
       <IonHeader>
@@ -44,14 +45,14 @@ const Profile = ({ history, username, posts}) => {
           <IonRow>
             {posts.map((post, index) => (
               <IonCol size="4" key={index}>
-                <PostPreview post={post}/>
+                <PostPreview post={post} onClick={ () => setOpenedPost(post) }/>
               </IonCol>
             ))}
           </IonRow>
         </IonGrid>
-        {/* <div className="photo-grid">{posts.map( post =>
-          <PostPreview post={post} key={post.id} />
-        )}</div> */}
+        { openedPost ? <IonModal isOpen={openedPost} swipeToClose={true} onDidDismiss={() => setOpenedPost(false)}>
+          <EditPost post={openedPost} updatePost={updatePost} closePost={() => setOpenedPost(false)} />
+        </IonModal> : null}
       </IonContent>
     </IonPage>
   );

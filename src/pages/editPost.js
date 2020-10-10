@@ -1,25 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import ProductSearch from './productSearch';
 // import Header from '../components/header';
 // import {arrayMove, SortableContainer, SortableElement, sortableHandle} from 'react-sortable-hoc';
 // import swal from 'sweetalert';
 // import ProductSearchBar from '../components/productSearchBar';
 import {
-  IonBackButton,
   IonButton,
   IonButtons,
-    IonContent,
-    IonHeader,
-    IonItem,
-    IonItemOption,
-    IonItemOptions,
-    IonItemSliding,
-    IonLabel,
-    IonPage,
-    IonReorder,
-    IonReorderGroup,
-    IonThumbnail,
-    IonTitle,
-    IonToolbar,
+  IonContent,
+  IonFooter,
+  IonHeader,
+  IonItem,
+  IonItemOption,
+  IonItemOptions,
+  IonItemSliding,
+  IonLabel,
+  IonModal,
+  IonPage,
+  IonReorder,
+  IonReorderGroup,
+  IonSearchbar,
+  IonThumbnail,
+  IonTitle,
+  IonToolbar,
 } from '@ionic/react';
 
 function doReorder(event) {
@@ -54,9 +57,13 @@ const SwipeableProduct = ({ product, index, removeProduct }) => (
   </IonItemSliding>
 )
 
-function EditPost({ history, match, posts, updatePost } ){
-    const postId = match.params.id;
-    const post = posts.filter( post => post.id === postId )[0];
+function EditPost({ post, updatePost, closePost } ){
+  const [ productSearchIsOpen, setProductSearchIsOpen ] = useState( false );
+  useEffect(() => {
+    document.querySelector("ion-tab-bar").style.display = "none";
+    // TODO: Make this smoother
+    return () => document.querySelector("ion-tab-bar").style.display = "flex";
+  })
 
     // const [ showSearchBar, setShowSearchBar ] = useState(false);
 
@@ -99,15 +106,20 @@ function EditPost({ history, match, posts, updatePost } ){
 
     return (
       <IonPage>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>Edit Post</IonTitle>
+            <IonButtons slot="end">
+              <IonButton>
+                <div onClick={closePost}>Done</div>
+              </IonButton>
+            </IonButtons> 
+          </IonToolbar>
+        </IonHeader>
         <IonContent fullscreen>
-          <IonHeader>
+          <IonHeader collapse="condense">
             <IonToolbar>
-              <IonButtons slot="start">
-                <IonButton>
-                  <IonBackButton defaultHref="/profile"/>
-                </IonButton>
-              </IonButtons> 
-              <IonTitle>Edit post</IonTitle>
+              <IonTitle size="large">Edit post</IonTitle>
             </IonToolbar>
           </IonHeader>
           <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
@@ -116,6 +128,14 @@ function EditPost({ history, match, posts, updatePost } ){
           ))}
           </IonReorderGroup>
         </IonContent>
+        <IonModal isOpen={productSearchIsOpen}>
+            <ProductSearch />
+        </IonModal>
+        <IonFooter className="ion-no-border">
+          <IonToolbar>
+            <IonSearchbar placeholder="Search for makeup products" onIonFocus={() => setProductSearchIsOpen(true)}></IonSearchbar>
+          </IonToolbar>
+        </IonFooter>
       </IonPage>
     )
 

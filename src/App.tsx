@@ -10,7 +10,6 @@ import { personCircle, cog, statsChart } from 'ionicons/icons';
 
 // Pages
 import Profile from "./pages/profile";
-import EditPost from "./pages/editPost";
 import Settings from "./pages/settings";
 import LoginScreen from './pages/loginScreen';
 import AuthenticateInstagram from './pages/authenticateInstagram';
@@ -48,7 +47,6 @@ import './theme/variables.css';
 export default () => {
   const [ currentUser, setCurrentUser ] = useState( netlifyIdentity.currentUser() );
   const [ userInformation, setUserInformation ] = useState( null );
-  const [ showTabBar ] = useState( true );
 
   // eslint-disable-next-line
   const addPost = ({ post, position=0 }) => {
@@ -130,17 +128,19 @@ export default () => {
         <IonTabs>
           <IonRouterOutlet>
             <Route path="/:tab(profile)" exact={true} render={props => 
-              <Profile {...props} username={userInformation.instagram.username} posts={userInformation.posts} currentUser={currentUser} />
+              <Profile
+                {...props}
+                username={userInformation.instagram.username}
+                posts={userInformation.posts}
+                currentUser={currentUser}
+                updatePost={updatePost} />
             } />
             <Route path="/:tab(settings)" exact={true} render={ props =>
               <Settings {...props} userInformation={userInformation} setUserInformation={setUserInformation}/>
             }/>
-            <Route path="/edit/:id" exact={true} render={ props =>
-              <EditPost {...props} posts={userInformation.posts} updatePost={updatePost} />
-            }/>
             <Route exact path="/" render={() => <Redirect to="/profile" />} />
           </IonRouterOutlet>
-          <IonTabBar slot="bottom" style={{ display: showTabBar ? "flex" : "none" }}>
+          <IonTabBar slot="bottom">
             <IonTabButton tab="profile" href="/profile">
               <IonIcon icon={personCircle} />
               <IonLabel>Profile</IonLabel>
