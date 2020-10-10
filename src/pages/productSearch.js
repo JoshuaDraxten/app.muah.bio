@@ -13,7 +13,7 @@ import productSearch from '../api/productSearch';
 
 const ProductResult = ({ product, addProduct, closeSearch }) => (
   <IonItem onClick={() => {addProduct(product); closeSearch()}}>
-    <IonThumbnail slot="start">
+    <IonThumbnail slot="start" style={{background: "#ffffff", borderRadius: 4}}>
       <img src={product.image} alt="" style={{objectFit: "contain"}} />
     </IonThumbnail>
     <IonLabel className="ion-text-wrap">
@@ -30,7 +30,7 @@ export default ({ addProduct, closeSearch }) => {
 
   useEffect(() => {
     // Wait till animation is done to focus on input
-    setTimeout( ()=>searchInput.current.setFocus(), 2000 )
+    setTimeout( ()=>searchInput.current.setFocus(), 600 )
   },[searchInput])
 
   useEffect(() => {
@@ -45,9 +45,10 @@ export default ({ addProduct, closeSearch }) => {
   }, [ query ]);
 
   return (
-    <IonPage>
+    <IonPage onClick={() => searchInput.current.setFocus()}>
       <IonHeader>
         <IonSearchbar
+          className="product-search-bar"
           showCancelButton="always"
           placeholder="Search for makeup products"
           onIonCancel={closeSearch}

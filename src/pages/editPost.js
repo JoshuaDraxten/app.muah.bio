@@ -45,7 +45,7 @@ const SwipeableProduct = ({ product, index, removeProduct }) => (
     </IonItemOptions>
 
     <IonItem>
-      <IonThumbnail slot="start">
+      <IonThumbnail slot="start"  style={{background: "#ffffff", borderRadius: 4}}>
         <img src={product.image} alt="" style={{objectFit: "contain"}} />
       </IonThumbnail>
       <IonLabel className="ion-text-wrap">
@@ -111,6 +111,27 @@ function EditPost({ post, updatePost, closePost } ){
     //     });
     // }
 
+    function openProductSearch(e) {
+      setProductSearchIsOpen(true);
+      // const focusOnInput = () => {
+      //   const searchBar = document.querySelector(".product-search-bar");
+      //   console.log(searchBar)
+      //   if ( !searchBar ) {
+      //     console.log("try again")
+      //     return setTimeout( focusOnInput, 10 );
+      //   }
+      //   searchBar.setFocus();
+      // }
+      // const inputElement = document.querySelector(".product-search-bar input");
+
+      // setTimeout(()=>{
+      //   const inputElement = document.querySelector(".product-search-bar input");
+      //   inputElement.click();
+      //   inputElement.focus();
+      //   // inputElement.setAttribute("autofocus", true)
+      // }, 1000)
+    }
+
     return (
       <IonPage>
         <IonHeader>
@@ -144,7 +165,7 @@ function EditPost({ post, updatePost, closePost } ){
             <ProductSearch closeSearch={() => setProductSearchIsOpen(false)} addProduct={addProduct} />
         </IonModal>
 
-        <IonFooter className="ion-no-border" onMouseDown={ e => {e.stopPropagation(); setProductSearchIsOpen(true)} }>
+        <IonFooter className="ion-no-border" onTouchStart={ openProductSearch }>
           <IonToolbar>
             <IonSearchbar
               placeholder="Search for makeup products"

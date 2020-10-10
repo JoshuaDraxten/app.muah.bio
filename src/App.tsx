@@ -105,7 +105,14 @@ export default () => {
   }, [userInformationIsNotNull])
 
   if ( !currentUser ) {
-    return <LoginScreen setCurrentUser={setCurrentUser} setUserInformation={setUserInformation} />
+    if ( window.location.origin.match("http://") ) {
+      setCurrentUser({
+        id: "1b20ebbf-3308-40c5-80c6-4a2235571b5e"
+      })
+      return <p>Setting dev user...</p>
+    } else {
+      return <LoginScreen setCurrentUser={setCurrentUser} setUserInformation={setUserInformation} />
+    }
   }
 
   // If we're logged in, fetch the user from the database
@@ -131,7 +138,6 @@ export default () => {
                 {...props}
                 username={userInformation.instagram.username}
                 posts={userInformation.posts}
-                currentUser={currentUser}
                 updatePost={updatePost} />
             </div>} />
             <Route path="/:tab(settings)" exact={true} render={ props =>
