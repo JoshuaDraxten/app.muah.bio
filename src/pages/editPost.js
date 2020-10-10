@@ -1,18 +1,28 @@
 import React, { useState } from 'react';
-import Header from '../components/header';
+// import Header from '../components/header';
 import ProductSearchBar from '../components/productSearchBar';
-import {arrayMove, SortableContainer, SortableElement, sortableHandle} from 'react-sortable-hoc';
-import swal from 'sweetalert';
+// import {arrayMove, SortableContainer, SortableElement, sortableHandle} from 'react-sortable-hoc';
+// import swal from 'sweetalert';
+import {
+  IonBackButton,
+  IonButton,
+  IonButtons,
+    IonContent,
+    IonHeader,
+    IonItem,
+    IonLabel,
+    IonPage,
+    IonReorder,
+    IonReorderGroup,
+    IonThumbnail,
+    IonTitle,
+    IonToolbar,
+} from '@ionic/react';
 
-import HighlightOffRoundedIcon from '@material-ui/icons/HighlightOffRounded';
-
-import KeyboardArrowLeftRoundedIcon from '@material-ui/icons/KeyboardArrowLeftRounded';
-
-const Handle = sortableHandle( ({image}) =>
+const Handle = ({image}) =>
     <div className="product__img" style={{backgroundImage: `url('${image}')`}}></div>
-);
 
-const SortableProduct = SortableElement(({product, remove}) => {
+const SortableProduct = (({product, remove}) => {
     const {image, name, retailer, price} = product;
     return (
         <div className="product">
@@ -23,12 +33,12 @@ const SortableProduct = SortableElement(({product, remove}) => {
                     { retailer.name }{ price.number ? " | "+price.symbol: ""}{ price.number }
                 </span>
             </div>
-            <HighlightOffRoundedIcon className="product__close-button" onClick={()=>remove( product )} />
+            {/* <HighlightOffRoundedIcon className="product__close-button" onClick={()=>remove( product )} /> */}
         </div>
     )
 });
 
-const SortableProductList = SortableContainer(({products, removeProduct}) => {
+const SortableProductList = (({products, removeProduct}) => {
   return (
     <div>
       {products.map((product, i) => (
@@ -37,6 +47,17 @@ const SortableProductList = SortableContainer(({products, removeProduct}) => {
     </div>
   );
 });
+
+function doReorder(event) {
+  // The `from` and `to` properties contain the index of the item
+  // when the drag started and ended, respectively
+  console.log('Dragged from index', event.detail.from, 'to', event.detail.to);
+
+  // Finish the reorder and position the item in the DOM based on
+  // where the gesture ended. This method can also be called directly
+  // by the reorder group
+  event.detail.complete();
+}
 
 function EditPost({ history, match, posts, updatePost } ){
     const postId = match.params.id;
@@ -50,17 +71,14 @@ function EditPost({ history, match, posts, updatePost } ){
     }
 
     async function removeProduct( productIndex ) {
-        const remove = await swal({
-            text: `Remove ${post.products[productIndex].name} from list?`,
-            buttons: ["Cancel", "Remove product"]
-        })
+        const remove = window.confirm(`Remove ${post.products[productIndex].name} from list?`)
         if ( !remove ) return;
         setProducts( post.products.filter( (x,index) => index!==productIndex ) )
     }
 
-    function onSortEnd({oldIndex, newIndex}){
-        setProducts( products => arrayMove( products, oldIndex, newIndex ) );
-    }
+    // function onSortEnd({oldIndex, newIndex}){
+    //     setProducts( products => arrayMove( products, oldIndex, newIndex ) );
+    // }
 
     function setProducts( products ){
         let postCopy = { ...post };
@@ -86,10 +104,43 @@ function EditPost({ history, match, posts, updatePost } ){
         });
     }
 
+    console.log( post )
+
+    return (
+      <IonPage>
+        <IonContent fullscreen>
+          <IonHeader>
+            <IonToolbar>
+              <IonButtons slot="start">
+                <IonButton>
+                  <IonBackButton defaultHref="/profile"/>
+                </IonButton>
+              </IonButtons> 
+              <IonTitle>Edit post</IonTitle>
+            </IonToolbar>
+          </IonHeader>
+          <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
+          {post.products.map((product, i) => (
+            <IonItem key={ product.url }>
+              <IonThumbnail slot="start">
+                <img src={product.image} style={{objectFit: "contain"}} />
+              </IonThumbnail>
+              <IonLabel className="ion-text-wrap">
+                <h3>{product.name}</h3>
+                <p>{ product.retailer.name }{ product.price.number ? " | "+product.price.symbol: ""}{ product.price.number }</p>
+              </IonLabel>
+              <IonReorder slot="end" />
+            </IonItem>
+          ))}
+          </IonReorderGroup>
+        </IonContent>
+      </IonPage>
+    )
+
     // TODO: Design what the screen looks like when empty
     return (
         <div>
-        <Header
+        {/* <Header
             backIcon={<KeyboardArrowLeftRoundedIcon />}
             backText="Profile"
             backAction={ () => history.push('/') }
@@ -98,14 +149,13 @@ function EditPost({ history, match, posts, updatePost } ){
             forwardText={ post.isPublished ? "unpublish" : "publish" }
             forwardAction={ togglePublished }
             forwardDisabled={ post.products.length === 0 }
-            forwardStyle={{ color: post.isPublished ? "red" : "blue" }}/>
+            forwardStyle={{ color: post.isPublished ? "red" : "blue" }}/> */}
         <div className="page edit-post">
             <div className="edit-page-image" style={{ backgroundImage: `url(${post.media_url})` }}></div>
             <div className="edit-page-products">
                 <SortableProductList 
                     useDragHandle={true}
                     products={ post.products }
-                    onSortEnd={ onSortEnd }
                     removeProduct={ removeProduct }
                 />
                 <br />

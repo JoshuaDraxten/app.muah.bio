@@ -10,7 +10,7 @@ import { personCircle, cog, statsChart } from 'ionicons/icons';
 
 // Pages
 import Profile from "./pages/profile";
-// import EditPost from "./pages/editPost";
+import EditPost from "./pages/editPost";
 import Settings from "./pages/settings";
 import LoginScreen from './pages/loginScreen';
 import AuthenticateInstagram from './pages/authenticateInstagram';
@@ -65,19 +65,19 @@ export default () => {
     });
   }
 
-  // const updatePost = ( postId, postData ) => {
-  //   const { posts } = userInformation;
-  //   const postIndex = posts.map( post => post.id ).indexOf( postId );
+  const updatePost = ( postId, postData ) => {
+    const { posts } = userInformation;
+    const postIndex = posts.map( post => post.id ).indexOf( postId );
     
-  //   let postsCopy = [...posts];
-  //   postsCopy[postIndex] = postData;
+    let postsCopy = [...posts];
+    postsCopy[postIndex] = postData;
 
-  //   let userInformationCopy = { ...userInformation }
-  //   userInformationCopy.posts = postsCopy;
-  //   setUserInformation( userInformationCopy );
+    let userInformationCopy = { ...userInformation }
+    userInformationCopy.posts = postsCopy;
+    setUserInformation( userInformationCopy );
 
-  //   updateUserPost({ post: postData, userId: currentUser.id });
-  // }
+    updateUserPost({ post: postData, userId: currentUser.id });
+  }
 
   // The first time userInformation loads
   const userInformationIsNotNull = userInformation !== null;
@@ -134,7 +134,10 @@ export default () => {
             <Route path="/:tab(settings)" exact={true} render={ props =>
               <Settings {...props} userInformation={userInformation} setUserInformation={setUserInformation}/>
             }/>
-            <Route exact path="/" render={() => <Redirect to="/:tab(profile)" />} />
+            <Route path="/edit/:id" exact={true} render={ props =>
+              <EditPost {...props} posts={userInformation.posts} updatePost={updatePost} />
+            }/>
+            <Route exact path="/" render={() => <Redirect to="/profile" />} />
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
             <IonTabButton tab="profile" href="/profile">
