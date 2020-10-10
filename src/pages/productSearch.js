@@ -7,7 +7,8 @@ import {
   IonItem,
   IonThumbnail,
   IonLabel,
-  IonToolbar
+  IonToolbar,
+  IonSkeletonText
 } from '@ionic/react';
 
 import productSearch from '../api/productSearch';
@@ -23,10 +24,25 @@ const ProductResult = ({ product, addProduct, closeSearch }) => (
     </IonLabel>
   </IonItem>
 )
+const LoadingProductResult = () => (
+  <IonItem>
+    <IonThumbnail slot="start" style={{background: "#ffffff", borderRadius: 4}}>
+      <IonSkeletonText animated />
+    </IonThumbnail>
+    <IonLabel className="ion-text-wrap">
+      <h3><IonSkeletonText animated style={{ width: "80%" }} /></h3>
+      <h3><IonSkeletonText animated style={{ width: "40%" }} /></h3>
+      <p><IonSkeletonText animated style={{ width: "20%" }} /></p>
+    </IonLabel>
+  </IonItem>
+)
+
+const LoadingProductResults = () => [...Array(45)].map( (x, i) => <LoadingProductResult key={i} /> )
 
 export default ({ addProduct, closeSearch }) => {
   const [ results, setResults ] = useState([]);
   const [ query, setQuery ] = useState("");
+  const [ isSearching, setIsSearching ] = useState(false)
   const searchInput = useRef(null);
 
   useEffect(() => {
@@ -36,7 +52,9 @@ export default ({ addProduct, closeSearch }) => {
 
   useEffect(() => {
     if ( query.length > 2 ) {
+      setIsSearching(true)
       productSearch({ keyword: query }).then( response => {
+          setIsSearching(false);
           setResults( response )
           console.log( response )
       });
@@ -62,9 +80,12 @@ export default ({ addProduct, closeSearch }) => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        { results.map( (product, i) => 
+        { isSearching ?
+          <LoadingProductResults/>
+          :
+          results.map( (product, i) => 
           <ProductResult product={product} key={i} addProduct={addProduct} closeSearch={closeSearch} />
-        ) }
+        )}
       </IonContent>
     </IonPage>
   )

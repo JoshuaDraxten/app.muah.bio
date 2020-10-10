@@ -4,7 +4,6 @@ import ProductSearch from './productSearch';
 import './editPost.css';
 
 // import Header from '../components/header';
-// import {arrayMove, SortableContainer, SortableElement, sortableHandle} from 'react-sortable-hoc';
 // import swal from 'sweetalert';
 // import ProductSearchBar from '../components/productSearchBar';
 import {
@@ -28,16 +27,24 @@ import {
 } from '@ionic/react';
 import { closeCircle } from 'ionicons/icons';
 
-function doReorder(event) {
-  // The `from` and `to` properties contain the index of the item
-  // when the drag started and ended, respectively
-  console.log('Dragged from index', event.detail.from, 'to', event.detail.to);
+const arrayMoveMutate = (array, from, to) => {
+	const startIndex = from < 0 ? array.length + from : from;
 
-  // Finish the reorder and position the item in the DOM based on
-  // where the gesture ended. This method can also be called directly
-  // by the reorder group
-  event.detail.complete();
-}
+	if (startIndex >= 0 && startIndex < array.length) {
+		const endIndex = to < 0 ? array.length + to : to;
+
+		const [item] = array.splice(from, 1);
+		array.splice(endIndex, 0, item);
+	}
+};
+
+const arrayMove = (array, from, to) => {
+  console.log( array )
+	array = [...array];
+  arrayMoveMutate(array, from, to);
+  console.log( array )
+	return array;
+};
 
 const SwipeableProduct = ({ product, index, removeProduct }) => (
   <IonItemSliding key={ product.url } onIonSwipe={()=>removeProduct(index)}>
@@ -85,9 +92,10 @@ function EditPost({ post, updatePost, closePost } ){
       setProductsInDb( post.products.filter( (x,index) => index!==productIndex ) )
     }
 
-    // function onSortEnd({oldIndex, newIndex}){
-    //     setProducts( products => arrayMove( products, oldIndex, newIndex ) );
-    // }
+    function doReorder( event ){
+        setProductsInDb( products => arrayMove( products, event.detail.from, event.detail.to ) );
+        event.detail.complete();
+    }
 
     function setProductsInDb( products ){
         setProducts( products )
@@ -134,7 +142,10 @@ function EditPost({ post, updatePost, closePost } ){
       //   // inputElement.setAttribute("autofocus", true)
       // }, 1000)
     }
-    console.log( post )
+    console.log( products )
+    const sortableProductsList = products.map((product, i) => (
+      <SwipeableProduct product={product} index={i} removeProduct={removeProduct} key={product.url} />
+    ))
 
     return (
       <IonPage>
@@ -148,9 +159,7 @@ function EditPost({ post, updatePost, closePost } ){
           </div>
           <div className="edit-post-header" style={{ backgroundImage: `url(${post.media_url})` }}></div>
           <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
-          {products.map((product, i) => (
-            <SwipeableProduct product={product} index={i} removeProduct={removeProduct} key={i} />
-          ))}
+          { sortableProductsList }
           </IonReorderGroup>
         </IonContent>
 
@@ -161,7 +170,7 @@ function EditPost({ post, updatePost, closePost } ){
             <ProductSearch closeSearch={() => setProductSearchIsOpen(false)} addProduct={addProduct} />
         </IonModal>
 
-        <IonFooter className="ion-no-border" onTouchStart={ openProductSearch }>
+        <IonFooter className="ion-no-border" onClick={ openProductSearch }>
           <IonToolbar>
             <IonSearchbar
               placeholder="Search for makeup products"
