@@ -144,11 +144,12 @@ function EditPost({ post, updatePost, closePost } ){
             <ProductSearch closeSearch={() => setProductSearchIsOpen(false)} addProduct={addProduct} />
         </IonModal>
 
-        <IonFooter className="ion-no-border">
+        <IonFooter className="ion-no-border" onMouseDown={ e => {e.stopPropagation(); setProductSearchIsOpen(true)} }>
           <IonToolbar>
             <IonSearchbar
               placeholder="Search for makeup products"
-              onMouseDown={ e => {e.stopPropagation(); setProductSearchIsOpen(true)} }></IonSearchbar>
+              style={{pointerEvents: "none"}}
+            ></IonSearchbar>
           </IonToolbar>
         </IonFooter>
       </IonPage>
