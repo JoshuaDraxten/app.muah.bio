@@ -48,7 +48,7 @@ import './theme/variables.css';
 export default () => {
   const [ currentUser, setCurrentUser ] = useState( netlifyIdentity.currentUser() );
   const [ userInformation, setUserInformation ] = useState( null );
-  const [ showTabBar, setShowTabBar ] = useState( true );
+  const [ showTabBar ] = useState( true );
 
   // eslint-disable-next-line
   const addPost = ({ post, position=0 }) => {
