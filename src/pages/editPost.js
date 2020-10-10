@@ -33,6 +33,27 @@ function doReorder(event) {
   event.detail.complete();
 }
 
+const SwipeableProduct = ({ product, index, removeProduct }) => (
+  <IonItemSliding key={ product.url } onIonSwipe={()=>removeProduct(index)}>
+    <IonItemOptions side="start">
+      <IonItemOption color="danger" expandable onClick={()=>removeProduct(index)}>
+        Delete
+      </IonItemOption>
+    </IonItemOptions>
+
+    <IonItem>
+      <IonThumbnail slot="start">
+        <img src={product.image} alt="" style={{objectFit: "contain"}} />
+      </IonThumbnail>
+      <IonLabel className="ion-text-wrap">
+        <h3>{product.name}</h3>
+        <p>{ product.retailer.name }{ product.price.number ? " | "+product.price.symbol: ""}{ product.price.number }</p>
+      </IonLabel>
+      <IonReorder slot="end" />
+    </IonItem>
+  </IonItemSliding>
+)
+
 function EditPost({ history, match, posts, updatePost } ){
     const postId = match.params.id;
     const post = posts.filter( post => post.id === postId )[0];
@@ -91,24 +112,7 @@ function EditPost({ history, match, posts, updatePost } ){
           </IonHeader>
           <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
           {post.products.map((product, i) => (
-            <IonItemSliding key={ product.url } onIonSwipe={()=>removeProduct(i)}>
-              <IonItemOptions side="start">
-                <IonItemOption color="danger" expandable onClick={()=>removeProduct(i)}>
-                  Delete
-                </IonItemOption>
-              </IonItemOptions>
-
-              <IonItem>
-                <IonThumbnail slot="start">
-                  <img src={product.image} alt="" style={{objectFit: "contain"}} />
-                </IonThumbnail>
-                <IonLabel className="ion-text-wrap">
-                  <h3>{product.name}</h3>
-                  <p>{ product.retailer.name }{ product.price.number ? " | "+product.price.symbol: ""}{ product.price.number }</p>
-                </IonLabel>
-                <IonReorder slot="end" />
-              </IonItem>
-            </IonItemSliding>
+            <SwipeableProduct product={product} index={i} removeProduct={removeProduct} key={i} />
           ))}
           </IonReorderGroup>
         </IonContent>
