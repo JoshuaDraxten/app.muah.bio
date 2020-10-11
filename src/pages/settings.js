@@ -12,6 +12,8 @@ import {
   IonButton
 } from '@ionic/react';
 
+import './settings.css';
+
 import netlifyIdentity from 'netlify-identity-widget';
 
 import updateLinkInBioSettings from '../api/updateLinkInBioSettings';
@@ -52,7 +54,7 @@ const SettingsPage = ({ history, userInformation, setUserInformation }) => {
           <IonTitle>Settings</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent fullscreen className="settings">
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Settings</IonTitle>

@@ -17,6 +17,7 @@ import {
   IonItemOptions,
   IonItemSliding,
   IonLabel,
+  IonListHeader,
   IonModal,
   IonPage,
   IonReorder,
@@ -164,9 +165,9 @@ function EditPost({ post, updatePost, closePost } ){
             style={{ backgroundImage: `url(${post.media_url})` }}
             onClick={ ()=>setExpandedHeader( x=>!x ) }
           ></div>
-          <IonToolbar>
-            <IonTitle size="large">Tagged Products</IonTitle>
-          </IonToolbar>
+          <IonListHeader>
+            <IonLabel>Tagged Products</IonLabel>
+          </IonListHeader>
           <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
             { sortableProductsList }
           </IonReorderGroup>

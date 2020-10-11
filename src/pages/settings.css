@@ -1,0 +1,8 @@
+@media screen and ( min-width: 767px ) {
+    ion-content.settings {
+        top: 40px;
+        max-width: 600px;
+        left: 50%;
+        transform: translateX( -50% )
+    }
+}
