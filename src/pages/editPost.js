@@ -23,6 +23,7 @@ import {
   IonReorderGroup,
   IonSearchbar,
   IonThumbnail,
+  IonTitle,
   IonToolbar,
 } from '@ionic/react';
 import { closeCircle } from 'ionicons/icons';
@@ -70,6 +71,7 @@ const SwipeableProduct = ({ product, index, removeProduct }) => (
 function EditPost({ post, updatePost, closePost } ){
   const [ productSearchIsOpen, setProductSearchIsOpen ] = useState( false );
   const [ products, setProducts ] = useState( post.products );
+  const [ expandedHeader, setExpandedHeader ] = useState( false );
 
   useEffect(() => {
     setProducts(post.products)
@@ -157,9 +159,16 @@ function EditPost({ post, updatePost, closePost } ){
               </IonButton>
             </IonButtons>
           </div>
-          <div className="edit-post-header" style={{ backgroundImage: `url(${post.media_url})` }}></div>
+          <div
+            className={"edit-post-header" + (expandedHeader ? " expanded" : "")}
+            style={{ backgroundImage: `url(${post.media_url})` }}
+            onClick={ ()=>setExpandedHeader( x=>!x ) }
+          ></div>
+          <IonToolbar>
+            <IonTitle size="large">Tagged Products</IonTitle>
+          </IonToolbar>
           <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
-          { sortableProductsList }
+            { sortableProductsList }
           </IonReorderGroup>
         </IonContent>
 
