@@ -60,7 +60,7 @@ const SettingsPage = ({ history, userInformation, setUserInformation }) => {
         </IonHeader>
         {/* <IonItemDivider>Button on top of your profile</IonItemDivider> */}
         <IonItem>
-          <IonLabel position="fixed">Your Website</IonLabel>
+          <IonLabel position="stacked">Your Website</IonLabel>
           <IonInput
             type="url"
             inputMode="url"
@@ -70,7 +70,7 @@ const SettingsPage = ({ history, userInformation, setUserInformation }) => {
             onIonChange={ e => setLinkInBioPage(x => ({...x, website: e.target.value}) ) }></IonInput>
         </IonItem>
         <IonItem>
-          <IonLabel position="fixed">Button Text</IonLabel>
+          <IonLabel position="stacked">Button Text</IonLabel>
           <IonInput
             type="text"
             inputMode="text"
