@@ -55,6 +55,9 @@ export default () => {
     let userInformationCopy = { ...userInformation }
     userInformationCopy.posts = [...posts];
     userInformationCopy.posts.splice( position, 0, post );
+    userInformationCopy.posts.sort(
+      (a,b) => new Date(b.timestamp)*1 - new Date(a.timestamp)*1
+    );
     setUserInformation( userInformationCopy );
 
     addUserPost({
@@ -100,6 +103,16 @@ export default () => {
 
       });
     }
+
+    let userInformationCopy = { ...userInformation };
+    userInformationCopy.posts.sort(
+      (a,b) => new Date(b.timestamp)*1 - new Date(a.timestamp)*1
+    );
+    console.log( userInformationCopy.posts )
+    if ( JSON.stringify(userInformationCopy.posts) !== JSON.stringify(userInformation.posts) ) {
+      setUserInformation( userInformationCopy )
+    }
+
   // I dont want any other variables as a dependancy so this only fires once
   // eslint-disable-next-line
   }, [userInformationIsNotNull])
