@@ -6,7 +6,7 @@ import { IonReactRouter } from '@ionic/react-router';
 
 
 import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
-import { personCircle, cog, statsChart } from 'ionicons/icons';
+import { personCircle, cog } from 'ionicons/icons';
 
 // Pages
 import Profile from "./pages/profile";
@@ -170,10 +170,10 @@ export default () => {
               <IonLabel>Settings</IonLabel>
             </IonTabButton>
 
-            <IonTabButton tab="stats" href="/stats">
+            {/* <IonTabButton tab="stats" href="/stats">
               <IonIcon icon={statsChart} />
               <IonLabel>Stats</IonLabel>
-            </IonTabButton>
+            </IonTabButton> */}
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>

@@ -123,7 +123,7 @@ const Profile = ({ username, posts, updatePost}) => {
             <IonTitle size="large">Profile</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonGrid style={{maxWidth: 900}}>
+        <IonGrid style={{maxWidth: 1000}}>
           <IonRow>
             {posts.map((post, index) => (
               <IonCol size="4" key={index}>

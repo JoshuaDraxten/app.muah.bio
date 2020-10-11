@@ -1,6 +1,14 @@
 /* Ionic Variables and Theming. For more info, please see:
 http://ionicframework.com/docs/theming/ */
 
+@media screen and ( min-width: 737px ) {
+  body {
+    /* Custom */
+    --ion-grid-padding: 10px;
+    --ion-grid-column-padding: 10px;
+  }
+}
+
 /** Ionic CSS Variables **/
 :root {
   /* Custom */
