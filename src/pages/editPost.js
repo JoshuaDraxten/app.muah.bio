@@ -24,7 +24,6 @@ import {
   IonReorderGroup,
   IonSearchbar,
   IonThumbnail,
-  IonTitle,
   IonToolbar,
 } from '@ionic/react';
 import { closeCircle } from 'ionicons/icons';
