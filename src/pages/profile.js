@@ -82,7 +82,7 @@ const Profile = ({ username, posts, updatePost}) => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar className="hide-title-on-ios">
           <IonTitle>Profile</IonTitle>
           <IonButtons slot="end">
               <IonButton>

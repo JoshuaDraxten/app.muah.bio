@@ -1,3 +1,7 @@
+.hide-title-on-ios.ios ion-title {
+    display: none;
+}
+
 .photo-grid__photo {
     display: block;
     width: 100%;
@@ -20,15 +24,4 @@
     bottom: 8px;
     right: 8px;
     border-radius: 20px;
-}
-
-.disclaimer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    font-size: 14px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px);
 }
