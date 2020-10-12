@@ -82,8 +82,8 @@ function EditPost({ post, updatePost, closePost } ){
   }
 
   async function removeProduct( productIndex ) {
-    console.log( 'removing product' )
-    setProductsInDb( post.products.filter( (x,index) => index!==productIndex ) )
+    console.log( 'removing product', productIndex )
+    setProductsInDb( products.filter( (x,index) => index!==productIndex ) )
   }
 
   function doReorder( event ){
