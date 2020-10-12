@@ -70,11 +70,17 @@ export default ({ addProduct, closeSearch }) => {
     if ( query.length > 2 ) {
       console.log( query )
       setIsSearching(true);
-      productSearch({ keyword: query }).then( newResults => updateResults( newResults, query ));
+      productSearch({ keyword: query })
+        .then( newResults => updateResults( newResults, query ))
+        .catch( error => {
+          alert("There was an error completing your search, try again in a moment");
+          console.log(error)
+          closeSearch();
+        });
   } else {
       setResults([]);
   }
-  }, [ query ]);
+  }, [ query, closeSearch ]);
 
   const updateQuery = e => {
     console.log( e.target.value )
