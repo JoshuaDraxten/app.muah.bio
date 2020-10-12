@@ -77,159 +77,82 @@ function EditPost({ post, updatePost, closePost } ){
     setProducts(post.products)
   }, [post]);
 
-  useEffect(() => {
-    document.querySelector("ion-tab-bar").style.display = "none";
-    // TODO: Make this smoother
-    return () => document.querySelector("ion-tab-bar").style.display = "flex";
-  })
+  function addProduct( product ) {
+      setProductsInDb( products => products.concat( product ) )
+  }
 
-    // const [ showSearchBar, setShowSearchBar ] = useState(false);
+  async function removeProduct( productIndex ) {
+    console.log( 'removing product' )
+    setProductsInDb( post.products.filter( (x,index) => index!==productIndex ) )
+  }
 
-    function addProduct( product ) {
-        setProductsInDb( products => products.concat( product ) )
-    }
+  function doReorder( event ){
+      setProductsInDb( products => arrayMove( products, event.detail.from, event.detail.to ) );
+      event.detail.complete();
+  }
 
-    async function removeProduct( productIndex ) {
-      console.log( 'removing product' )
-      setProductsInDb( post.products.filter( (x,index) => index!==productIndex ) )
-    }
+  function setProductsInDb( products ){
+      setProducts( products )
+      let postCopy = { ...post };
+      if ( typeof products === "function" ) {
+          updatePost( post.id, {
+              ...post,
+              products: products(postCopy.products)
+          });
+      } else {
+          updatePost( post.id, {
+              ...post, products
+          });
+      }
+  }
 
-    function doReorder( event ){
-        setProductsInDb( products => arrayMove( products, event.detail.from, event.detail.to ) );
-        event.detail.complete();
-    }
+  function openProductSearch(e) {
+    setProductSearchIsOpen(true);
+  }
+  const sortableProductsList = products.map((product, i) => (
+    <SwipeableProduct product={product} index={i} removeProduct={removeProduct} key={product.url} />
+  ))
 
-    function setProductsInDb( products ){
-        setProducts( products )
-        let postCopy = { ...post };
-        if ( typeof products === "function" ) {
-            updatePost( post.id, {
-                ...post,
-                products: products(postCopy.products)
-            });
-        } else {
-            updatePost( post.id, {
-                ...post, products
-            });
-        }
-    }
+  return (
+    <IonPage>
+      <IonContent fullscreen>
+        <div className=".header-buttons">
+          <IonButtons slot="end" className="header-buttons">
+            <IonButton onClick={closePost}>
+              <IonIcon icon={closeCircle} size="large" />
+            </IonButton>
+          </IonButtons>
+        </div>
+        <div
+          className={"edit-post-header" + (expandedHeader ? " expanded" : "")}
+          style={{ backgroundImage: `url(${post.media_url})` }}
+          onClick={ ()=>setExpandedHeader( x=>!x ) }
+        ></div>
+        <IonListHeader>
+          <IonLabel>Tagged Products</IonLabel>
+        </IonListHeader>
+        <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
+          { sortableProductsList }
+        </IonReorderGroup>
+      </IonContent>
 
-    // function togglePublished(){
-    //     if ( !post.isPublished ) {
-    //         history.push('/');
-    //     }
-    //     updatePost( post.id, {
-    //         ...post,
-    //         isPublished: !post.isPublished
-    //     });
-    // }
+      <IonModal
+        isOpen={productSearchIsOpen}
+        onDidDismiss={() => setProductSearchIsOpen(false)}
+        swipeToClose={true} >
+          <ProductSearch closeSearch={() => setProductSearchIsOpen(false)} addProduct={addProduct} />
+      </IonModal>
 
-    function openProductSearch(e) {
-      setProductSearchIsOpen(true);
-      // const focusOnInput = () => {
-      //   const searchBar = document.querySelector(".product-search-bar");
-      //   console.log(searchBar)
-      //   if ( !searchBar ) {
-      //     console.log("try again")
-      //     return setTimeout( focusOnInput, 10 );
-      //   }
-      //   searchBar.setFocus();
-      // }
-      // const inputElement = document.querySelector(".product-search-bar input");
-
-      // setTimeout(()=>{
-      //   const inputElement = document.querySelector(".product-search-bar input");
-      //   inputElement.click();
-      //   inputElement.focus();
-      //   // inputElement.setAttribute("autofocus", true)
-      // }, 1000)
-    }
-    console.log( products )
-    const sortableProductsList = products.map((product, i) => (
-      <SwipeableProduct product={product} index={i} removeProduct={removeProduct} key={product.url} />
-    ))
-
-    return (
-      <IonPage>
-        <IonContent fullscreen>
-          <div className=".header-buttons">
-            <IonButtons slot="end" className="header-buttons">
-              <IonButton onClick={closePost}>
-                <IonIcon icon={closeCircle} size="large" />
-              </IonButton>
-            </IonButtons>
-          </div>
-          <div
-            className={"edit-post-header" + (expandedHeader ? " expanded" : "")}
-            style={{ backgroundImage: `url(${post.media_url})` }}
-            onClick={ ()=>setExpandedHeader( x=>!x ) }
-          ></div>
-          <IonListHeader>
-            <IonLabel>Tagged Products</IonLabel>
-          </IonListHeader>
-          <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
-            { sortableProductsList }
-          </IonReorderGroup>
-        </IonContent>
-
-        <IonModal
-          isOpen={productSearchIsOpen}
-          onDidDismiss={() => setProductSearchIsOpen(false)}
-          swipeToClose={true} >
-            <ProductSearch closeSearch={() => setProductSearchIsOpen(false)} addProduct={addProduct} />
-        </IonModal>
-
-        <IonFooter className="ion-no-border" onClick={ openProductSearch }>
-          <IonToolbar>
-            <IonSearchbar
-              placeholder="Search for makeup products"
-              style={{pointerEvents: "none"}}
-            ></IonSearchbar>
-          </IonToolbar>
-        </IonFooter>
-      </IonPage>
-    )
-
-    // // TODO: Design what the screen looks like when empty
-    // return (
-    //     <div>
-    //     {/* <Header
-    //         backIcon={<KeyboardArrowLeftRoundedIcon />}
-    //         backText="Profile"
-    //         backAction={ () => history.push('/') }
-    //         title="Edit Post"
-    //         key="header"
-    //         forwardText={ post.isPublished ? "unpublish" : "publish" }
-    //         forwardAction={ togglePublished }
-    //         forwardDisabled={ post.products.length === 0 }
-    //         forwardStyle={{ color: post.isPublished ? "red" : "blue" }}/> */}
-    //     <div className="page edit-post">
-    //         <div className="edit-page-image" style={{ backgroundImage: `url(${post.media_url})` }}></div>
-    //         <div className="edit-page-products">
-    //             <SortableProductList 
-    //                 useDragHandle={true}
-    //                 products={ post.products }
-    //                 removeProduct={ removeProduct }
-    //             />
-    //             <br />
-    //             <div className={post.products.length === 0 ? "" : "stick-to-bottom animate-with-parent" }>
-    //                 <button className="full-width" onClick={ ()=>setShowSearchBar(true) }>Add Product</button>
-    //                 { post.products.length === 0 ? 
-    //                     <a href="#" style={{display: "block", padding: 20, textAlign: "center"}}>or link this post to a website</a>
-    //                     : null
-    //                 }
-    //             </div>
-    //             <div></div>
-    //             { showSearchBar ?
-    //                 <ProductSearchBar
-    //                     exitSearch={()=>setShowSearchBar(false)}
-    //                     addProduct={addProduct}
-    //                 /> : null
-    //             }
-    //         </div>
-    //     </div>
-    //     </div>
-    // )
+      <IonFooter className="ion-no-border" onClick={ openProductSearch }>
+        <IonToolbar>
+          <IonSearchbar
+            placeholder="Search for makeup products"
+            style={{pointerEvents: "none"}}
+          ></IonSearchbar>
+        </IonToolbar>
+      </IonFooter>
+    </IonPage>
+  );
 }
 
 export default EditPost;
