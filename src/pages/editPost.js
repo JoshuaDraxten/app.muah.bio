@@ -7,6 +7,7 @@ import './editPost.css';
 // import swal from 'sweetalert';
 // import ProductSearchBar from '../components/productSearchBar';
 import {
+  IonAlert,
   IonButton,
   IonButtons,
   IonContent,
@@ -47,11 +48,14 @@ const arrayMove = (array, from, to) => {
 	return array;
 };
 
-const SwipeableProduct = ({ product, index, removeProduct }) => (
+const SwipeableProduct = ({ product, index, removeProduct, setProductTagEditor }) => (
   <IonItemSliding key={ product.url } onIonSwipe={()=>removeProduct(index)}>
     <IonItemOptions side="start">
       <IonItemOption color="danger" expandable onClick={()=>removeProduct(index)}>
         Delete
+      </IonItemOption>
+      <IonItemOption color="success" onClick={()=>setProductTagEditor( { open: true, productIndex: index, tag: product.tag } )}>
+        Edit Tag
       </IonItemOption>
     </IonItemOptions>
 
@@ -60,6 +64,7 @@ const SwipeableProduct = ({ product, index, removeProduct }) => (
         <img src={product.image} alt="" style={{objectFit: "contain"}} />
       </IonThumbnail>
       <IonLabel className="ion-text-wrap">
+      { product.tag ? <span className="tag">{product.tag}</span> : null }
         <h3>{product.name}</h3>
         <p>{ product.retailer.name }{ product.price.number ? " | "+product.price.symbol: ""}{ product.price.number }</p>
       </IonLabel>
@@ -72,10 +77,11 @@ function EditPost({ post, updatePost, closePost } ){
   const [ productSearchIsOpen, setProductSearchIsOpen ] = useState( false );
   const [ products, setProducts ] = useState( post.products );
   const [ expandedHeader, setExpandedHeader ] = useState( false );
+  const [ productTagEditor, setProductTagEditor ] = useState( { open: false, productIndex: -1, tag: '' } );
   const contentRef = useRef( null );
 
   useEffect(() => {
-    setProducts(post.products)
+    setProducts(post.products);
   }, [post]);
 
   async function addProduct( product ) {
@@ -114,7 +120,12 @@ function EditPost({ post, updatePost, closePost } ){
     setProductSearchIsOpen(true);
   }
   const sortableProductsList = products.map((product, i) => (
-    <SwipeableProduct product={product} index={i} removeProduct={removeProduct} key={product.url} />
+    <SwipeableProduct
+      product={product}
+      index={i}
+      removeProduct={removeProduct}
+      setProductTagEditor={setProductTagEditor}
+      key={product.url} />
   ))
 
   return (
@@ -138,6 +149,42 @@ function EditPost({ post, updatePost, closePost } ){
         <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
           { sortableProductsList }
         </IonReorderGroup>
+
+        <IonAlert
+          isOpen={productTagEditor.open}
+          onDidDismiss={() => setProductTagEditor({ open: false, productIndex: -1, tag: '' })}
+          subHeader={productTagEditor.productIndex!==-1?'Edit the tag for '+products[productTagEditor.productIndex].name: ''}
+          inputs={[
+            {
+              name: 'tag',
+              type: 'text',
+              label: "Hello world",
+              value: productTagEditor.tag,
+              placeholder: 'ex: Lips'
+            }
+          ]}
+          buttons={[
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              cssClass: 'secondary',
+              handler: () => {
+                console.log('Cancel');
+              }
+            },
+            {
+              text: 'Ok',
+              handler: ({ tag }) => {
+
+                if ( tag === productTagEditor.tag ) return;
+
+                let productsClone = [...products];
+                productsClone[productTagEditor.productIndex].tag = tag;
+                setProductsInDb( productsClone );
+              }
+            }
+          ]}
+        />
       </IonContent>
 
       <IonModal

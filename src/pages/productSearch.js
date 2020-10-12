@@ -93,7 +93,7 @@ export default ({ addProduct, closeSearch }) => {
             ref={searchInput}
             value={query}
             onIonChange={updateQuery}
-            debounce={300}
+            debounce={600}
           ></IonSearchbar>
         </IonToolbar>
       </IonHeader>
