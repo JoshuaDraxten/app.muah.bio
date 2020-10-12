@@ -1,5 +1,6 @@
 @media screen and ( min-width: 767px ) {
-    ion-content.settings {
+    ion-content.settings .container {
+        position: relative;
         top: 40px;
         max-width: 600px;
         left: 50%;

@@ -60,34 +60,35 @@ const SettingsPage = ({ history, userInformation, setUserInformation }) => {
             <IonTitle size="large">Settings</IonTitle>
           </IonToolbar>
         </IonHeader>
-        {/* <IonItemDivider>Button on top of your profile</IonItemDivider> */}
-        <IonItem>
-          <IonLabel position="stacked">Your Website</IonLabel>
-          <IonInput
-            type="url"
-            inputMode="url"
-            pattern="https?://.*"
-            value={ linkInBioPage.website }
-            placeholder="https://mymakeupbusiness.com"
-            onIonChange={ e => setLinkInBioPage(x => ({...x, website: e.target.value}) ) }></IonInput>
-        </IonItem>
-        <IonItem>
-          <IonLabel position="stacked">Button Text</IonLabel>
-          <IonInput
-            type="text"
-            inputMode="text"
-            value={ linkInBioPage.visitSiteButtonText }
-            placeholder="Visit Website"
-            onIonChange={ e => setLinkInBioPage(x => ({...x, visitSiteButtonText: e.target.value}) ) }></IonInput>
-        </IonItem>
-        <IonItem>
-          <IonLabel position="stacked">Affiliate Disclaimer Text</IonLabel>
-          <IonTextarea
-            value={ linkInBioPage.disclaimer }
-            onIonChange={ e => setLinkInBioPage(x => ({...x, disclaimer: e.target.value}) ) }></IonTextarea>
-        </IonItem>
-        <br />
-        <IonButton expand="block" color="danger" onClick={logOut}>Log Out</IonButton>
+        <div className="container">
+          <IonItem>
+            <IonLabel position="stacked">Your Website</IonLabel>
+            <IonInput
+              type="url"
+              inputMode="url"
+              pattern="https?://.*"
+              value={ linkInBioPage.website }
+              placeholder="https://mymakeupbusiness.com"
+              onIonChange={ e => setLinkInBioPage(x => ({...x, website: e.target.value}) ) }></IonInput>
+          </IonItem>
+          <IonItem>
+            <IonLabel position="stacked">Button Text</IonLabel>
+            <IonInput
+              type="text"
+              inputMode="text"
+              value={ linkInBioPage.visitSiteButtonText }
+              placeholder="Visit Website"
+              onIonChange={ e => setLinkInBioPage(x => ({...x, visitSiteButtonText: e.target.value}) ) }></IonInput>
+          </IonItem>
+          <IonItem>
+            <IonLabel position="stacked">Affiliate Disclaimer Text</IonLabel>
+            <IonTextarea
+              value={ linkInBioPage.disclaimer }
+              onIonChange={ e => setLinkInBioPage(x => ({...x, disclaimer: e.target.value}) ) }></IonTextarea>
+          </IonItem>
+          <br />
+          <IonButton expand="block" color="danger" onClick={logOut}>Log Out</IonButton>
+        </div>
       </IonContent>
     </IonPage>
   );
