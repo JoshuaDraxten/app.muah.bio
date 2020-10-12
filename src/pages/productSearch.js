@@ -13,17 +13,22 @@ import {
 
 import productSearch from '../api/productSearch';
 
-const ProductResult = ({ product, addProduct, closeSearch }) => (
-  <IonItem onClick={() => {addProduct(product); closeSearch()}}>
-    <IonThumbnail slot="start" style={{background: "#ffffff", borderRadius: 4}}>
-      <img src={product.image} alt="" style={{objectFit: "contain"}} />
-    </IonThumbnail>
-    <IonLabel className="ion-text-wrap">
-      <h3>{product.name}</h3>
-      <p>{ product.price.number ? product.price.symbol: ""}{ product.price.number }</p>
-    </IonLabel>
-  </IonItem>
-)
+const ProductResult = ({ product, addProduct, closeSearch, wordsToBold=[] }) => {
+  let boldedName = product.name.split(" ").map( word => 
+    wordsToBold.includes(word.toLowerCase()) ? "<b>"+word+"</b>" : word
+  ).join(" ");
+  return (
+    <IonItem onClick={() => {addProduct(product); closeSearch()}}>
+      <IonThumbnail slot="start" style={{background: "#ffffff", borderRadius: 4}}>
+        <img src={product.image} alt="" style={{objectFit: "contain"}} />
+      </IonThumbnail>
+      <IonLabel className="ion-text-wrap">
+        <h3 dangerouslySetInnerHTML={{__html: boldedName}}></h3>
+        <p>{ product.price.number ? product.price.symbol: ""}{ product.price.number }</p>
+      </IonLabel>
+    </IonItem>
+  )
+}
 const LoadingProductResult = () => (
   <IonItem>
     <IonThumbnail slot="start" style={{background: "#ffffff", borderRadius: 4}}>
@@ -50,18 +55,31 @@ export default ({ addProduct, closeSearch }) => {
     setTimeout( ()=>searchInput.current.setFocus(), 600 )
   },[searchInput])
 
+  const updateResults = ( newResults, queryUsed ) => {
+    console.log( searchInput.current )
+    const currentQuery = searchInput.current.querySelector("input").value;
+    console.log( currentQuery, queryUsed )
+    if ( queryUsed !== currentQuery ) return;
+
+    setIsSearching(false);
+    setResults( newResults )
+    console.log( newResults )
+  }
+
   useEffect(() => {
     if ( query.length > 2 ) {
-      setIsSearching(true)
-      productSearch({ keyword: query }).then( response => {
-          setIsSearching(false);
-          setResults( response )
-          console.log( response )
-      });
+      console.log( query )
+      setIsSearching(true);
+      productSearch({ keyword: query }).then( newResults => updateResults( newResults, query ));
   } else {
       setResults([]);
   }
   }, [ query ]);
+
+  const updateQuery = e => {
+    console.log( e.target.value )
+    setQuery(e.target.value);
+  }
 
   return (
     <IonPage onClick={() => searchInput.current.setFocus()}>
@@ -74,7 +92,7 @@ export default ({ addProduct, closeSearch }) => {
             onIonCancel={closeSearch}
             ref={searchInput}
             value={query}
-            onIonChange={e=>setQuery(e.target.value)}
+            onIonChange={updateQuery}
             debounce={300}
           ></IonSearchbar>
         </IonToolbar>
@@ -84,7 +102,7 @@ export default ({ addProduct, closeSearch }) => {
           <LoadingProductResults/>
           :
           results.map( (product, i) => 
-          <ProductResult product={product} key={i} addProduct={addProduct} closeSearch={closeSearch} />
+          <ProductResult product={product} key={i} addProduct={addProduct} closeSearch={closeSearch} wordsToBold={query.split(' ')}/>
         )}
       </IonContent>
     </IonPage>

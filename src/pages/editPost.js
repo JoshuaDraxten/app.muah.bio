@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ProductSearch from './productSearch';
 
 import './editPost.css';
@@ -72,13 +72,17 @@ function EditPost({ post, updatePost, closePost } ){
   const [ productSearchIsOpen, setProductSearchIsOpen ] = useState( false );
   const [ products, setProducts ] = useState( post.products );
   const [ expandedHeader, setExpandedHeader ] = useState( false );
+  const contentRef = useRef( null );
 
   useEffect(() => {
     setProducts(post.products)
   }, [post]);
 
-  function addProduct( product ) {
-      setProductsInDb( products => products.concat( product ) )
+  async function addProduct( product ) {
+      setProductsInDb( products => products.concat( product ) );
+      // Scroll to bottom of list
+      const scrollElement = await contentRef.current.getScrollElement();
+      setTimeout( () => scrollElement.scrollBy({ top: scrollElement.scrollHeight, behavior: 'smooth'}), 100);
   }
 
   async function removeProduct( productIndex ) {
@@ -115,7 +119,7 @@ function EditPost({ post, updatePost, closePost } ){
 
   return (
     <IonPage>
-      <IonContent fullscreen>
+      <IonContent fullscreen ref={contentRef}>
         <div className=".header-buttons">
           <IonButtons slot="end" className="header-buttons">
             <IonButton onClick={closePost}>
