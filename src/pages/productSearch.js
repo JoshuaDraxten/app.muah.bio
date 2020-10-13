@@ -112,7 +112,7 @@ export default ({ addProduct, closeSearch }) => {
           <LoadingProductResults/>
           :
           results.map( (product, i) => 
-          <ProductResult product={product} key={i} addProduct={addProduct} closeSearch={closeSearch} wordsToBold={query.split(' ')}/>
+          <ProductResult product={product} key={i} addProduct={addProduct} closeSearch={closeSearch} wordsToBold={query.split(' ').map(x=>x.toLowerCase())}/>
         )}
       </IonContent>
     </IonPage>
