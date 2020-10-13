@@ -143,12 +143,20 @@ function EditPost({ post, updatePost, closePost } ){
           style={{ backgroundImage: `url(${post.media_url})` }}
           onClick={ ()=>setExpandedHeader( x=>!x ) }
         ></div>
-        <IonListHeader>
-          <IonLabel>Tagged Products</IonLabel>
-        </IonListHeader>
-        <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
-          { sortableProductsList }
-        </IonReorderGroup>
+        { products.length !== 0 ? 
+          <div>
+            <IonListHeader>
+              <IonLabel>Tagged Products</IonLabel>
+            </IonListHeader>
+            <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
+              { sortableProductsList }
+            </IonReorderGroup>
+          </div>
+          :
+          <div className="empty-post">
+            <IonLabel>Search for products to tag this post with using the search bar below</IonLabel>
+          </div>
+        }
 
         <IonAlert
           isOpen={productTagEditor.open}
