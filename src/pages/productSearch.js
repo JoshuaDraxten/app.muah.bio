@@ -14,8 +14,8 @@ import {
 import productSearch from '../api/productSearch';
 
 const ProductResult = ({ product, addProduct, closeSearch, wordsToBold=[] }) => {
-  let boldedName = product.name.toLowerCase().split(" ").map( word => 
-    wordsToBold.includes(word.replace(/[^a-z]/g, '')) ? "<b>"+word+"</b>" : word
+  let boldedName = product.name.split(" ").map( word => 
+    wordsToBold.includes(word.toLowerCase().replace(/[^a-z]/g, '')) ? "<b>"+word+"</b>" : word
   ).join(" ");
   return (
     <IonItem onClick={() => {addProduct(product); closeSearch()}}>

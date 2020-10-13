@@ -87,6 +87,8 @@ const SettingsPage = ({ history, userInformation, setUserInformation }) => {
               onIonChange={ e => setLinkInBioPage(x => ({...x, disclaimer: e.target.value}) ) }></IonTextarea>
           </IonItem>
           <br />
+          <hr />
+          <br />
           <IonButton expand="block" color="danger" onClick={logOut}>Log Out</IonButton>
         </div>
       </IonContent>
