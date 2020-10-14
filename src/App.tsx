@@ -83,9 +83,9 @@ export default () => {
   }
 
   // The first time userInformation loads
-  const userInformationIsNotNull = userInformation !== null;
+  const userInformationIsNull = userInformation === null || userInformation.error;
   useEffect(() => {
-    if ( !userInformationIsNotNull ) return;
+    if ( userInformationIsNull ) return;
 
     // Check if the instagram data has been updated
     if ( userInformation.instagram && userInformation.instagram.token ) {
@@ -115,7 +115,7 @@ export default () => {
 
   // I dont want any other variables as a dependancy so this only fires once
   // eslint-disable-next-line
-  }, [userInformationIsNotNull])
+  }, [userInformationIsNull])
 
   if ( !currentUser ) {
     if ( window.location.origin.match("http://") ) {
@@ -137,7 +137,8 @@ export default () => {
   }
 
   // If the user exists but they dont have an instagram token, they need to be authenticated
-  if ( !userInformation.instagram || !userInformation.instagram.token ) {
+  const isConnectedToInstagram = !userInformation.instagram || !userInformation.instagram.token;
+  if ( isConnectedToInstagram ) {
     return <AuthenticateInstagram currentUser={currentUser} setUserInformation={setUserInformation}  />
   }
 

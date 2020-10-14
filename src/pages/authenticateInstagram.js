@@ -52,7 +52,7 @@ export default ({ currentUser, setUserInformation }) => {
           </IonToolbar>
         </IonHeader>
         <IonContent>
-          <div style={{ width: "100%", maxWidth: 600, position: "absolute", top: "50%", left: "50%", transform: "translateX(-50%) translateY(-50%)", textAlign: "center" }}>
+          <div style={{ width: "100%", maxWidth: 600, position: "absolute", top: "50%", left: "50%", transform: "translateX(-50%) translateY(-50%)", textAlign: "center", padding: 20 }}>
             <h2>Please connect your instagram account so that we can load your feed for your Muah.bio page</h2>
             <IonButton href={connectToInstagramLink({client_id: 399352408128696, redirect_uri: "https://app.muah.bio/"})}>Connect To Instagram</IonButton>
           </div>
