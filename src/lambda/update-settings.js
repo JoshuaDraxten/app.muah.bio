@@ -18,15 +18,18 @@ function connectToDatabase (uri) {
 }
 
 exports.handler = async event => {
-    let { userId, linkInBioPage } = event.queryStringParameters;
-    linkInBioPage = JSON.parse(linkInBioPage);
+    let { userId, settings } = event.queryStringParameters;
+    console.log( settings )
+    settings = JSON.parse(settings);
+
+    console.log( settings )
     
     const client = await connectToDatabase(uri);
     const collection = client.db("Muah_bio").collection("users");
 
     const response = await collection.updateOne(
         { _id: userId },
-        { $set: { "settings.linkInBioPage" : linkInBioPage } }
+        { $set: { "settings" : settings } }
     )
 
     return {

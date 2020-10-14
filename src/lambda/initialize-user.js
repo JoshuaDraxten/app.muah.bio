@@ -31,7 +31,12 @@ const generateUser = ({ userId, ig_id, ig_username, ig_token, ig_token_expires, 
 			disclaimer: "Test disclaimer text",
 			website: null,
 			visitSiteButtonText: "Visit Site"
-		}
+    },
+    affiliatePrograms: {
+      amazon: {
+        trackingID: ""
+      }
+    }
 	},
 	posts: JSON.parse(posts)
 });
