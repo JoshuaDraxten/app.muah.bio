@@ -33,6 +33,10 @@ export default ({ currentUser, setUserInformation }) => {
     const code = params.get("code");
 
     if ( code ) {
+      // Remove code from the url
+      window.history.pushState({}, "", '/');
+
+      // Start initialization
       initializationProcess({
         code,
         userId: currentUser.id,
