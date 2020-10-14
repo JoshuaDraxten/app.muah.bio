@@ -4,6 +4,7 @@ import getShortLivedIGToken from '../api/getShortLivedIGToken';
 import getLongLivedIGToken from "../api/getLongLivedIGToken";
 import initializeUser from '../api/initializeUser';
 import getUser from '../api/getUser';
+import { IonApp, IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from "@ionic/react";
 
 function initializationProcess({ code, userId, callback }) {
     // Validate the code
@@ -43,13 +44,28 @@ export default ({ currentUser, setUserInformation }) => {
       </div>
     }
 
-    return <div className="page">
-      <h1>Welcome to Muah.bio {currentUser.user_metadata.full_name}!</h1>
-      <p>Please connect your instagram account to start</p>
-      <a
-        href={connectToInstagramLink({client_id: 399352408128696, redirect_uri: "https://app.muah.bio/"})}
-        className="button">
-          Connect To Instagram
-      </a>
-    </div>
+    return <IonApp>
+      <IonPage>
+        <IonHeader mode="ios">
+          <IonToolbar>
+            <IonTitle>One last step</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <div style={{ width: "100%", maxWidth: 600, position: "absolute", top: "50%", left: "50%", transform: "translateX(-50%) translateY(-50%)", textAlign: "center" }}>
+            <h2>Please connect your instagram account so that we can load your feed for your Muah.bio page</h2>
+            <IonButton href={connectToInstagramLink({client_id: 399352408128696, redirect_uri: "https://app.muah.bio/"})}>Connect To Instagram</IonButton>
+          </div>
+        </IonContent>
+      </IonPage>
+    </IonApp>
+
+    // return <div className="page">
+    //   <p>Please connect your instagram account to start</p>
+      // <a
+      //   href={connectToInstagramLink({client_id: 399352408128696, redirect_uri: "https://app.muah.bio/"})}
+      //   className="button">
+      //     Connect To Instagram
+      // </a>
+    // </div>
 }
