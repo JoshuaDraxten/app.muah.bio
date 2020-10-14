@@ -28,8 +28,8 @@ const generateUser = ({ userId, ig_id, ig_username, ig_token, ig_token_expires, 
 	},
 	settings: {
 		linkInBioPage: {
-			disclaimer: "Test disclaimer text",
-			website: null,
+			disclaimer: "",
+			website: "",
 			visitSiteButtonText: "Visit Site"
     },
     affiliatePrograms: {
