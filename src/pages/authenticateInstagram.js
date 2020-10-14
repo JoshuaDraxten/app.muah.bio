@@ -3,6 +3,7 @@ import React from "react";
 import getShortLivedIGToken from '../api/getShortLivedIGToken';
 import getLongLivedIGToken from "../api/getLongLivedIGToken";
 import initializeUser from '../api/initializeUser';
+import netlifyIdentity from 'netlify-identity-widget';
 import getUser from '../api/getUser';
 import { IonApp, IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from "@ionic/react";
 
@@ -17,7 +18,7 @@ function initializationProcess({ code, userId, callback }) {
           // expires_in is in seconds, so we convert it to miliseconds
           ig_token_expires: new Date()*1 + expires_in*1000
         }).then( () => {
-          getUser( user_id ).then( response => {
+          getUser( netlifyIdentity.currentUser().id ).then( response => {
             callback( response )
           })
         });

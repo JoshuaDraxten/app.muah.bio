@@ -119,18 +119,18 @@ export default () => {
 
   if ( !currentUser ) {
     if ( window.location.origin.match("http://") ) {
-      setCurrentUser({
-        id: "be81a816-fd3f-4a41-858d-0bca5f028a0d"
-      })
-      return <p>Setting dev user...</p>
-    } else {
-      return <LoginScreen setCurrentUser={setCurrentUser} setUserInformation={setUserInformation} />
+      // setCurrentUser({
+      //   id: "be81a816-fd3f-4a41-858d-0bca5f028a0d"
+      // })
+      localStorage.removeItem('netlifySiteURL');
+      // return <p>Setting dev user...</p>
     }
+    return <LoginScreen setCurrentUser={setCurrentUser} setUserInformation={setUserInformation} />
   }
 
   // If we're logged in, fetch the user from the database
   if ( userInformation === null ) {
-    getUser( currentUser.id ).then( userInformationResponse => {
+    getUser( netlifyIdentity.currentUser().id ).then( userInformationResponse => {
       setUserInformation( userInformationResponse );
     });
     return <SplashScreen />
