@@ -39,9 +39,20 @@ export default ({ currentUser, setUserInformation }) => {
         callback: setUserInformation
       });
 
-      return <div className="page">
-        Setting your account up, one moment...
-      </div>
+      return <IonApp>
+      <IonPage>
+        <IonHeader mode="ios">
+          <IonToolbar>
+            <IonTitle>Success!</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <div style={{ width: "100%", maxWidth: 600, position: "absolute", top: "50%", left: "50%", transform: "translateX(-50%) translateY(-50%)", textAlign: "center", padding: 20 }}>
+            <h2>Setting up your account...</h2>
+          </div>
+        </IonContent>
+      </IonPage>
+    </IonApp>
     }
 
     return <IonApp>
