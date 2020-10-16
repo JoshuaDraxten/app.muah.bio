@@ -100,8 +100,9 @@ export default () => {
     if ( userInformationIsNull ) return;
 
     // Check if the instagram data has been updated
-    if ( userInformation.instagram && userInformation.instagram.token ) {
-      getIGMedia({token: userInformation.instagram.token}).then( posts => {
+    if ( userInformation.instagram ) {
+      getIGMedia(userInformation.instagram).then( posts => {
+        console.log( posts )
         const existingIds = userInformation.posts.map( post => post.id );
         console.log("Checking for new posts")
 
