@@ -1,18 +1,30 @@
 // @ts-nocheck
 
 import React, { useEffect, useState } from "react";
-import { IonApp, IonRouterOutlet } from '@ionic/react';
+import {
+  IonApp,
+  IonPopover,
+  IonRouterOutlet,
+  IonTabs,
+  IonTabBar,
+  IonTabButton,
+  IonIcon,
+  IonLabel,
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent
+} from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
-
-import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
 import { personCircle, cog } from 'ionicons/icons';
 
 // Pages
 import Profile from "./pages/profile";
 import Settings from "./pages/settings";
 import LoginScreen from './pages/loginScreen';
-import AuthenticateInstagram from './pages/authenticateInstagram';
+// import AuthenticateInstagram from './pages/authenticateInstagram';
 import SplashScreen from './pages/splashScreen';
 
 import netlifyIdentity from 'netlify-identity-widget';
@@ -136,11 +148,27 @@ export default () => {
     return <SplashScreen />
   }
 
-  // If the user exists but they dont have an instagram token, they need to be authenticated
-  const isConnectedToInstagram = !userInformation.instagram || !userInformation.instagram.token;
-  if ( isConnectedToInstagram ) {
-    return <AuthenticateInstagram currentUser={currentUser} setUserInformation={setUserInformation}  />
+  console.log( userInformation )
+  if ( userInformation.error ) {
+    return <IonPage>
+        <IonHeader mode="ios">
+          <IonToolbar>
+            <IonTitle>You are on the waitlist</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <div style={{ width: "100%", maxWidth: 600, position: "absolute", top: "50%", left: "50%", transform: "translateX(-50%) translateY(-50%)", textAlign: "center", padding: 20 }}>
+            <h2>Muah.bio is currently invite only. We'll send you an invite in time</h2>
+          </div>
+        </IonContent>
+      </IonPage>
   }
+
+  // // If the user exists but they dont have an instagram token, they need to be authenticated
+  // const isConnectedToInstagram = !userInformation.instagram || !userInformation.instagram.token;
+  // if ( isConnectedToInstagram ) {
+  //   return <AuthenticateInstagram currentUser={currentUser} setUserInformation={setUserInformation}  />
+  // }
 
   return (
     <IonApp>
@@ -178,6 +206,11 @@ export default () => {
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>
+      <IonPopover
+        isOpen={!userInformation.instagram}
+      >
+        Hello world
+      </IonPopover>
     </IonApp>
   );
 }
