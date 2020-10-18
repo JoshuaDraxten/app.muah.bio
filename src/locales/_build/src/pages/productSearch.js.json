@@ -1,0 +1,10 @@
+{
+  "Search for makeup products": {
+    "origin": [
+      [
+        "src/pages/productSearch.js",
+        101
+      ]
+    ]
+  }
+}

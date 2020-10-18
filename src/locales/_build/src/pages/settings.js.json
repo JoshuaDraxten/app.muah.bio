@@ -1,0 +1,102 @@
+{
+  "Settings": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        58
+      ],
+      [
+        "src/pages/settings.js",
+        69
+      ]
+    ]
+  },
+  "Save": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        61
+      ]
+    ]
+  },
+  "Bio Page Display": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        74
+      ]
+    ]
+  },
+  "Your Website": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        77
+      ]
+    ]
+  },
+  "Button Text": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        87
+      ]
+    ]
+  },
+  "Affiliate Disclaimer Text": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        96
+      ]
+    ]
+  },
+  "Affiliate Accounts": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        103
+      ]
+    ]
+  },
+  "Amazon Tracking ID": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        106
+      ]
+    ]
+  },
+  "You can find your Amazon Tracking ID by going <0>here</0>": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        119
+      ]
+    ]
+  },
+  "Your Account": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        122
+      ]
+    ]
+  },
+  "Log Out": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        125
+      ]
+    ]
+  },
+  "Settings Updated": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        132
+      ]
+    ]
+  }
+}

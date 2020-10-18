@@ -1,0 +1,30 @@
+{
+  "Profile": {
+    "origin": [
+      [
+        "src/pages/profile.js",
+        89
+      ],
+      [
+        "src/pages/profile.js",
+        126
+      ]
+    ]
+  },
+  "Copy Url": {
+    "origin": [
+      [
+        "src/pages/profile.js",
+        101
+      ]
+    ]
+  },
+  "Preview Profile": {
+    "origin": [
+      [
+        "src/pages/profile.js",
+        107
+      ]
+    ]
+  }
+}

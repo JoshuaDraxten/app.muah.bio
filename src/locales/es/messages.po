@@ -1,0 +1,123 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2020-10-18 17:32-0500\n"
+"Mime-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: es\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/pages/settings.js:103
+msgid "Affiliate Accounts"
+msgstr "Affiliate Accounts"
+
+#: src/pages/settings.js:96
+msgid "Affiliate Disclaimer Text"
+msgstr "Texto de exención de responsabilidad del afiliado"
+
+#: src/pages/settings.js:106
+msgid "Amazon Tracking ID"
+msgstr "Número de Rastreo por Amazon"
+
+#: src/pages/settings.js:74
+msgid "Bio Page Display"
+msgstr "Página de bio"
+
+#: src/pages/settings.js:87
+msgid "Button Text"
+msgstr "Texto de botón"
+
+#: src/pages/editPost.js:178
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: src/pages/profile.js:101
+msgid "Copy Url"
+msgstr "Copiar Url"
+
+#: src/pages/editPost.js:58
+msgid "Delete"
+msgstr "Eliminar"
+
+#: src/pages/editPost.js:61
+msgid "Edit Tag"
+msgstr "Edite la etiqueta"
+
+#: src/pages/editPost.js:167
+msgid "Edit the tag for {0}"
+msgstr "Edite la etiqueta para {0}"
+
+#: src/pages/settings.js:125
+msgid "Log Out"
+msgstr "Cerrar sesión"
+
+#: src/App.tsx:122
+msgid "Muah.bio is currently invite only. We'll send you an invite in time"
+msgstr "Muah.bio está actualmente solo por invitación. Te enviaremos una invitación a tiempo"
+
+#: src/pages/editPost.js:186
+msgid "Ok"
+msgstr "Ok"
+
+#: src/pages/profile.js:107
+msgid "Preview Profile"
+msgstr "Vista Previa"
+
+#: src/App.tsx:146
+#: src/pages/profile.js:89
+#: src/pages/profile.js:126
+msgid "Profile"
+msgstr "Perfil"
+
+#: src/pages/settings.js:61
+msgid "Save"
+msgstr "Guardiar"
+
+#: src/pages/editPost.js:209
+#: src/pages/productSearch.js:101
+msgid "Search for makeup products"
+msgstr "Buscar productos de maquillaje"
+
+#: src/pages/editPost.js:160
+msgid "Search for products to tag this post with using the search bar below"
+msgstr "Busque productos para etiquetar esta publicación usando la barra de búsqueda a continuación"
+
+#: src/App.tsx:151
+#: src/pages/settings.js:58
+#: src/pages/settings.js:69
+msgid "Settings"
+msgstr "Ajutes"
+
+#: src/pages/settings.js:132
+msgid "Settings Updated"
+msgstr "Ajustes Actualizan"
+
+#: src/pages/editPost.js:152
+msgid "Tagged Products"
+msgstr "Productos Etiquetados"
+
+#: src/App.tsx:117
+msgid "You are on the waitlist"
+msgstr "Estas en la lista de espera"
+
+#: src/pages/settings.js:119
+msgid "You can find your Amazon Tracking ID by going <0>here</0>"
+msgstr "Puedes encontrar tu Número de Rastreo por Amazon <0>aqui</0>"
+
+#: src/pages/settings.js:122
+msgid "Your Account"
+msgstr "Tu cuenta"
+
+#: src/pages/settings.js:77
+msgid "Your Website"
+msgstr "Tu sitio web"
+
+#: src/pages/editPost.js:173
+msgid "ex: Lips"
+msgstr "ej: Labios"

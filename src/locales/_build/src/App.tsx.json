@@ -1,0 +1,34 @@
+{
+  "You are on the waitlist": {
+    "origin": [
+      [
+        "src/App.tsx",
+        117
+      ]
+    ]
+  },
+  "Muah.bio is currently invite only. We'll send you an invite in time": {
+    "origin": [
+      [
+        "src/App.tsx",
+        122
+      ]
+    ]
+  },
+  "Profile": {
+    "origin": [
+      [
+        "src/App.tsx",
+        146
+      ]
+    ]
+  },
+  "Settings": {
+    "origin": [
+      [
+        "src/App.tsx",
+        151
+      ]
+    ]
+  }
+}

@@ -13,6 +13,9 @@ import {
 
 import productSearch from '../api/productSearch';
 
+// Internationalization
+import { Trans } from '@lingui/macro';
+
 const ProductResult = ({ product, addProduct, closeSearch, wordsToBold=[] }) => {
   let boldedName = product.name.split(" ").map( word => 
     wordsToBold.includes(word.toLowerCase().replace(/[^a-z]/g, '')) ? "<b>"+word+"</b>" : word
@@ -95,16 +98,20 @@ export default ({ addProduct, closeSearch }) => {
     <IonPage onClick={() => searchInput.current.setFocus()}>
       <IonHeader>
         <IonToolbar>
-          <IonSearchbar
-            className="product-search-bar"
-            showCancelButton="always"
-            placeholder="Search for makeup products"
-            onIonCancel={closeSearch}
-            ref={searchInput}
-            value={query}
-            onIonChange={updateQuery}
-            debounce={1000}
-          ></IonSearchbar>
+          <Trans render={ ({translation}) => 
+            <IonSearchbar
+              className="product-search-bar"
+              showCancelButton="always"
+              placeholder={translation}
+              onIonCancel={closeSearch}
+              ref={searchInput}
+              value={query}
+              onIonChange={updateQuery}
+              debounce={1000}
+            ></IonSearchbar>
+          }>
+              Search for makeup products
+          </Trans>
         </IonToolbar>
       </IonHeader>
       <IonContent>

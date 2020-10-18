@@ -1,0 +1,74 @@
+{
+  "Delete": {
+    "origin": [
+      [
+        "src/pages/editPost.js",
+        58
+      ]
+    ]
+  },
+  "Edit Tag": {
+    "origin": [
+      [
+        "src/pages/editPost.js",
+        61
+      ]
+    ]
+  },
+  "Tagged Products": {
+    "origin": [
+      [
+        "src/pages/editPost.js",
+        152
+      ]
+    ]
+  },
+  "Search for products to tag this post with using the search bar below": {
+    "origin": [
+      [
+        "src/pages/editPost.js",
+        160
+      ]
+    ]
+  },
+  "Edit the tag for {0}": {
+    "origin": [
+      [
+        "src/pages/editPost.js",
+        167
+      ]
+    ]
+  },
+  "ex: Lips": {
+    "origin": [
+      [
+        "src/pages/editPost.js",
+        173
+      ]
+    ]
+  },
+  "Cancel": {
+    "origin": [
+      [
+        "src/pages/editPost.js",
+        178
+      ]
+    ]
+  },
+  "Ok": {
+    "origin": [
+      [
+        "src/pages/editPost.js",
+        186
+      ]
+    ]
+  },
+  "Search for makeup products": {
+    "origin": [
+      [
+        "src/pages/editPost.js",
+        209
+      ]
+    ]
+  }
+}

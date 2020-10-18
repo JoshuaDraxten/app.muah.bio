@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import {
   IonApp,
-  IonPopover,
+  // IonPopover,
   IonRouterOutlet,
   IonTabs,
   IonTabBar,
@@ -55,6 +55,9 @@ import '@ionic/react/css/display.css';
 
 // Theme variables
 import './theme/variables.css';
+
+// Internationalization
+import { Trans } from '@lingui/macro';
 
 export default () => {
   const [ currentUser, setCurrentUser ] = useState( netlifyIdentity.currentUser() );
@@ -154,12 +157,12 @@ export default () => {
     return <IonPage>
         <IonHeader mode="ios">
           <IonToolbar>
-            <IonTitle>You are on the waitlist</IonTitle>
+            <IonTitle><Trans>You are on the waitlist</Trans></IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent>
           <div style={{ width: "100%", maxWidth: 600, position: "absolute", top: "50%", left: "50%", transform: "translateX(-50%) translateY(-50%)", textAlign: "center", padding: 20 }}>
-            <h2>Muah.bio is currently invite only. We'll send you an invite in time</h2>
+            <h2><Trans>Muah.bio is currently invite only. We'll send you an invite in time</Trans></h2>
           </div>
         </IonContent>
       </IonPage>
@@ -192,12 +195,12 @@ export default () => {
           <IonTabBar slot="bottom">
             <IonTabButton tab="home" href="/home">
               <IonIcon icon={personCircle} />
-              <IonLabel>Profile</IonLabel>
+              <IonLabel><Trans>Profile</Trans></IonLabel>
             </IonTabButton>
 
             <IonTabButton tab="settings" href="/settings">
               <IonIcon icon={cog} />
-              <IonLabel>Settings</IonLabel>
+              <IonLabel><Trans>Settings</Trans></IonLabel>
             </IonTabButton>
 
             {/* <IonTabButton tab="stats" href="/stats">
@@ -207,11 +210,11 @@ export default () => {
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>
-      <IonPopover
+      {/* <IonPopover
         isOpen={!userInformation.instagram}
       >
         Hello world
-      </IonPopover>
+      </IonPopover> */}
     </IonApp>
   );
 }

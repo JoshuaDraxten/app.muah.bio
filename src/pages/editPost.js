@@ -29,6 +29,9 @@ import {
 } from '@ionic/react';
 import { closeCircle } from 'ionicons/icons';
 
+// Internationalization
+import { Trans } from '@lingui/macro';
+
 const arrayMoveMutate = (array, from, to) => {
 	const startIndex = from < 0 ? array.length + from : from;
 
@@ -52,10 +55,10 @@ const SwipeableProduct = ({ product, index, removeProduct, setProductTagEditor }
   <IonItemSliding key={ product.url } onIonSwipe={()=>removeProduct(index)}>
     <IonItemOptions side="start">
       <IonItemOption color="danger" expandable onClick={()=>removeProduct(index)}>
-        Delete
+        <Trans>Delete</Trans>
       </IonItemOption>
       <IonItemOption color="success" onClick={()=>setProductTagEditor( { open: true, productIndex: index, tag: product.tag } )}>
-        Edit Tag
+      <Trans>Edit Tag</Trans>
       </IonItemOption>
     </IonItemOptions>
 
@@ -146,7 +149,7 @@ function EditPost({ post, updatePost, closePost } ){
         { products.length !== 0 ? 
           <div>
             <IonListHeader>
-              <IonLabel>Tagged Products</IonLabel>
+              <IonLabel><Trans>Tagged Products</Trans></IonLabel>
             </IonListHeader>
             <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
               { sortableProductsList }
@@ -154,26 +157,25 @@ function EditPost({ post, updatePost, closePost } ){
           </div>
           :
           <div className="empty-post">
-            <IonLabel>Search for products to tag this post with using the search bar below</IonLabel>
+            <IonLabel><Trans>Search for products to tag this post with using the search bar below</Trans></IonLabel>
           </div>
         }
 
         <IonAlert
           isOpen={productTagEditor.open}
           onDidDismiss={() => setProductTagEditor({ open: false, productIndex: -1, tag: '' })}
-          subHeader={productTagEditor.productIndex!==-1?'Edit the tag for '+products[productTagEditor.productIndex].name: ''}
+          subHeader={productTagEditor.productIndex!==-1?<Trans>Edit the tag for {products[productTagEditor.productIndex].name}</Trans>: ''}
           inputs={[
             {
               name: 'tag',
               type: 'text',
-              label: "Hello world",
               value: productTagEditor.tag,
-              placeholder: 'ex: Lips'
+              placeholder: <Trans>ex: Lips</Trans>
             }
           ]}
           buttons={[
             {
-              text: 'Cancel',
+              text: <Trans>Cancel</Trans>,
               role: 'cancel',
               cssClass: 'secondary',
               handler: () => {
@@ -181,7 +183,7 @@ function EditPost({ post, updatePost, closePost } ){
               }
             },
             {
-              text: 'Ok',
+              text: <Trans>Ok</Trans>,
               handler: ({ tag }) => {
 
                 if ( tag === productTagEditor.tag ) return;
@@ -204,10 +206,14 @@ function EditPost({ post, updatePost, closePost } ){
 
       <IonFooter className="ion-no-border" onClick={ openProductSearch }>
         <IonToolbar>
-          <IonSearchbar
-            placeholder="Search for makeup products"
-            style={{pointerEvents: "none"}}
-          ></IonSearchbar>
+          <Trans render={ ({translation}) =>
+            <IonSearchbar
+              placeholder={ translation }
+              style={{pointerEvents: "none"}}
+            ></IonSearchbar>
+          }>
+            Search for makeup products
+          </Trans>
         </IonToolbar>
       </IonFooter>
     </IonPage>

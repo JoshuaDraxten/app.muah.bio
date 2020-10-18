@@ -21,7 +21,8 @@ import netlifyIdentity from 'netlify-identity-widget';
 
 import updateSettings from '../api/updateSettings';
 
-// import KeyboardArrowLeftRoundedIcon from '@material-ui/icons/KeyboardArrowLeftRounded';
+// Internationalization
+import { Trans } from '@lingui/macro';
 
 const logOut = async () => {
   const confirmLogout = window.confirm( `Are you sure you want to log out?`);
@@ -54,10 +55,10 @@ const SettingsPage = ({ userInformation, setUserInformation }) => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Settings</IonTitle>
+          <IonTitle><Trans>Settings</Trans></IonTitle>
           <IonButtons slot="end">
             <IonButton>
-              <div onClick={saveSettings}>Save</div>
+              <div onClick={saveSettings}><Trans>Save</Trans></div>
             </IonButton>
           </IonButtons>
         </IonToolbar>
@@ -65,15 +66,15 @@ const SettingsPage = ({ userInformation, setUserInformation }) => {
       <IonContent fullscreen className="settings">
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Settings</IonTitle>
+            <IonTitle size="large"><Trans>Settings</Trans></IonTitle>
           </IonToolbar>
         </IonHeader>
         <div className="container">
           <IonItemDivider>
-            <IonLabel>Bio Page Display</IonLabel>
+            <IonLabel><Trans>Bio Page Display</Trans></IonLabel>
           </IonItemDivider>
           <IonItem>
-            <IonLabel position="stacked">Your Website</IonLabel>
+            <IonLabel position="stacked"><Trans>Your Website</Trans></IonLabel>
             <IonInput
               type="url"
               inputMode="url"
@@ -83,7 +84,7 @@ const SettingsPage = ({ userInformation, setUserInformation }) => {
               onIonChange={ e => setLinkInBioPage(x => ({...x, website: e.target.value}) ) }></IonInput>
           </IonItem>
           <IonItem>
-            <IonLabel position="stacked">Button Text</IonLabel>
+            <IonLabel position="stacked"><Trans>Button Text</Trans></IonLabel>
             <IonInput
               type="text"
               inputMode="text"
@@ -92,17 +93,17 @@ const SettingsPage = ({ userInformation, setUserInformation }) => {
               onIonChange={ e => setLinkInBioPage(x => ({...x, visitSiteButtonText: e.target.value}) ) }></IonInput>
           </IonItem>
           <IonItem>
-            <IonLabel position="stacked">Affiliate Disclaimer Text</IonLabel>
+            <IonLabel position="stacked"><Trans>Affiliate Disclaimer Text</Trans></IonLabel>
             <IonTextarea
               value={ linkInBioPage.disclaimer }
               onIonChange={ e => setLinkInBioPage(x => ({...x, disclaimer: e.target.value}) ) }></IonTextarea>
           </IonItem>
           <br />
           <IonItemDivider>
-            <IonLabel>Affiliate Accounts</IonLabel>
+            <IonLabel><Trans>Affiliate Accounts</Trans></IonLabel>
           </IonItemDivider>
           <IonItem>
-            <IonLabel position="stacked">Amazon Tracking ID</IonLabel>
+            <IonLabel position="stacked"><Trans>Amazon Tracking ID</Trans></IonLabel>
             <IonTextarea
               value={ affiliatePrograms.amazon.trackingId }
               onIonChange={ e => 
@@ -115,20 +116,20 @@ const SettingsPage = ({ userInformation, setUserInformation }) => {
                 }) )
               }></IonTextarea>
           </IonItem>
-          <IonItem><span>You can find your Amazon Tracking ID by going <a href="https://affiliate-program.amazon.com/home/account/tag/manage" target="_blank" rel="noopener noreferrer">here</a></span></IonItem>
+          <IonItem><span><Trans>You can find your Amazon Tracking ID by going <a href="https://affiliate-program.amazon.com/home/account/tag/manage" target="_blank" rel="noopener noreferrer">here</a></Trans></span></IonItem>
           <br />
           <IonItemDivider>
-            <IonLabel>Your Account</IonLabel>
+            <IonLabel><Trans>Your Account</Trans></IonLabel>
           </IonItemDivider>
           <br />
-          <IonButton expand="block" color="danger" onClick={logOut}>Log Out</IonButton>
+          <IonButton expand="block" color="danger" onClick={logOut}><Trans>Log Out</Trans></IonButton>
           <br />
         </div>
 
         <IonToast
           isOpen={didUpdateSettings}
           onDidDismiss={() => setDidUpdateSettings(false)}
-          message="Settings Updated"
+          message={<Trans>Settings Updated</Trans>}
           duration={1000}
         ></IonToast>
       </IonContent>

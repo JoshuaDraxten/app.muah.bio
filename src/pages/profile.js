@@ -20,6 +20,9 @@ import {
 import './profile.css';
 import EditPost from './editPost'
 
+// Internationalization
+import { Trans } from '@lingui/macro';
+
 function fallbackCopyTextToClipboard(text) {
   var textArea = document.createElement("textarea");
   textArea.value = text;
@@ -83,7 +86,7 @@ const Profile = ({ username, posts, updatePost}) => {
     <IonPage>
       <IonHeader>
         <IonToolbar className="hide-title-on-ios">
-          <IonTitle>Profile</IonTitle>
+          <IonTitle><Trans>Profile</Trans></IonTitle>
           <IonButtons slot="end">
               <IonButton>
                 <div onClick={openPopover}>muah.bio/{username}</div>
@@ -95,13 +98,13 @@ const Profile = ({ username, posts, updatePost}) => {
                 >
                   <IonList>
                     <IonItem button onClick={copyToUrlToClipboard}>
-                      <IonLabel>Copy Url</IonLabel>
+                      <IonLabel><Trans>Copy Url</Trans></IonLabel>
                     </IonItem>
                     <IonItem
                       href={"https://muah.bio/"+username} target="_blank"
                       button onClick={()=>setShowProfileUrlOptions({open: false, event: undefined})}
                     >
-                      <IonLabel>Preview Profile</IonLabel>
+                      <IonLabel><Trans>Preview Profile</Trans></IonLabel>
                     </IonItem>
                   </IonList>
                 </IonPopover>
@@ -120,7 +123,7 @@ const Profile = ({ username, posts, updatePost}) => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Profile</IonTitle>
+            <IonTitle size="large"><Trans>Profile</Trans></IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonGrid style={{maxWidth: 1000}}>
