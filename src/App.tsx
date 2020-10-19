@@ -182,6 +182,7 @@ export default () => {
             <Route path="/:tab(home)" exact={true} render={props => <div>
               <Profile
                 {...props}
+                userInformation={userInformation}
                 username={userInformation.instagram.username}
                 posts={userInformation.posts}
                 updatePost={updatePost} />

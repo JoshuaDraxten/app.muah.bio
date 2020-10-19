@@ -66,7 +66,7 @@ const PostPreview = ({ post, onClick }) => (
   ></div>
 )
 
-const Profile = ({ username, posts, updatePost}) => {
+const Profile = ({ userInformation, username, posts, updatePost}) => {
   const [ openedPost, setOpenedPost ] = useState( false );
   const [ showProfileUrlOptions, setShowProfileUrlOptions ] = useState({ opened: false, event: undefined });
   const [ toastMessage, setToastMessage ] = useState("");
@@ -136,7 +136,7 @@ const Profile = ({ username, posts, updatePost}) => {
           </IonRow>
         </IonGrid>
         { posts[openedPost] ? <IonModal isOpen={posts[openedPost]} onDidDismiss={() => setOpenedPost(null)}>
-          <EditPost post={posts[openedPost]} updatePost={updatePost} closePost={() => setOpenedPost(null)} />
+          <EditPost userInformation={userInformation} post={posts[openedPost]} updatePost={updatePost} closePost={() => setOpenedPost(null)} />
         </IonModal> : null}
       </IonContent>
 

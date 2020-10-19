@@ -67,7 +67,7 @@ const isUrl = url => {
 
 const LoadingProductResults = () => [...Array(45)].map( (x, i) => <LoadingProductResult key={i} /> )
 
-export default ({ addProduct, closeSearch }) => {
+export default ({ userInformation, addProduct, closeSearch }) => {
   const [ results, setResults ] = useState([]);
   const [ query, setQuery ] = useState("");
   const [ isSearching, setIsSearching ] = useState(false);
@@ -116,7 +116,7 @@ export default ({ addProduct, closeSearch }) => {
               setIsSearching(false);
             });
         } else {
-          productSearch({ keyword: query })
+          productSearch({ keyword: query, affiliatePrograms: userInformation.settings.affiliatePrograms })
             .then( newResults => updateResults( newResults, query ) )
             .catch( error => {
               console.log(error);
@@ -130,7 +130,7 @@ export default ({ addProduct, closeSearch }) => {
   } else {
       setResults([]);
   }
-  }, [ query, closeSearch ]);
+  }, [ query, closeSearch, userInformation.settings.affiliatePrograms ]);
 
   const updateQuery = e => {
     console.log( e.target.value )

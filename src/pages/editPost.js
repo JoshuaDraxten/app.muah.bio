@@ -85,7 +85,7 @@ const SwipeableProduct = ({ product, index, removeProduct, setProductTagEditor }
   ) 
 }
 
-function EditPost({ post, updatePost, closePost } ){
+function EditPost({ userInformation, post, updatePost, closePost } ){
   const [ productSearchIsOpen, setProductSearchIsOpen ] = useState( false );
   const [ products, setProducts ] = useState( post.products );
   const [ expandedHeader, setExpandedHeader ] = useState( false );
@@ -210,7 +210,7 @@ function EditPost({ post, updatePost, closePost } ){
         isOpen={productSearchIsOpen}
         onDidDismiss={() => setProductSearchIsOpen(false)}
         swipeToClose={true} >
-          <ProductSearch closeSearch={() => setProductSearchIsOpen(false)} addProduct={addProduct} />
+          <ProductSearch userInformation={userInformation} closeSearch={() => setProductSearchIsOpen(false)} addProduct={addProduct} />
       </IonModal>
 
       <IonFooter className="ion-no-border" onClick={ openProductSearch }>
