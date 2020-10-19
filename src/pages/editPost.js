@@ -51,30 +51,39 @@ const arrayMove = (array, from, to) => {
 	return array;
 };
 
-const SwipeableProduct = ({ product, index, removeProduct, setProductTagEditor }) => (
-  <IonItemSliding key={ product.url } onIonSwipe={()=>removeProduct(index)}>
-    <IonItemOptions side="start">
-      <IonItemOption color="danger" expandable onClick={()=>removeProduct(index)}>
-        <Trans>Delete</Trans>
-      </IonItemOption>
-      <IonItemOption color="success" onClick={()=>setProductTagEditor( { open: true, productIndex: index, tag: product.tag } )}>
-      <Trans>Edit Tag</Trans>
-      </IonItemOption>
-    </IonItemOptions>
+const SwipeableProduct = ({ product, index, removeProduct, setProductTagEditor }) => {
 
-    <IonItem>
-      <IonThumbnail slot="start"  style={{background: "#ffffff", borderRadius: 4}}>
-        <img src={product.image} alt="" style={{objectFit: "contain"}} />
-      </IonThumbnail>
-      <IonLabel className="ion-text-wrap">
-      { product.tag ? <span className="tag">{product.tag}</span> : null }
-        <h3>{product.name}</h3>
-        <p>{ product.retailer.name }{ product.price.number ? " | "+product.price.symbol: ""}{ product.price.number }</p>
-      </IonLabel>
-      <IonReorder slot="end" />
-    </IonItem>
-  </IonItemSliding>
-)
+  let formattedPrice = "";
+  try {
+    formattedPrice = " | " + Intl.NumberFormat('en-US', { style: 'currency', currency: product.price.currency })
+      .format(product.price.number);
+  } catch (error) {}
+
+  return (
+    <IonItemSliding key={ product.url } onIonSwipe={()=>removeProduct(index)}>
+      <IonItemOptions side="start">
+        <IonItemOption color="danger" expandable onClick={()=>removeProduct(index)}>
+          <Trans>Delete</Trans>
+        </IonItemOption>
+        <IonItemOption color="success" onClick={()=>setProductTagEditor( { open: true, productIndex: index, tag: product.tag } )}>
+        <Trans>Edit Tag</Trans>
+        </IonItemOption>
+      </IonItemOptions>
+
+      <IonItem>
+        <IonThumbnail slot="start"  style={{background: "#ffffff", borderRadius: 4}}>
+          <img src={product.image} alt="" style={{objectFit: "contain"}} />
+        </IonThumbnail>
+        <IonLabel className="ion-text-wrap">
+          { product.tag ? <span className="tag">{product.tag}</span> : null }
+          <h3>{product.name}</h3>
+          <p>{ product.retailer.name }{ formattedPrice }</p>
+        </IonLabel>
+        <IonReorder slot="end" />
+      </IonItem>
+    </IonItemSliding>
+  ) 
+}
 
 function EditPost({ post, updatePost, closePost } ){
   const [ productSearchIsOpen, setProductSearchIsOpen ] = useState( false );

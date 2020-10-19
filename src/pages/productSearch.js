@@ -23,6 +23,13 @@ const ProductResult = ({ product, addProduct, closeSearch, wordsToBold=[] }) => 
   let boldedName = product.name.split(" ").map( word => 
     wordsToBold.includes(word.toLowerCase().replace(/[^a-z]/g, '')) ? "<b>"+word+"</b>" : word
   ).join(" ");
+
+  let formattedPrice = "";
+  try {
+    formattedPrice = " | " + Intl.NumberFormat('en-US', { style: 'currency', currency: product.price.currency })
+      .format(product.price.number);
+  } catch (error) {}
+  
   return (
     <IonItem onClick={() => {addProduct(product); closeSearch()}}>
       <IonThumbnail slot="start" style={{background: "#ffffff", borderRadius: 4}}>
@@ -30,7 +37,7 @@ const ProductResult = ({ product, addProduct, closeSearch, wordsToBold=[] }) => 
       </IonThumbnail>
       <IonLabel className="ion-text-wrap">
         <h3 dangerouslySetInnerHTML={{__html: boldedName}}></h3>
-        <p>{ product.retailer.name }{ product.price.number ? " | "+product.price.symbol: ""}{ product.price.number }</p>
+        <p>{ product.retailer.name }{ formattedPrice }</p>
       </IonLabel>
     </IonItem>
   )
