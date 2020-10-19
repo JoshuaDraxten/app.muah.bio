@@ -28,7 +28,7 @@ exports.handler = async event => {
     ]);
 
     let price = {
-        amount: metadata["og:price:amount"],
+        number: metadata["og:price:amount"],
         currency: metadata["og:price:currency"]
     }
     if ( price.currency ) {
@@ -36,7 +36,7 @@ exports.handler = async event => {
     }
 
     let product = {
-        retailer: { siteName },
+        retailer: { name: siteName },
         price,
         name,
         image,

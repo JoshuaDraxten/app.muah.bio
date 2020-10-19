@@ -2,6 +2,7 @@ import React, {useRef, useEffect, useState} from 'react';
 import {
   IonContent,
   IonHeader,
+  IonListHeader,
   IonPage,
   IonSearchbar,
   IonItem,
@@ -12,6 +13,7 @@ import {
 } from '@ionic/react';
 
 import productSearch from '../api/productSearch';
+import getProductFromUrl from '../api/getProductFromUrl';
 
 // Internationalization
 import { Trans } from '@lingui/macro';
@@ -27,7 +29,7 @@ const ProductResult = ({ product, addProduct, closeSearch, wordsToBold=[] }) => 
       </IonThumbnail>
       <IonLabel className="ion-text-wrap">
         <h3 dangerouslySetInnerHTML={{__html: boldedName}}></h3>
-        <p>{ product.price.number ? product.price.symbol: ""}{ product.price.number }</p>
+        <p>{ product.retailer.name }{ product.price.number ? " | "+product.price.symbol: ""}{ product.price.number }</p>
       </IonLabel>
     </IonItem>
   )
@@ -45,13 +47,38 @@ const LoadingProductResult = () => (
   </IonItem>
 )
 
+const isUrl = url => {
+  console.log( url )
+  try {
+    new URL(url);
+  } catch (error) {
+    return false
+  }
+  return true;
+}
+
 const LoadingProductResults = () => [...Array(45)].map( (x, i) => <LoadingProductResult key={i} /> )
 
 export default ({ addProduct, closeSearch }) => {
   const [ results, setResults ] = useState([]);
   const [ query, setQuery ] = useState("");
-  const [ isSearching, setIsSearching ] = useState(false)
+  const [ isSearching, setIsSearching ] = useState(false);
   const searchInput = useRef(null);
+
+  useEffect(() => {(async () => {
+    console.log("Running this")
+    const clipboardText = await navigator.clipboard.readText()
+
+    if ( isUrl( clipboardText ) ) {
+      getProductFromUrl( clipboardText )
+        .then( newResult => updateResults( [newResult], query ) )
+        .catch( error => {
+          console.log(error);
+          setIsSearching(false);
+        });
+    }
+  // eslint-disable-next-line
+  })()}, []);
 
   useEffect(() => {
     // Wait till animation is done to focus on input
@@ -71,15 +98,23 @@ export default ({ addProduct, closeSearch }) => {
 
   useEffect(() => {
     if ( query.length > 2 ) {
-      console.log( query )
       setIsSearching(true);
       try {
-        productSearch({ keyword: query })
-          .then( newResults => updateResults( newResults, query ) )
-          .catch( error => {
-            console.log(error);
-            setIsSearching(false);
-          });
+        if ( isUrl(query) ) {
+          getProductFromUrl( query )
+            .then( newResult => updateResults( [newResult], query ) )
+            .catch( error => {
+              console.log(error);
+              setIsSearching(false);
+            });
+        } else {
+          productSearch({ keyword: query })
+            .then( newResults => updateResults( newResults, query ) )
+            .catch( error => {
+              console.log(error);
+              setIsSearching(false);
+            });
+        }
       } catch (error) {
         console.error( error )
       }
@@ -110,11 +145,16 @@ export default ({ addProduct, closeSearch }) => {
               debounce={1000}
             ></IonSearchbar>
           }>
-              Search for makeup products
+              Search for products or paste url
           </Trans>
         </IonToolbar>
       </IonHeader>
       <IonContent>
+        { (query === "" && results.length === 1) ?
+          <IonListHeader>
+            <IonLabel><Trans>Found this product in your clipboard</Trans></IonLabel>
+          </IonListHeader>
+        : "" }
         { isSearching ?
           <LoadingProductResults/>
           :
