@@ -221,7 +221,7 @@ function EditPost({ post, updatePost, closePost } ){
               style={{pointerEvents: "none"}}
             ></IonSearchbar>
           }>
-            Search for makeup products
+            Search for products or paste url
           </Trans>
         </IonToolbar>
       </IonFooter>
