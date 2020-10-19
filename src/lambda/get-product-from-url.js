@@ -1,12 +1,17 @@
 const metaget = require('metaget');
 
-const firstThatsNotUndefined = arr => {
-    return arr.map( x => x )[0]
+const firstThatsNotUndefined = ( arr, defaultValue=undefined ) => {
+    return arr.filter( x => x ).concat([defaultValue])[0]
 }
 
 exports.handler = async event => {
     const { url } = event.queryStringParameters;
     const metadata = await metaget.fetch( url );
+
+    const canonicanUrl = firstThatsNotUndefined([
+        metadata['canonical'],
+        url
+    ]);
 
     const siteName = firstThatsNotUndefined([
         metadata["og:site_name"],
@@ -22,10 +27,14 @@ exports.handler = async event => {
         metadata["title"]
     ]);
 
-    const image = firstThatsNotUndefined([
+    let image = firstThatsNotUndefined([
         metadata["twitter:image"],
-        metadata["og:image"],
-    ]);
+        metadata["og:image"]
+    ], "");
+    
+    if ( image.slice(0,1) === '/' ) {
+        image = new URL(url).origin + image;
+    }
 
     let price = {
         number: metadata["og:price:amount"],
@@ -40,8 +49,9 @@ exports.handler = async event => {
         price,
         name,
         image,
-        url
+        url: canonicanUrl
     }
+    console.log( product, metadata.title )
 
     return {
         statusCode: 200,

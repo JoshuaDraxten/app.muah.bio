@@ -19,6 +19,7 @@ import getProductFromUrl from '../api/getProductFromUrl';
 import { Trans } from '@lingui/macro';
 
 const ProductResult = ({ product, addProduct, closeSearch, wordsToBold=[] }) => {
+  console.log( product )
   let boldedName = product.name.split(" ").map( word => 
     wordsToBold.includes(word.toLowerCase().replace(/[^a-z]/g, '')) ? "<b>"+word+"</b>" : word
   ).join(" ");
