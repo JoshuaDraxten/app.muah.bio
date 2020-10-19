@@ -51,7 +51,7 @@ const arrayMove = (array, from, to) => {
 	return array;
 };
 
-const SwipeableProduct = ({ product, index, removeProduct, setProductTagEditor }) => {
+const SwipeableProduct = ({ product, index, removeProduct, setProductEditor }) => {
 
   let formattedPrice = "";
   try {
@@ -65,8 +65,8 @@ const SwipeableProduct = ({ product, index, removeProduct, setProductTagEditor }
         <IonItemOption color="danger" expandable onClick={()=>removeProduct(index)}>
           <Trans>Delete</Trans>
         </IonItemOption>
-        <IonItemOption color="success" onClick={()=>setProductTagEditor( { open: true, productIndex: index, tag: product.tag } )}>
-        <Trans>Edit Tag</Trans>
+        <IonItemOption color="success" onClick={()=>setProductEditor( { open: true, productIndex: index, product } )}>
+        <Trans>Edit Product</Trans>
         </IonItemOption>
       </IonItemOptions>
 
@@ -89,7 +89,7 @@ function EditPost({ userInformation, post, updatePost, closePost } ){
   const [ productSearchIsOpen, setProductSearchIsOpen ] = useState( false );
   const [ products, setProducts ] = useState( post.products );
   const [ expandedHeader, setExpandedHeader ] = useState( false );
-  const [ productTagEditor, setProductTagEditor ] = useState( { open: false, productIndex: -1, tag: '' } );
+  const [ productEditor, setProductEditor ] = useState( { open: false, productIndex: -1, product: {} } );
   const contentRef = useRef( null );
 
   useEffect(() => {
@@ -136,10 +136,11 @@ function EditPost({ userInformation, post, updatePost, closePost } ){
       product={product}
       index={i}
       removeProduct={removeProduct}
-      setProductTagEditor={setProductTagEditor}
+      setProductEditor={setProductEditor}
       key={product.url} />
   ))
 
+  console.log(  )
   return (
     <IonPage>
       <IonContent fullscreen ref={contentRef}>
@@ -169,22 +170,33 @@ function EditPost({ userInformation, post, updatePost, closePost } ){
             <IonLabel><Trans>Search for products to tag this post with using the search bar below</Trans></IonLabel>
           </div>
         }
-
         <IonAlert
-          isOpen={productTagEditor.open}
-          onDidDismiss={() => setProductTagEditor({ open: false, productIndex: -1, tag: '' })}
-          subHeader={productTagEditor.productIndex!==-1?<Trans>Edit the tag for {products[productTagEditor.productIndex].name}</Trans>: ''}
+          isOpen={productEditor.open}
+          onDidDismiss={() => setProductEditor({ open: false, productIndex: -1, product: {} })}
+          subHeader={productEditor.productIndex!==-1 ? `Edit the tag for ${products[productEditor.productIndex].name}`: ''}
           inputs={[
+            {
+              name: 'name',
+              type: 'text',
+              value: productEditor.product.name,
+              placeholder: "Product name"
+            },
+            {
+              name: 'url',
+              type: 'text',
+              value: productEditor.product.url,
+              placeholder: "URL"
+            },
             {
               name: 'tag',
               type: 'text',
-              value: productTagEditor.tag,
-              placeholder: <Trans>ex: Lips</Trans>
+              value: productEditor.product.tag,
+              placeholder: "Optional product tag (ex: lips)"
             }
           ]}
           buttons={[
             {
-              text: <Trans>Cancel</Trans>,
+              text: "Cancel",
               role: 'cancel',
               cssClass: 'secondary',
               handler: () => {
@@ -192,13 +204,19 @@ function EditPost({ userInformation, post, updatePost, closePost } ){
               }
             },
             {
-              text: <Trans>Ok</Trans>,
-              handler: ({ tag }) => {
+              text: "Ok",
+              handler: ({ name, url, tag }) => {
 
-                if ( tag === productTagEditor.tag ) return;
+                if (
+                  name === productEditor.product.name &&
+                  url === productEditor.product.url &&
+                  tag === productEditor.product.tag
+                ) return;
 
                 let productsClone = [...products];
-                productsClone[productTagEditor.productIndex].tag = tag;
+                productsClone[productEditor.productIndex].name = name;
+                productsClone[productEditor.productIndex].url = url;
+                productsClone[productEditor.productIndex].tag = tag;
                 setProductsInDb( productsClone );
               }
             }
