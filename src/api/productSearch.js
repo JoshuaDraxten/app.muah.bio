@@ -16,8 +16,8 @@ export default async function({ keyword, affiliatePrograms }) {
         results = results.concat(rakuten)
     }
 
-    if ( results.length === 0 ) {
-        const amazon = await fetch("/.netlify/functions/productSearch?keyword="+keyword).then( response => response.json() );
+    if ( results.length < 5 || affiliatePrograms.amazon.trackingID ) {
+        const amazon = await fetch("/.netlify/functions/productSearch?keyword="+keyword).then( response => response.json() ).catch( err => [] );
         results = results.concat( amazon )
     }
 

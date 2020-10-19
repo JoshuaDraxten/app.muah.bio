@@ -37,10 +37,8 @@ const SettingsPage = ({ userInformation, setUserInformation }) => {
   const affiliateDefaults = { 
     rakuten: { token: '' }
   }
-
   const [ linkInBioPage, setLinkInBioPage ] = useState( userInformation.settings.linkInBioPage );
   const [ affiliatePrograms, setAffiliatePrograms ] = useState( { ...affiliateDefaults, ...userInformation.settings.affiliatePrograms });
-  console.log( affiliatePrograms );
 
   const [ didUpdateSettings, setDidUpdateSettings ] = useState( false );
   const userId = userInformation._id;

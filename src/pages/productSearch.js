@@ -56,7 +56,6 @@ const LoadingProductResult = () => (
 )
 
 const isUrl = url => {
-  console.log( url )
   try {
     new URL(url);
   } catch (error) {
@@ -74,7 +73,6 @@ export default ({ userInformation, addProduct, closeSearch }) => {
   const searchInput = useRef(null);
 
   useEffect(() => {(async () => {
-    console.log("Running this")
     const clipboardText = await navigator.clipboard.readText()
 
     if ( isUrl( clipboardText ) ) {
@@ -94,9 +92,7 @@ export default ({ userInformation, addProduct, closeSearch }) => {
   },[searchInput])
 
   const updateResults = ( newResults, queryUsed ) => {
-    console.log( searchInput.current )
     const currentQuery = searchInput.current.querySelector("input").value;
-    console.log( currentQuery, queryUsed )
     if ( queryUsed !== currentQuery ) return;
 
     setIsSearching(false);
