@@ -33,9 +33,15 @@ const logOut = async () => {
 }
 
 const SettingsPage = ({ userInformation, setUserInformation }) => {
+  // Defaults
+  const affiliateDefaults = { 
+    rakuten: { token: '' }
+  }
+
   const [ linkInBioPage, setLinkInBioPage ] = useState( userInformation.settings.linkInBioPage );
-  const [ affiliatePrograms, setAffiliatePrograms ] = useState( userInformation.settings.affiliatePrograms );
-  
+  const [ affiliatePrograms, setAffiliatePrograms ] = useState( { ...affiliateDefaults, ...userInformation.settings.affiliatePrograms });
+  console.log( affiliatePrograms );
+
   const [ didUpdateSettings, setDidUpdateSettings ] = useState( false );
   const userId = userInformation._id;
 
@@ -98,26 +104,45 @@ const SettingsPage = ({ userInformation, setUserInformation }) => {
               value={ linkInBioPage.disclaimer }
               onIonChange={ e => setLinkInBioPage(x => ({...x, disclaimer: e.target.value}) ) }></IonTextarea>
           </IonItem>
-          <br />
+          
           <IonItemDivider>
-            <IonLabel><Trans>Affiliate Accounts</Trans></IonLabel>
+            <IonLabel><Trans>Amazon Affiliate Account</Trans></IonLabel>
           </IonItemDivider>
           <IonItem>
             <IonLabel position="stacked"><Trans>Amazon Tracking ID</Trans></IonLabel>
             <IonTextarea
-              value={ affiliatePrograms.amazon.trackingId }
+              value={ affiliatePrograms.amazon.trackingID }
               onIonChange={ e => 
                 setAffiliatePrograms( x => ({
                   ...x,
                   amazon: {
                     ...affiliatePrograms.amazon,
-                    trackingId: e.target.value
+                    trackingID: e.target.value
                   }
                 }) )
               }></IonTextarea>
           </IonItem>
           <IonItem><span><Trans>You can find your Amazon Tracking ID by going <a href="https://affiliate-program.amazon.com/home/account/tag/manage" target="_blank" rel="noopener noreferrer">here</a></Trans></span></IonItem>
-          <br />
+          
+          <IonItemDivider>
+            <IonLabel><Trans>Rakuten Affiliate Account</Trans></IonLabel>
+          </IonItemDivider>
+          <IonItem>
+            <IonLabel position="stacked"><Trans>Rakuten Web Services Token</Trans></IonLabel>
+            <IonTextarea
+              value={ affiliatePrograms.rakuten.token }
+              onIonChange={ e => 
+                setAffiliatePrograms( x => ({
+                  ...x,
+                  rakuten: {
+                    ...affiliatePrograms.rakuten,
+                    token: e.target.value
+                  }
+                }) )
+              }></IonTextarea>
+          </IonItem>
+          <IonItem><p><Trans>You can find your Rakuten Web Services Token by going to <a href="https://cli.linksynergy.com/cli/publisher/links/webServices.php" target="_blank" rel="noopener noreferrer">Links &gt; Web Services</a> page in the rakuten advertizing dashboard</Trans></p></IonItem>
+
           <IonItemDivider>
             <IonLabel><Trans>Your Account</Trans></IonLabel>
           </IonItemDivider>
@@ -125,13 +150,14 @@ const SettingsPage = ({ userInformation, setUserInformation }) => {
           <IonButton expand="block" color="danger" onClick={logOut}><Trans>Log Out</Trans></IonButton>
           <br />
         </div>
-
-        <IonToast
-          isOpen={didUpdateSettings}
-          onDidDismiss={() => setDidUpdateSettings(false)}
-          message={<Trans>Settings Updated</Trans>}
-          duration={1000}
-        ></IonToast>
+        <Trans render={ ({translation}) => 
+          <IonToast
+            isOpen={didUpdateSettings}
+            onDidDismiss={() => setDidUpdateSettings(false)}
+            message={translation}
+            duration={1000}
+          ></IonToast>
+        }>Settings Updated</Trans>
       </IonContent>
     </IonPage>
   );

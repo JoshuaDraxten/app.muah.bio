@@ -8,10 +8,10 @@ exports.handler = async event => {
     const { url } = event.queryStringParameters;
     const metadata = await metaget.fetch( url );
 
-    const canonicanUrl = firstThatsNotUndefined([
-        metadata['canonical'],
-        url
-    ]);
+    // const canonicanUrl = firstThatsNotUndefined([
+    //     metadata['canonical'],
+    //     url
+    // ]);
 
     const siteName = firstThatsNotUndefined([
         metadata["og:site_name"],
@@ -49,7 +49,7 @@ exports.handler = async event => {
         price,
         name,
         image,
-        url: canonicanUrl
+        url
     }
     console.log( product, metadata.title )
 

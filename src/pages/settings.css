@@ -7,3 +7,7 @@
         transform: translateX( -50% )
     }
 }
+
+ion-item-divider {
+    margin-top: 16px;
+}
