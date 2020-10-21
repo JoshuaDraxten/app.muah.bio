@@ -7,6 +7,7 @@ import {
   IonRouterOutlet,
   IonTabs,
   IonTabBar,
+  IonButton,
   IonTabButton,
   IonIcon,
   IonLabel,
@@ -163,6 +164,8 @@ export default () => {
         <IonContent>
           <div style={{ width: "100%", maxWidth: 600, position: "absolute", top: "50%", left: "50%", transform: "translateX(-50%) translateY(-50%)", textAlign: "center", padding: 20 }}>
             <h2><Trans>Muah.bio is currently invite only. We'll send you an invite in time</Trans></h2>
+            <br /><br />
+            <IonButton onClick={()=>{netlifyIdentity.logout();window.location = window.location.origin;}}><Trans>Log Out</Trans></IonButton>
           </div>
         </IonContent>
       </IonPage>
