@@ -11,7 +11,7 @@ import en from './locales/en/messages.js';
 import { I18nProvider } from '@lingui/react';
 
 ReactDOM.render(
-    <I18nProvider language="es" catalogs={{ es, en }}>
+    <I18nProvider language="en" catalogs={{ es, en }}>
         <App />
     </I18nProvider>,
     document.getElementById('root')
