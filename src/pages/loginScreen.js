@@ -18,9 +18,6 @@ function modifyNetlifyAuth(){
     [...modalDocument.querySelectorAll(".btnClose, .callOut, .btnHeader:first-of-type")].forEach(
       node => node.style.display = 'none'
     );
-    [...modalDocument.querySelectorAll(".header")].forEach(
-        node => node.style.marginTop = '40px'
-    );
 }
 modifyNetlifyAuth();
 
