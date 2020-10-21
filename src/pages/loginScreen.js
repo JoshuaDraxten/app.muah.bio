@@ -15,8 +15,11 @@ function modifyNetlifyAuth(){
     if ( modalDocument.body.innerHTML === '' ) return tryAgainLater();
   
     // Remove close button and callout
-    [...modalDocument.querySelectorAll(".btnClose, .callOut")].forEach(
+    [...modalDocument.querySelectorAll(".btnClose, .callOut, .btnHeader:first-of-type")].forEach(
       node => node.style.display = 'none'
+    );
+    [...modalDocument.querySelectorAll(".header")].forEach(
+        node => node.style.marginTop = '40px'
     );
 }
 modifyNetlifyAuth();
@@ -39,6 +42,6 @@ export default ({ setCurrentUser, setUserInformation }) => {
         window.location = window.location.origin
     } );
 
-    netlifyIdentity.open('signup');
+    netlifyIdentity.open('login');
     return null;
 }
