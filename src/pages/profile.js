@@ -126,6 +126,12 @@ const Profile = ({ userInformation, username, posts, updatePost}) => {
             <IonTitle size="large"><Trans>Profile</Trans></IonTitle>
           </IonToolbar>
         </IonHeader>
+        { posts.filter( post => post.products.length > 0 ).length === 0 ?
+          <div className="disclaimer" style={{marginBottom: 0}}>
+            <p><Trans>Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products.</Trans></p>
+            <p><Trans>Remember to <b>connect your affiliate accounts</b> in settings to add products!</Trans></p>
+          </div>
+        : null}
         <IonGrid style={{maxWidth: 1000}}>
           <IonRow>
             {posts.map((post, index) => (

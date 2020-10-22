@@ -1,3 +1,12 @@
+.disclaimer {
+    padding: 20px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
 .hide-title-on-ios.ios ion-title {
     display: none;
 }
