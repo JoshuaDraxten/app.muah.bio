@@ -4,7 +4,7 @@ const uri = "mongodb+srv://joshuad:!7PrMT6ww&LqZDxgRU@cluster0.5j0rh.mongodb.net
 
 /**
  * To use this function visit 
- * https://app.muah.bio/.netlify/functions/initialize-user?userId=<userId>&ig_username=<ig_username>
+ * https://app.muah.bio/.netlify/functions/initialize-user?user_id=<userId>&ig_username=<ig_username>
  */
 
 let cachedDb = null;
@@ -27,7 +27,7 @@ async function getPosts( ig_username ) {
   return await fetch(`https://ig.muah.bio/${ig_username}.json`).then( response => response.json() );
 }
 
-const generateUser = async ({ userId, ig_id, ig_username, ig_token, ig_token_expires, posts }) => {
+const generateUser = async ({ user_id, ig_id, ig_username, ig_token, ig_token_expires, posts }) => {
   if ( !posts ) {
     posts = await getPosts( ig_username );
     console.log( posts )
@@ -37,7 +37,7 @@ const generateUser = async ({ userId, ig_id, ig_username, ig_token, ig_token_exp
   }
 
   return {
-    _id: userId,
+    _id: user_id,
 	  posts,
     instagram: {
       // id: parseInt(ig_id),
