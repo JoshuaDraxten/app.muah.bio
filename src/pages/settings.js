@@ -146,7 +146,7 @@ const SettingsPage = ({ userInformation, setUserInformation }) => {
           </IonItemDivider>
           <br />
           <IonButton expand="block" color="danger" onClick={logOut}><Trans>Log Out</Trans></IonButton>
-          <br />
+          <br /><br /><br /><br /><br />
         </div>
         <Trans render={ ({translation}) => 
           <IonToast
