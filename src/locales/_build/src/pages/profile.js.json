@@ -26,5 +26,21 @@
         107
       ]
     ]
+  },
+  "Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products.": {
+    "origin": [
+      [
+        "src/pages/profile.js",
+        131
+      ]
+    ]
+  },
+  "Remember to <0>connect your affiliate accounts</0> in settings to add products!": {
+    "origin": [
+      [
+        "src/pages/profile.js",
+        132
+      ]
+    ]
   }
 }

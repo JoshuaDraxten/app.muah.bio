@@ -1,9 +1,17 @@
 {
-  "Search for makeup products": {
+  "Search for products or paste url": {
     "origin": [
       [
         "src/pages/productSearch.js",
-        101
+        140
+      ]
+    ]
+  },
+  "Found this product in your clipboard": {
+    "origin": [
+      [
+        "src/pages/productSearch.js",
+        159
       ]
     ]
   }

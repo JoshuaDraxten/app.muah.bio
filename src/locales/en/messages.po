@@ -14,46 +14,63 @@ msgstr ""
 "Plural-Forms: \n"
 
 #: src/pages/settings.js:103
-msgid "Affiliate Accounts"
-msgstr "Affiliate Accounts"
+#~ msgid "Affiliate Accounts"
+#~ msgstr "Affiliate Accounts"
 
-#: src/pages/settings.js:96
+#: src/pages/settings.js:100
 msgid "Affiliate Disclaimer Text"
 msgstr "Affiliate Disclaimer Text"
 
-#: src/pages/settings.js:106
+#: src/pages/settings.js:107
+msgid "Amazon Affiliate Account"
+msgstr "Amazon Affiliate Account"
+
+#: src/pages/settings.js:110
 msgid "Amazon Tracking ID"
 msgstr "Amazon Tracking ID"
 
-#: src/pages/settings.js:74
+#: src/pages/settings.js:78
 msgid "Bio Page Display"
 msgstr "Bio Page Display"
 
-#: src/pages/settings.js:87
+#: src/pages/settings.js:91
 msgid "Button Text"
 msgstr "Button Text"
 
 #: src/pages/editPost.js:178
-msgid "Cancel"
-msgstr "Cancel"
+#~ msgid "Cancel"
+#~ msgstr "Cancel"
 
 #: src/pages/profile.js:101
 msgid "Copy Url"
 msgstr "Copy Url"
 
-#: src/pages/editPost.js:58
+#: src/pages/editPost.js:66
 msgid "Delete"
 msgstr "Delete"
 
+#: src/pages/editPost.js:69
+msgid "Edit Product"
+msgstr "Edit Product"
+
 #: src/pages/editPost.js:61
-msgid "Edit Tag"
-msgstr "Edit Tag"
+#~ msgid "Edit Tag"
+#~ msgstr "Edit Tag"
 
 #: src/pages/editPost.js:167
-msgid "Edit the tag for {0}"
-msgstr "Edit the tag for {0}"
+#~ msgid "Edit the tag for {0}"
+#~ msgstr "Edit the tag for {0}"
 
-#: src/pages/settings.js:125
+#: src/pages/productSearch.js:159
+msgid "Found this product in your clipboard"
+msgstr "Found this product in your clipboard"
+
+#: src/pages/profile.js:131
+msgid "Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
+msgstr "Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
+
+#: src/App.tsx:124
+#: src/pages/settings.js:148
 msgid "Log Out"
 msgstr "Log Out"
 
@@ -62,43 +79,60 @@ msgid "Muah.bio is currently invite only. We'll send you an invite in time"
 msgstr "Muah.bio is currently invite only. We'll send you an invite in time"
 
 #: src/pages/editPost.js:186
-msgid "Ok"
-msgstr "Ok"
+#~ msgid "Ok"
+#~ msgstr "Ok"
 
 #: src/pages/profile.js:107
 msgid "Preview Profile"
 msgstr "Preview Profile"
 
-#: src/App.tsx:146
+#: src/App.tsx:148
 #: src/pages/profile.js:89
 #: src/pages/profile.js:126
 msgid "Profile"
 msgstr "Profile"
 
-#: src/pages/settings.js:61
+#: src/pages/settings.js:126
+msgid "Rakuten Affiliate Account"
+msgstr "Rakuten Affiliate Account"
+
+#: src/pages/settings.js:129
+msgid "Rakuten Web Services Token"
+msgstr "Rakuten Web Services Token"
+
+#: src/pages/profile.js:132
+msgid "Remember to <0>connect your affiliate accounts</0> in settings to add products!"
+msgstr "Remember to <0>connect your affiliate accounts</0> in settings to add products!"
+
+#: src/pages/settings.js:65
 msgid "Save"
 msgstr "Save"
 
 #: src/pages/editPost.js:209
 #: src/pages/productSearch.js:101
-msgid "Search for makeup products"
-msgstr "Search for makeup products"
+#~ msgid "Search for makeup products"
+#~ msgstr "Search for makeup products"
 
-#: src/pages/editPost.js:160
+#: src/pages/editPost.js:236
+#: src/pages/productSearch.js:140
+msgid "Search for products or paste url"
+msgstr "Search for products or paste url"
+
+#: src/pages/editPost.js:170
 msgid "Search for products to tag this post with using the search bar below"
 msgstr "Search for products to tag this post with using the search bar below"
 
-#: src/App.tsx:151
-#: src/pages/settings.js:58
-#: src/pages/settings.js:69
+#: src/App.tsx:153
+#: src/pages/settings.js:62
+#: src/pages/settings.js:73
 msgid "Settings"
 msgstr "Settings"
 
-#: src/pages/settings.js:132
+#: src/pages/settings.js:151
 msgid "Settings Updated"
 msgstr "Settings Updated"
 
-#: src/pages/editPost.js:152
+#: src/pages/editPost.js:162
 msgid "Tagged Products"
 msgstr "Tagged Products"
 
@@ -106,18 +140,22 @@ msgstr "Tagged Products"
 msgid "You are on the waitlist"
 msgstr "You are on the waitlist"
 
-#: src/pages/settings.js:119
+#: src/pages/settings.js:123
 msgid "You can find your Amazon Tracking ID by going <0>here</0>"
 msgstr "You can find your Amazon Tracking ID by going <0>here</0>"
 
-#: src/pages/settings.js:122
+#: src/pages/settings.js:142
+msgid "You can find your Rakuten Web Services Token by going to <0>Links > Web Services</0> page in the rakuten advertizing dashboard"
+msgstr "You can find your Rakuten Web Services Token by going to <0>Links > Web Services</0> page in the rakuten advertizing dashboard"
+
+#: src/pages/settings.js:145
 msgid "Your Account"
 msgstr "Your Account"
 
-#: src/pages/settings.js:77
+#: src/pages/settings.js:81
 msgid "Your Website"
 msgstr "Your Website"
 
 #: src/pages/editPost.js:173
-msgid "ex: Lips"
-msgstr "ex: Lips"
+#~ msgid "ex: Lips"
+#~ msgstr "ex: Lips"

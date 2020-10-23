@@ -3,11 +3,11 @@
     "origin": [
       [
         "src/pages/settings.js",
-        58
+        62
       ],
       [
         "src/pages/settings.js",
-        69
+        73
       ]
     ]
   },
@@ -15,7 +15,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        61
+        65
       ]
     ]
   },
@@ -23,7 +23,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        74
+        78
       ]
     ]
   },
@@ -31,7 +31,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        77
+        81
       ]
     ]
   },
@@ -39,7 +39,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        87
+        91
       ]
     ]
   },
@@ -47,15 +47,15 @@
     "origin": [
       [
         "src/pages/settings.js",
-        96
+        100
       ]
     ]
   },
-  "Affiliate Accounts": {
+  "Amazon Affiliate Account": {
     "origin": [
       [
         "src/pages/settings.js",
-        103
+        107
       ]
     ]
   },
@@ -63,7 +63,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        106
+        110
       ]
     ]
   },
@@ -71,7 +71,31 @@
     "origin": [
       [
         "src/pages/settings.js",
-        119
+        123
+      ]
+    ]
+  },
+  "Rakuten Affiliate Account": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        126
+      ]
+    ]
+  },
+  "Rakuten Web Services Token": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        129
+      ]
+    ]
+  },
+  "You can find your Rakuten Web Services Token by going to <0>Links > Web Services</0> page in the rakuten advertizing dashboard": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        142
       ]
     ]
   },
@@ -79,7 +103,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        122
+        145
       ]
     ]
   },
@@ -87,7 +111,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        125
+        148
       ]
     ]
   },
@@ -95,7 +119,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        132
+        151
       ]
     ]
   }

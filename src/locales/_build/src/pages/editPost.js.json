@@ -3,15 +3,15 @@
     "origin": [
       [
         "src/pages/editPost.js",
-        58
+        66
       ]
     ]
   },
-  "Edit Tag": {
+  "Edit Product": {
     "origin": [
       [
         "src/pages/editPost.js",
-        61
+        69
       ]
     ]
   },
@@ -19,7 +19,7 @@
     "origin": [
       [
         "src/pages/editPost.js",
-        152
+        162
       ]
     ]
   },
@@ -27,47 +27,15 @@
     "origin": [
       [
         "src/pages/editPost.js",
-        160
+        170
       ]
     ]
   },
-  "Edit the tag for {0}": {
+  "Search for products or paste url": {
     "origin": [
       [
         "src/pages/editPost.js",
-        167
-      ]
-    ]
-  },
-  "ex: Lips": {
-    "origin": [
-      [
-        "src/pages/editPost.js",
-        173
-      ]
-    ]
-  },
-  "Cancel": {
-    "origin": [
-      [
-        "src/pages/editPost.js",
-        178
-      ]
-    ]
-  },
-  "Ok": {
-    "origin": [
-      [
-        "src/pages/editPost.js",
-        186
-      ]
-    ]
-  },
-  "Search for makeup products": {
-    "origin": [
-      [
-        "src/pages/editPost.js",
-        209
+        236
       ]
     ]
   }
