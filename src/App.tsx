@@ -60,9 +60,34 @@ import './theme/variables.css';
 // Internationalization
 import { Trans } from '@lingui/macro';
 
+// 🎶️ Do you beleive in magic ✨️
+import { Magic } from 'magic-sdk';
+const magic = new Magic('pk_test_547D3164C0086FB8');
+window.magic = magic
+
 export default () => {
+  const [ isLoggedIn, setIsLoggedIn ] = useState( null );
+  const [ userMetadata, setUserMetadata ] = useState( {} ); 
+
   const [ currentUser, setCurrentUser ] = useState( netlifyIdentity.currentUser() );
   const [ userInformation, setUserInformation ] = useState( null );
+
+  console.log( isLoggedIn )
+
+  if ( isLoggedIn === null ) {
+    magic.user.isLoggedIn().then(setIsLoggedIn);
+    return <p>Loading...</p>
+  }
+
+  if ( isLoggedIn === false ) {
+    return <LoginScreen magic={magic} setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} setUserInformation={setUserInformation} />
+  }
+
+  console.log( isLoggedIn )
+  if ( isLoggedIn === true ) {
+    magic.user.getMetadata().then( console.log )
+    return <p>You are logged in! 🎉️</p>
+  }
 
   // eslint-disable-next-line
   const addPost = ({ post, position=0 }) => {
