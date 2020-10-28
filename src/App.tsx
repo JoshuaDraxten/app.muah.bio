@@ -67,7 +67,7 @@ window.magic = magic
 
 export default () => {
   const [ isLoggedIn, setIsLoggedIn ] = useState( null );
-  const [ userMetadata, setUserMetadata ] = useState( {} ); 
+  // const [ userMetadata, setUserMetadata ] = useState( {} ); 
 
   const [ currentUser, setCurrentUser ] = useState( netlifyIdentity.currentUser() );
   const [ userInformation, setUserInformation ] = useState( null );
@@ -86,7 +86,7 @@ export default () => {
   console.log( isLoggedIn )
   if ( isLoggedIn === true ) {
     magic.user.getMetadata().then( console.log )
-    return <p>You are logged in! 🎉️</p>
+    return <p>You are logged in!</p>
   }
 
   // eslint-disable-next-line

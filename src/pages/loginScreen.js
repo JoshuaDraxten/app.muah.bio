@@ -1,5 +1,5 @@
-import netlifyIdentity from 'netlify-identity-widget';
-import getUser from '../api/getUser';
+// import netlifyIdentity from 'netlify-identity-widget';
+// import getUser from '../api/getUser';
 
 import React, { useState } from 'react';
 
@@ -12,7 +12,6 @@ import {
     IonButton,
     IonGrid,
     IonRow,
-    IonLabel,
     IonItem,
     IonInput,
 
