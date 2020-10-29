@@ -1,3 +1,6 @@
+const { Magic } = require('@magic-sdk/admin');
+const magicAdmin = new Magic('sk_test_4A682C9CD21C9382');
+
 const fetch = require('node-fetch');
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://joshuad:!7PrMT6ww&LqZDxgRU@cluster0.5j0rh.mongodb.net/user_data?retryWrites=true&w=majority";
@@ -23,27 +26,12 @@ function connectToDatabase (uri) {
     });
 }
 
-async function getPosts( ig_username ) {
-  return await fetch(`https://ig.muah.bio/${ig_username}.json`).then( response => response.json() );
-}
-
-const generateUser = async ({ user_id, ig_id, ig_username, ig_token, ig_token_expires, posts }) => {
-  if ( !posts ) {
-    posts = await getPosts( ig_username );
-    console.log( posts )
-    posts = posts.map( post => ({ ...post, products: [] }) );
-  } else {
-    posts = JSON.parse( posts )
-  }
-
+const generateUser = async ({ ig_username, email, posts }) => {
   return {
-    _id: user_id,
-	  posts,
+    posts,
+    email,
     instagram: {
-      // id: parseInt(ig_id),
       username: ig_username,
-      // token: ig_token,
-      // tokenExpires: ig_token_expires,
     },
     settings: {
       linkInBioPage: {
@@ -51,11 +39,7 @@ const generateUser = async ({ user_id, ig_id, ig_username, ig_token, ig_token_ex
         website: "",
         visitSiteButtonText: "Visit Site"
       },
-      affiliatePrograms: {
-        amazon: {
-          trackingID: ""
-        }
-      }
+      affiliatePrograms: {}
     }
   }
 };
@@ -64,16 +48,29 @@ exports.handler = async event => {
     const client = await connectToDatabase(uri);
     const collection = client.db("Muah_bio").collection("users");
 
-    const newUser = await generateUser( event.queryStringParameters );
+    let { ig_username, token, posts } = event.queryStringParameters;
+
+    posts = JSON.parse( posts )
+    const { email } = await magicAdmin.users.getMetadataByToken( token );
+    
+    const userExists = await collection.find( { "instagram.username": ig_username } ).toArray()[0];
+    if ( userExists ) {
+      return {
+        statusCode: 500,
+        body: `{"error": "Instagram User Already Exists. Please email josh@muah.bio if this is a mistake"}`
+      }
+    }
+
+    const newUser = await generateUser( { ig_username, email, posts } );
 
     return collection.insertOne(newUser)
         .catch( err => ({
             statusCode: 500,
-            body: JSON.stringify(e)
+            body: JSON.stringify(err)
         }))
-        .then( response => ({
+        .then( () => ({
             statusCode: 200,
-            body: JSON.stringify(response)
+            body: JSON.stringify(newUser)
         }));
 
 }

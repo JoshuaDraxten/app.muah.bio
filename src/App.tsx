@@ -7,15 +7,15 @@ import {
   IonRouterOutlet,
   IonTabs,
   IonTabBar,
-  IonButton,
+  // IonButton,
   IonTabButton,
   IonIcon,
   IonLabel,
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent
+  // IonPage,
+  // IonHeader,
+  // IonToolbar,
+  // IonTitle,
+  // IonContent
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
@@ -25,14 +25,12 @@ import { personCircle, cog } from 'ionicons/icons';
 import Profile from "./pages/profile";
 import Settings from "./pages/settings";
 import LoginScreen from './pages/loginScreen';
+import InstagramSetup from './pages/instagramSetup';
 // import AuthenticateInstagram from './pages/authenticateInstagram';
 import SplashScreen from './pages/splashScreen';
 
-import netlifyIdentity from 'netlify-identity-widget';
-
 // Api
 import getUser from './api/getUser';
-import getIGMedia from "./api/getIGMedia";
 import addUserPost from "./api/addUserPost";
 import updateUserPost from './api/updateUserPost'
 
@@ -66,28 +64,9 @@ const magic = new Magic('pk_test_547D3164C0086FB8');
 window.magic = magic
 
 export default () => {
+  const [ token, setToken ] = useState('');
   const [ isLoggedIn, setIsLoggedIn ] = useState( null );
-  // const [ userMetadata, setUserMetadata ] = useState( {} ); 
-
-  const [ currentUser, setCurrentUser ] = useState( netlifyIdentity.currentUser() );
   const [ userInformation, setUserInformation ] = useState( null );
-
-  console.log( isLoggedIn )
-
-  if ( isLoggedIn === null ) {
-    magic.user.isLoggedIn().then(setIsLoggedIn);
-    return <p>Loading...</p>
-  }
-
-  if ( isLoggedIn === false ) {
-    return <LoginScreen magic={magic} setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} setUserInformation={setUserInformation} />
-  }
-
-  console.log( isLoggedIn )
-  if ( isLoggedIn === true ) {
-    magic.user.getMetadata().then( console.log )
-    return <p>You are logged in!</p>
-  }
 
   // eslint-disable-next-line
   const addPost = ({ post, position=0 }) => {
@@ -101,11 +80,7 @@ export default () => {
     );
     setUserInformation( userInformationCopy );
 
-    addUserPost({
-      post,
-      userId: currentUser.id,
-      position 
-    });
+    addUserPost({ token, post, position });
   }
 
   const updatePost = ( postId, postData ) => {
@@ -120,7 +95,12 @@ export default () => {
     userInformationCopy.posts = postsCopy;
     setUserInformation( userInformationCopy );
 
-    updateUserPost({ post: postData, userId: currentUser.id });
+    updateUserPost({
+      ig_username: userInformation.instagram.username,
+      token,
+      post: postData,
+      userEmail: userInformation.email
+    });
   }
 
   // The first time userInformation loads
@@ -128,23 +108,24 @@ export default () => {
   useEffect(() => {
     if ( userInformationIsNull ) return;
 
-    // Check if the instagram data has been updated
-    if ( userInformation.instagram ) {
-      getIGMedia(userInformation.instagram).then( posts => {
-        console.log( posts )
-        const existingIds = userInformation.posts.map( post => post.id );
-        console.log("Checking for new posts")
+    // TODO: Do this later
+    // // Check if the instagram data has been updated
+    // if ( userInformation.instagram ) {
+    //   getIGMedia(userInformation.instagram).then( posts => {
+    //     console.log( posts )
+    //     const existingIds = userInformation.posts.map( post => post.id );
+    //     console.log("Checking for new posts")
 
-        // If there's a new post, add it
-        posts.forEach( (post, position) => {
-          if ( !existingIds.includes( post.id ) ) {
-            post.products = []
-            addPost({ post, position });
-          }
-        });
+    //     // If there's a new post, add it
+    //     posts.forEach( (post, position) => {
+    //       if ( !existingIds.includes( post.id ) ) {
+    //         post.products = []
+    //         addPost({ post, position });
+    //       }
+    //     });
 
-      });
-    }
+    //   });
+    // }
 
     let userInformationCopy = { ...userInformation };
     userInformationCopy.posts.sort(
@@ -159,41 +140,33 @@ export default () => {
   // eslint-disable-next-line
   }, [userInformationIsNull])
 
-  if ( !currentUser ) {
-    if ( window.location.origin.match("http://") ) {
-      // setCurrentUser({
-      //   id: "be81a816-fd3f-4a41-858d-0bca5f028a0d"
-      // })
-      localStorage.removeItem('netlifySiteURL');
-      // return <p>Setting dev user...</p>
-    }
-    return <LoginScreen setCurrentUser={setCurrentUser} setUserInformation={setUserInformation} />
-  }
-
-  // If we're logged in, fetch the user from the database
-  if ( userInformation === null ) {
-    getUser( netlifyIdentity.currentUser().id ).then( userInformationResponse => {
-      setUserInformation( userInformationResponse );
-    });
+  if ( isLoggedIn === null ) {
+    magic.user.isLoggedIn().then(setIsLoggedIn);
     return <SplashScreen />
   }
 
-  console.log( userInformation )
+  if ( isLoggedIn === false ) {
+    return <LoginScreen magic={magic} setIsLoggedIn={setIsLoggedIn} />
+  }
+
+  if ( isLoggedIn === true && userInformation === null ) {
+    if ( !window.hasFetchedToken ) {
+      // Prevent repeating this more than once
+      window.hasFetchedToken = true;
+      magic.user.getIdToken().then(token => {
+        console.log( "Got user!" )
+        setToken(token);
+        getUser(token).then( userInfo => {
+          setUserInformation(userInfo)
+        })
+      })
+    }
+    return <SplashScreen />
+  }
+
   if ( userInformation.error ) {
-    return <IonPage>
-        <IonHeader mode="ios">
-          <IonToolbar>
-            <IonTitle><Trans>You are on the waitlist</Trans></IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent>
-          <div style={{ width: "100%", maxWidth: 600, position: "absolute", top: "50%", left: "50%", transform: "translateX(-50%) translateY(-50%)", textAlign: "center", padding: 20 }}>
-            <h2><Trans>Muah.bio is currently invite only. We'll send you an invite in time</Trans></h2>
-            <br /><br />
-            <IonButton onClick={()=>{netlifyIdentity.logout();window.location = window.location.origin;}}><Trans>Log Out</Trans></IonButton>
-          </div>
-        </IonContent>
-      </IonPage>
+    // Gotta initialize the user!
+    return <InstagramSetup token={token} setUserInformation={setUserInformation} />
   }
 
   // // If the user exists but they dont have an instagram token, they need to be authenticated

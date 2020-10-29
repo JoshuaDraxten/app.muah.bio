@@ -50,7 +50,6 @@ export default ({ magic, setIsLoggedIn, setCurrentUser, setUserInformation }) =>
                                 <IonInput
                                     type="email"
                                     inputMode="email"
-                                    pattern="abc."
                                     placeholder="Your Email Address"
                                     value={email}
                                     onIonChange={e => setEmail(e.target.value)}

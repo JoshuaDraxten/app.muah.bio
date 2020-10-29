@@ -1,3 +1,6 @@
+const { Magic } = require('@magic-sdk/admin');
+const magicAdmin = new Magic('sk_test_4A682C9CD21C9382');
+
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://joshuad:!7PrMT6ww&LqZDxgRU@cluster0.5j0rh.mongodb.net/user_data?retryWrites=true&w=majority";
 
@@ -18,22 +21,24 @@ function connectToDatabase (uri) {
 }
 
 exports.handler = async event => {
-    const { userId } = event.queryStringParameters;
-    const client = await connectToDatabase(uri);
-    const collection = client.db("Muah_bio").collection("users");
+  const { token } = event.queryStringParameters;
+  const { email } = await magicAdmin.users.getMetadataByToken( token );
 
-    const users = await collection.find( { _id: userId } ).toArray();
+  const client = await connectToDatabase(uri);
+  const collection = client.db("Muah_bio").collection("users");
 
-    if ( users.length > 0 ) {
-        return {
-            statusCode: 200,
-            body: JSON.stringify( users[0] ),
-        }
-    }
+  const users = await collection.find( { email } ).toArray();
 
-    return {
-        statusCode: 404,
-        body: JSON.stringify({error: "User Not Found"}) ,
-    }
+  if ( users.length > 0 ) {
+      return {
+          statusCode: 200,
+          body: JSON.stringify( users[0] ),
+      }
+  }
+
+  return {
+      statusCode: 404,
+      body: JSON.stringify({error: "User Not Found"}) ,
+  }
 
 }

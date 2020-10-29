@@ -17,25 +17,28 @@ import {
 
 import './settings.css';
 
-import netlifyIdentity from 'netlify-identity-widget';
-
 import updateSettings from '../api/updateSettings';
 
 // Internationalization
 import { Trans } from '@lingui/macro';
 
+import { Magic } from 'magic-sdk';
+const magic = new Magic('pk_test_547D3164C0086FB8');
+
 const logOut = async () => {
   const confirmLogout = window.confirm( `Are you sure you want to log out?`);
   if ( !confirmLogout ) return;
 
-  netlifyIdentity.logout();
-  window.location = window.location.origin;
+  magic.user.logout().then(
+    () => window.location = window.location.origin
+  );
 }
 
 const SettingsPage = ({ userInformation, setUserInformation }) => {
   // Defaults
   const affiliateDefaults = { 
-    rakuten: { token: '' }
+    rakuten: { token: '' },
+    amazon: { trackingID: '' }
   }
   const [ linkInBioPage, setLinkInBioPage ] = useState( userInformation.settings.linkInBioPage );
   const [ affiliatePrograms, setAffiliatePrograms ] = useState( { ...affiliateDefaults, ...userInformation.settings.affiliatePrograms });

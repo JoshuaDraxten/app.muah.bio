@@ -1,6 +1,6 @@
-export default async function({ userId, settings }){
+export default async function({ token, settings }){
     const params = new URLSearchParams({
-        userId,
+        token,
         settings: JSON.stringify( settings )
     }).toString();
     

@@ -1,5 +1,5 @@
-export default async function( userId ){
-    const response = await fetch(`/.netlify/functions/get-user?userId=${userId}`)
+export default async function( token ){
+    const response = await fetch(`/.netlify/functions/get-user?token=${token}`)
         .then( response => response.json() );
     return response;
 }

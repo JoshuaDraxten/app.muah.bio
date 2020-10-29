@@ -1,6 +1,7 @@
-export default async function({ post, userId, position=0 }){
+export default async function({ ig_username, post, token, position=0 }){
     const params = new URLSearchParams({
-        userId,
+        ig_username,
+        token,
         post: JSON.stringify( post ),
         position
     }).toString();

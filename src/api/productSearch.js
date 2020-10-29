@@ -11,7 +11,7 @@ async function rakutenSearch({ keyword, token }) {
 export default async function({ keyword, affiliatePrograms }) {
     let results = [];
 
-    if ( affiliatePrograms.rakuten.token ) {
+    if ( affiliatePrograms.rakuten && affiliatePrograms.rakuten.token ) {
         const rakuten = await rakutenSearch({ keyword, token: affiliatePrograms.rakuten.token })
         results = results.concat(rakuten)
     }
