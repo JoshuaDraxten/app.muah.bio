@@ -26,11 +26,12 @@ export default ({ magic, setIsLoggedIn, setCurrentUser, setUserInformation }) =>
     const [ email, setEmail ] = useState('');
     const [ emailError ] = useState('');
 
-    const handleLogin = async () => {
-        console.log( email )
-        const loginResponse = await magic.auth.loginWithMagicLink({ email }).catch(console.error);
-        console.log("Testing 123", loginResponse)
-        setIsLoggedIn(true);
+    const handleLogin = e => {
+        magic.auth.loginWithMagicLink({ email })
+            .catch(console.error)
+            .then(() => setIsLoggedIn(true));
+        
+        e.preventDefault();
     }
 
     return (
@@ -43,7 +44,7 @@ export default ({ magic, setIsLoggedIn, setCurrentUser, setUserInformation }) =>
             <IonContent fullscreen>
                 <IonGrid fixed>
                     <IonRow>
-                        <div className="login-form">
+                        <form className="login-form" onSubmit={handleLogin}>
                             {/* <h2><Trans>Log in to your account</Trans></h2> */}
                             <IonItem>
                                 {/* <IonLabel position="stacked"><Trans>Email Address</Trans></IonLabel> */}
@@ -57,8 +58,8 @@ export default ({ magic, setIsLoggedIn, setCurrentUser, setUserInformation }) =>
                                 { emailError ? <p style={{color: "red"}}>{emailError}</p> : null }
                             </IonItem>
                             <br />
-                            <IonButton expand="full" size="large" onClick={handleLogin}><Trans>Log In</Trans></IonButton>
-                        </div>
+                            <IonButton expand="full" size="large" type="submit"><Trans>Log In</Trans></IonButton>
+                        </form>
                     </IonRow>
                 </IonGrid>
             </IonContent>

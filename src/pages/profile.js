@@ -82,6 +82,8 @@ const Profile = ({ userInformation, username, posts, updatePost}) => {
     setShowProfileUrlOptions({open: false, event: undefined})
   }
 
+  console.log( userInformation, posts )
+
   return (
     <IonPage>
       <IonHeader>
