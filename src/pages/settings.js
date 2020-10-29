@@ -24,7 +24,7 @@ import { Trans } from '@lingui/macro';
 import { withI18n } from "@lingui/react"
 
 import { Magic } from 'magic-sdk';
-const magic = new Magic('pk_test_547D3164C0086FB8');
+const magic = new Magic('pk_live_452F1F42DDE138C5');
 
 const SettingsPage = ({ i18n, userInformation, setUserInformation }) => {
   const logOut = async () => {

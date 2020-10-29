@@ -60,7 +60,7 @@ import { Trans } from '@lingui/macro';
 
 // 🎶️ Do you beleive in magic ✨️
 import { Magic } from 'magic-sdk';
-const magic = new Magic('pk_test_547D3164C0086FB8');
+const magic = new Magic('pk_live_452F1F42DDE138C5');
 window.magic = magic
 
 export default () => {
