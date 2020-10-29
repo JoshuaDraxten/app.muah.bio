@@ -1,0 +1,58 @@
+{
+  "{username} is not a valid instagram username": {
+    "origin": [
+      [
+        "src/pages/instagramSetup.js",
+        36
+      ]
+    ]
+  },
+  "Instagram account doesnt exist or you are on a computer blocked by Instagram": {
+    "origin": [
+      [
+        "src/pages/instagramSetup.js",
+        70
+      ]
+    ]
+  },
+  "One more thing": {
+    "origin": [
+      [
+        "src/pages/instagramSetup.js",
+        79
+      ]
+    ]
+  },
+  "Connect your instagram account to start tagging your posts": {
+    "origin": [
+      [
+        "src/pages/instagramSetup.js",
+        86
+      ]
+    ]
+  },
+  "Your Instagram Username": {
+    "origin": [
+      [
+        "src/pages/instagramSetup.js",
+        91
+      ]
+    ]
+  },
+  "Connect": {
+    "origin": [
+      [
+        "src/pages/instagramSetup.js",
+        98
+      ]
+    ]
+  },
+  "Creating your account": {
+    "origin": [
+      [
+        "src/pages/instagramSetup.js",
+        105
+      ]
+    ]
+  }
+}

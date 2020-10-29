@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import clientSideGetIGGosts from '../api/clientSideGetIGPosts';
-import { i18n } from "@lingui/core";
 
 import initializeUser from '../api/initializeUser';
 
@@ -20,10 +19,11 @@ import {
 
 // Internationalization
 import { Trans } from '@lingui/macro';
+import { withI18n } from "@lingui/react"
 
 import './loginScreen.css';
 
-export default ({ token, setUserInformation }) => {
+const InstagramSetup = ({ i18n, token, setUserInformation }) => {
     const [ instagramTag, setInstagramTag ] = useState('');
     const [ tagError, setTagError ] = useState('');
     const [ isLoading, setIsLoading ] = useState(false);
@@ -88,7 +88,7 @@ export default ({ token, setUserInformation }) => {
                                 {/* <IonLabel position="stacked"><Trans>Email Address</Trans></IonLabel> */}
                                 <IonInput
                                     type="text"
-                                    placeholder="Your Instagram Username"
+                                    placeholder={i18n._("Your Instagram Username")}
                                     value={instagramTag}
                                     onIonChange={e => setInstagramTag( e.target.value )}
                                 />
@@ -109,3 +109,5 @@ export default ({ token, setUserInformation }) => {
         </IonPage>
     );
 }
+
+export default withI18n()(InstagramSetup);

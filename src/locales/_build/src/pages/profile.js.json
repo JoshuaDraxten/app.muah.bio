@@ -1,13 +1,21 @@
 {
+  "Your Muah.bio profile URL has been copied to your clipboard": {
+    "origin": [
+      [
+        "src/pages/profile.js",
+        82
+      ]
+    ]
+  },
   "Profile": {
     "origin": [
       [
         "src/pages/profile.js",
-        89
+        92
       ],
       [
         "src/pages/profile.js",
-        126
+        129
       ]
     ]
   },
@@ -15,7 +23,7 @@
     "origin": [
       [
         "src/pages/profile.js",
-        101
+        104
       ]
     ]
   },
@@ -23,7 +31,7 @@
     "origin": [
       [
         "src/pages/profile.js",
-        107
+        110
       ]
     ]
   },
@@ -31,7 +39,7 @@
     "origin": [
       [
         "src/pages/profile.js",
-        131
+        134
       ]
     ]
   },
@@ -39,7 +47,7 @@
     "origin": [
       [
         "src/pages/profile.js",
-        132
+        135
       ]
     ]
   }

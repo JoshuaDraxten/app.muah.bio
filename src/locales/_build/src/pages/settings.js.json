@@ -1,13 +1,21 @@
 {
+  "Are you sure you want to log out?": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        31
+      ]
+    ]
+  },
   "Settings": {
     "origin": [
       [
         "src/pages/settings.js",
-        62
+        66
       ],
       [
         "src/pages/settings.js",
-        73
+        77
       ]
     ]
   },
@@ -15,7 +23,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        65
+        69
       ]
     ]
   },
@@ -23,7 +31,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        78
+        82
       ]
     ]
   },
@@ -31,7 +39,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        81
+        85
       ]
     ]
   },
@@ -39,11 +47,11 @@
     "origin": [
       [
         "src/pages/settings.js",
-        91
+        95
       ]
     ]
   },
-  "Affiliate Disclaimer Text": {
+  "Visit Website": {
     "origin": [
       [
         "src/pages/settings.js",
@@ -51,11 +59,19 @@
       ]
     ]
   },
+  "Affiliate Disclaimer Text": {
+    "origin": [
+      [
+        "src/pages/settings.js",
+        104
+      ]
+    ]
+  },
   "Amazon Affiliate Account": {
     "origin": [
       [
         "src/pages/settings.js",
-        107
+        111
       ]
     ]
   },
@@ -63,7 +79,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        110
+        114
       ]
     ]
   },
@@ -71,7 +87,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        123
+        127
       ]
     ]
   },
@@ -79,7 +95,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        126
+        130
       ]
     ]
   },
@@ -87,7 +103,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        129
+        133
       ]
     ]
   },
@@ -95,7 +111,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        142
+        146
       ]
     ]
   },
@@ -103,7 +119,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        145
+        149
       ]
     ]
   },
@@ -111,7 +127,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        148
+        152
       ]
     ]
   },
@@ -119,7 +135,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        151
+        155
       ]
     ]
   }

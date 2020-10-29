@@ -19,10 +19,11 @@ import {
 
 // Internationalization
 import { Trans } from '@lingui/macro';
+import { withI18n } from "@lingui/react"
 
 import './loginScreen.css';
 
-export default ({ magic, setIsLoggedIn, setCurrentUser, setUserInformation }) => {
+const LoginScreen = ({ i18n, magic, setIsLoggedIn, setCurrentUser, setUserInformation }) => {
     const [ email, setEmail ] = useState('');
     const [ emailError ] = useState('');
 
@@ -51,7 +52,7 @@ export default ({ magic, setIsLoggedIn, setCurrentUser, setUserInformation }) =>
                                 <IonInput
                                     type="email"
                                     inputMode="email"
-                                    placeholder="Your Email Address"
+                                    placeholder={i18n._("Your Email Address")}
                                     value={email}
                                     onIonChange={e => setEmail(e.target.value)}
                                 />
@@ -66,3 +67,5 @@ export default ({ magic, setIsLoggedIn, setCurrentUser, setUserInformation }) =>
         </IonPage>
     );
 }
+
+export default withI18n()(LoginScreen)

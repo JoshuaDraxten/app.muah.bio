@@ -22,6 +22,7 @@ import EditPost from './editPost'
 
 // Internationalization
 import { Trans } from '@lingui/macro';
+import { withI18n } from "@lingui/react"
 
 function fallbackCopyTextToClipboard(text) {
   var textArea = document.createElement("textarea");
@@ -66,7 +67,7 @@ const PostPreview = ({ post, onClick }) => (
   ></div>
 )
 
-const Profile = ({ userInformation, username, posts, updatePost}) => {
+const Profile = ({ i18n, userInformation, username, posts, updatePost}) => {
   const [ openedPost, setOpenedPost ] = useState( false );
   const [ showProfileUrlOptions, setShowProfileUrlOptions ] = useState({ opened: false, event: undefined });
   const [ toastMessage, setToastMessage ] = useState("");
@@ -78,7 +79,7 @@ const Profile = ({ userInformation, username, posts, updatePost}) => {
 
   function copyToUrlToClipboard() {
     copyTextToClipboard("https://muah.bio/"+username);
-    setToastMessage("Your Muah.bio profile has been copied to your clipboard");
+    setToastMessage(i18n._("Your Muah.bio profile URL has been copied to your clipboard"));
     setShowProfileUrlOptions({open: false, event: undefined})
   }
 
@@ -151,4 +152,4 @@ const Profile = ({ userInformation, username, posts, updatePost}) => {
     </IonPage>
   );
 }
-export default Profile;
+export default withI18n()(Profile);

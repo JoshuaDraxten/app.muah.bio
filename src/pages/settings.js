@@ -21,20 +21,21 @@ import updateSettings from '../api/updateSettings';
 
 // Internationalization
 import { Trans } from '@lingui/macro';
+import { withI18n } from "@lingui/react"
 
 import { Magic } from 'magic-sdk';
 const magic = new Magic('pk_test_547D3164C0086FB8');
 
-const logOut = async () => {
-  const confirmLogout = window.confirm( `Are you sure you want to log out?`);
-  if ( !confirmLogout ) return;
+const SettingsPage = ({ i18n, userInformation, setUserInformation }) => {
+  const logOut = async () => {
+    const confirmLogout = window.confirm( i18n._("Are you sure you want to log out?") );
+    if ( !confirmLogout ) return;
+  
+    magic.user.logout().then(
+      () => window.location = window.location.origin
+    );
+  }
 
-  magic.user.logout().then(
-    () => window.location = window.location.origin
-  );
-}
-
-const SettingsPage = ({ userInformation, setUserInformation }) => {
   // Defaults
   const affiliateDefaults = { 
     rakuten: { token: '' },
@@ -96,7 +97,7 @@ const SettingsPage = ({ userInformation, setUserInformation }) => {
               type="text"
               inputMode="text"
               value={ linkInBioPage.visitSiteButtonText }
-              placeholder="Visit Website"
+              placeholder={i18n._("Visit Website")}
               onIonChange={ e => setLinkInBioPage(x => ({...x, visitSiteButtonText: e.target.value}) ) }></IonInput>
           </IonItem>
           <IonItem>
@@ -164,4 +165,4 @@ const SettingsPage = ({ userInformation, setUserInformation }) => {
   );
 };
 
-export default SettingsPage;
+export default withI18n()(SettingsPage);

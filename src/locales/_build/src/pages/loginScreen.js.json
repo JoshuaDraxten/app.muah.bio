@@ -1,0 +1,26 @@
+{
+  "Log In or Sign Up": {
+    "origin": [
+      [
+        "src/pages/loginScreen.js",
+        42
+      ]
+    ]
+  },
+  "Your Email Address": {
+    "origin": [
+      [
+        "src/pages/loginScreen.js",
+        55
+      ]
+    ]
+  },
+  "Log In": {
+    "origin": [
+      [
+        "src/pages/loginScreen.js",
+        62
+      ]
+    ]
+  }
+}

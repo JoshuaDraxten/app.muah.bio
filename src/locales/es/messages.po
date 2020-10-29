@@ -17,39 +17,55 @@ msgstr ""
 #~ msgid "Affiliate Accounts"
 #~ msgstr "Affiliate Accounts"
 
-#: src/pages/settings.js:100
+#: src/pages/settings.js:104
 msgid "Affiliate Disclaimer Text"
 msgstr "Texto de exención de responsabilidad del afiliado"
 
-#: src/pages/settings.js:107
+#: src/pages/settings.js:111
 msgid "Amazon Affiliate Account"
 msgstr "Cuenta de afiliado de Amazon"
 
-#: src/pages/settings.js:110
+#: src/pages/settings.js:114
 msgid "Amazon Tracking ID"
 msgstr "Número de Rastreo por Amazon"
 
-#: src/pages/settings.js:78
+#: src/pages/settings.js:31
+msgid "Are you sure you want to log out?"
+msgstr "¿Estás segura de que quieres cerrar sesión?"
+
+#: src/pages/settings.js:82
 msgid "Bio Page Display"
 msgstr "Página de bio"
 
-#: src/pages/settings.js:91
+#: src/pages/settings.js:95
 msgid "Button Text"
 msgstr "Texto de botón"
 
-#: src/pages/editPost.js:178
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
+#: src/pages/editPost.js:199
+msgid "Cancel"
+msgstr "Cancelar"
 
-#: src/pages/profile.js:101
+#: src/pages/instagramSetup.js:98
+msgid "Connect"
+msgstr "Conectar"
+
+#: src/pages/instagramSetup.js:86
+msgid "Connect your instagram account to start tagging your posts"
+msgstr "Conecte su cuenta de Instagram para comenzar a etiquetar sus publicaciones"
+
+#: src/pages/profile.js:104
 msgid "Copy Url"
 msgstr "Copiar Url"
 
-#: src/pages/editPost.js:66
+#: src/pages/instagramSetup.js:105
+msgid "Creating your account"
+msgstr "Creando tu cuenta"
+
+#: src/pages/editPost.js:67
 msgid "Delete"
 msgstr "Eliminar"
 
-#: src/pages/editPost.js:69
+#: src/pages/editPost.js:70
 msgid "Edit Product"
 msgstr "Editar Producto"
 
@@ -61,50 +77,77 @@ msgstr "Editar Producto"
 #~ msgid "Edit the tag for {0}"
 #~ msgstr "Edite la etiqueta para {0}"
 
+#: src/pages/editPost.js:176
+msgid "Edit {productName}"
+msgstr "Editar {productName}"
+
 #: src/pages/productSearch.js:159
 msgid "Found this product in your clipboard"
 msgstr "Encontré este producto en su portapapeles"
 
-#: src/pages/profile.js:131
+#: src/pages/profile.js:134
 msgid "Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
 msgstr "Las publicaciones en gris no tienen productos asociados y no se mostrarán en su página. Haga clic en una publicación para agregar productos."
 
-#: src/App.tsx:124
-#: src/pages/settings.js:148
+#: src/pages/instagramSetup.js:70
+msgid "Instagram account doesnt exist or you are on a computer blocked by Instagram"
+msgstr "Esta cuenta de Instagram no existe o estás en una computadora bloqueada por Instagram"
+
+#: src/pages/loginScreen.js:62
+msgid "Log In"
+msgstr "Iniciar sesión"
+
+#: src/pages/loginScreen.js:42
+msgid "Log In or Sign Up"
+msgstr "Entrar o crear una cuenta"
+
+#: src/pages/settings.js:152
 msgid "Log Out"
 msgstr "Cerrar sesión"
 
 #: src/App.tsx:122
-msgid "Muah.bio is currently invite only. We'll send you an invite in time"
-msgstr "Muah.bio está actualmente solo por invitación. Te enviaremos una invitación a tiempo"
+#~ msgid "Muah.bio is currently invite only. We'll send you an invite in time"
+#~ msgstr "Muah.bio está actualmente solo por invitación. Te enviaremos una invitación a tiempo"
 
-#: src/pages/editPost.js:186
-#~ msgid "Ok"
-#~ msgstr "Ok"
+#: src/pages/editPost.js:207
+msgid "Ok"
+msgstr "Ok"
 
-#: src/pages/profile.js:107
+#: src/pages/instagramSetup.js:79
+msgid "One more thing"
+msgstr "Una cosa más"
+
+#: src/pages/editPost.js:194
+msgid "Optional product tag (ex: lips)"
+msgstr "Etiqueta de producto opcional (p. Ej., Labios)"
+
+#: src/pages/profile.js:110
 msgid "Preview Profile"
 msgstr "Vista Previa"
 
-#: src/App.tsx:148
-#: src/pages/profile.js:89
-#: src/pages/profile.js:126
+#: src/pages/editPost.js:182
+msgid "Product name"
+msgstr "Nombre de producto"
+
+#: src/App.tsx:147
+#: src/pages/profile.js:92
+#: src/pages/profile.js:129
 msgid "Profile"
 msgstr "Perfil"
 
-#: src/pages/settings.js:126
+#: src/pages/settings.js:130
 msgid "Rakuten Affiliate Account"
 msgstr "Cuenta de afiliado de Rakuten"
 
-#: src/pages/settings.js:129
+#: src/pages/settings.js:133
 msgid "Rakuten Web Services Token"
 msgstr "Token de Servicios Web de Rakuten"
 
-#: src/pages/profile.js:132
+#: src/pages/profile.js:135
 msgid "Remember to <0>connect your affiliate accounts</0> in settings to add products!"
 msgstr "Recuerde <0>conectar sus cuentas de afiliados</0> en la configuración para agregar productos."
 
-#: src/pages/settings.js:65
+#: src/pages/settings.js:69
 msgid "Save"
 msgstr "Guardiar"
 
@@ -122,13 +165,13 @@ msgstr "Buscar productos o pegar URL"
 msgid "Search for products to tag this post with using the search bar below"
 msgstr "Busque productos para etiquetar esta publicación usando la barra de búsqueda a continuación"
 
-#: src/App.tsx:153
-#: src/pages/settings.js:62
-#: src/pages/settings.js:73
+#: src/App.tsx:152
+#: src/pages/settings.js:66
+#: src/pages/settings.js:77
 msgid "Settings"
 msgstr "Ajutes"
 
-#: src/pages/settings.js:151
+#: src/pages/settings.js:155
 msgid "Settings Updated"
 msgstr "Ajustes Actualizan"
 
@@ -136,26 +179,50 @@ msgstr "Ajustes Actualizan"
 msgid "Tagged Products"
 msgstr "Productos Etiquetados"
 
-#: src/App.tsx:117
-msgid "You are on the waitlist"
-msgstr "Estas en la lista de espera"
+#: src/pages/editPost.js:188
+msgid "URL"
+msgstr "URL"
 
-#: src/pages/settings.js:123
+#: src/pages/settings.js:100
+msgid "Visit Website"
+msgstr "Visitar sitio"
+
+#: src/App.tsx:117
+#~ msgid "You are on the waitlist"
+#~ msgstr "Estas en la lista de espera"
+
+#: src/pages/settings.js:127
 msgid "You can find your Amazon Tracking ID by going <0>here</0>"
 msgstr "Puedes encontrar tu Número de Rastreo por Amazon <0>aqui</0>"
 
-#: src/pages/settings.js:142
+#: src/pages/settings.js:146
 msgid "You can find your Rakuten Web Services Token by going to <0>Links > Web Services</0> page in the rakuten advertizing dashboard"
 msgstr "Puede encontrar tu token de servicios web de Rakuten en la página <0>Enlaces > Servicios web</0> en el panel de publicidad de rakuten"
 
-#: src/pages/settings.js:145
+#: src/pages/settings.js:149
 msgid "Your Account"
 msgstr "Tu cuenta"
 
-#: src/pages/settings.js:81
+#: src/pages/loginScreen.js:55
+msgid "Your Email Address"
+msgstr "Tu correo electrónico"
+
+#: src/pages/instagramSetup.js:91
+msgid "Your Instagram Username"
+msgstr "Tu nombre de usuario de Instagram"
+
+#: src/pages/profile.js:82
+msgid "Your Muah.bio profile URL has been copied to your clipboard"
+msgstr "La URL de su perfil de Muah.bio se ha copiado en su portapapeles"
+
+#: src/pages/settings.js:85
 msgid "Your Website"
 msgstr "Tu sitio web"
 
 #: src/pages/editPost.js:173
 #~ msgid "ex: Lips"
 #~ msgstr "ej: Labios"
+
+#: src/pages/instagramSetup.js:36
+msgid "{username} is not a valid instagram username"
+msgstr "{username} no es un nombre de usuario de Instagram válido"

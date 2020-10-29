@@ -3,7 +3,7 @@
     "origin": [
       [
         "src/pages/editPost.js",
-        66
+        67
       ]
     ]
   },
@@ -11,7 +11,7 @@
     "origin": [
       [
         "src/pages/editPost.js",
-        69
+        70
       ]
     ]
   },
@@ -28,6 +28,54 @@
       [
         "src/pages/editPost.js",
         170
+      ]
+    ]
+  },
+  "Edit {productName}": {
+    "origin": [
+      [
+        "src/pages/editPost.js",
+        176
+      ]
+    ]
+  },
+  "Product name": {
+    "origin": [
+      [
+        "src/pages/editPost.js",
+        182
+      ]
+    ]
+  },
+  "URL": {
+    "origin": [
+      [
+        "src/pages/editPost.js",
+        188
+      ]
+    ]
+  },
+  "Optional product tag (ex: lips)": {
+    "origin": [
+      [
+        "src/pages/editPost.js",
+        194
+      ]
+    ]
+  },
+  "Cancel": {
+    "origin": [
+      [
+        "src/pages/editPost.js",
+        199
+      ]
+    ]
+  },
+  "Ok": {
+    "origin": [
+      [
+        "src/pages/editPost.js",
+        207
       ]
     ]
   },

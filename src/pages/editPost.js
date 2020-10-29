@@ -31,6 +31,7 @@ import { closeCircle } from 'ionicons/icons';
 
 // Internationalization
 import { Trans } from '@lingui/macro';
+import { withI18n } from "@lingui/react"
 
 const arrayMoveMutate = (array, from, to) => {
 	const startIndex = from < 0 ? array.length + from : from;
@@ -51,7 +52,7 @@ const arrayMove = (array, from, to) => {
 	return array;
 };
 
-const SwipeableProduct = ({ product, index, removeProduct, setProductEditor }) => {
+const SwipeableProduct = ({ i18n, product, index, removeProduct, setProductEditor }) => {
 
   let formattedPrice = "";
   try {
@@ -85,7 +86,7 @@ const SwipeableProduct = ({ product, index, removeProduct, setProductEditor }) =
   ) 
 }
 
-function EditPost({ userInformation, post, updatePost, closePost } ){
+function EditPost({ i18n, userInformation, post, updatePost, closePost } ){
   const [ productSearchIsOpen, setProductSearchIsOpen ] = useState( false );
   const [ products, setProducts ] = useState( post.products );
   const [ expandedHeader, setExpandedHeader ] = useState( false );
@@ -140,7 +141,6 @@ function EditPost({ userInformation, post, updatePost, closePost } ){
       key={product.url} />
   ))
 
-  console.log(  )
   return (
     <IonPage>
       <IonContent fullscreen ref={contentRef}>
@@ -173,30 +173,30 @@ function EditPost({ userInformation, post, updatePost, closePost } ){
         <IonAlert
           isOpen={productEditor.open}
           onDidDismiss={() => setProductEditor({ open: false, productIndex: -1, product: {} })}
-          subHeader={productEditor.productIndex!==-1 ? `Edit the tag for ${products[productEditor.productIndex].name}`: ''}
+          subHeader={productEditor.productIndex!==-1 ? i18n._("Edit {productName}", {productName: products[productEditor.productIndex].name}): ''}
           inputs={[
             {
               name: 'name',
               type: 'text',
               value: productEditor.product.name,
-              placeholder: "Product name"
+              placeholder: i18n._("Product name")
             },
             {
               name: 'url',
               type: 'text',
               value: productEditor.product.url,
-              placeholder: "URL"
+              placeholder: i18n._("URL")
             },
             {
               name: 'tag',
               type: 'text',
               value: productEditor.product.tag,
-              placeholder: "Optional product tag (ex: lips)"
+              placeholder: i18n._("Optional product tag (ex: lips)")
             }
           ]}
           buttons={[
             {
-              text: "Cancel",
+              text: i18n._("Cancel"),
               role: 'cancel',
               cssClass: 'secondary',
               handler: () => {
@@ -204,7 +204,7 @@ function EditPost({ userInformation, post, updatePost, closePost } ){
               }
             },
             {
-              text: "Ok",
+              text: i18n._("Ok"),
               handler: ({ name, url, tag }) => {
 
                 if (
@@ -247,4 +247,4 @@ function EditPost({ userInformation, post, updatePost, closePost } ){
   );
 }
 
-export default EditPost;
+export default withI18n()(EditPost);
