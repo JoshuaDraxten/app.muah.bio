@@ -85,6 +85,16 @@ const Profile = ({ i18n, userInformation, username, posts, updatePost}) => {
 
   console.log( userInformation, posts )
 
+  const noPublishedPosts = posts.filter( post => post.products.length > 0 ).length === 0;
+
+  const hasAffiliateSetup = (
+    Object.keys(userInformation.settings.affiliatePrograms).length > 0 &&
+    (
+      userInformation.settings.affiliatePrograms.amazon.trackingId ||
+      userInformation.settings.affiliatePrograms.rakuten.token
+    )
+  );
+
   return (
     <IonPage>
       <IonHeader>
@@ -129,10 +139,10 @@ const Profile = ({ i18n, userInformation, username, posts, updatePost}) => {
             <IonTitle size="large"><Trans>Profile</Trans></IonTitle>
           </IonToolbar>
         </IonHeader>
-        { posts.filter( post => post.products.length > 0 ).length === 0 ?
+        {  noPublishedPosts || !hasAffiliateSetup ?
           <div className="disclaimer" style={{marginBottom: 0}}>
-            <p><Trans>Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products.</Trans></p>
-            <p><Trans>Remember to <b>connect your affiliate accounts</b> in settings to add products!</Trans></p>
+            {noPublishedPosts && <p><Trans>Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products.</Trans></p>}
+            {!hasAffiliateSetup && <p><Trans>Remember to <b>connect your affiliate accounts</b> in settings to add products!</Trans></p>}
           </div>
         : null}
         <IonGrid style={{maxWidth: 1000}}>
