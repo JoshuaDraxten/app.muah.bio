@@ -53,7 +53,8 @@ import { Trans } from '@lingui/macro';
 // Netlify Authentication
 import netlifyIdentity from 'netlify-identity-widget';
 window.netlifyIdentity = netlifyIdentity;
-netlifyIdentity.init({});
+var userLang = ( navigator.language || navigator.userLanguage).slice(0,2);
+netlifyIdentity.init({ locale: userLang });
 
 function modifyNetlifyAuth(){
   const tryAgainLater = () => {

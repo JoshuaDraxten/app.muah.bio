@@ -10,8 +10,7 @@ import en from './locales/en/messages.js';
 // Internationalization
 import { I18nProvider } from '@lingui/react';
 
-var userLang = ( navigator.language || navigator.userLanguage).slice(0,2); 
-console.log( userLang )
+var userLang = ( navigator.language || navigator.userLanguage).slice(0,2);
 
 ReactDOM.render(
     <I18nProvider language={userLang} catalogs={{ es, en }}>
