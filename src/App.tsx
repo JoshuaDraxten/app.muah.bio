@@ -26,7 +26,6 @@ import Profile from "./pages/profile";
 import Settings from "./pages/settings";
 import LoginScreen from './pages/loginScreen';
 import InstagramSetup from './pages/instagramSetup';
-// import AuthenticateInstagram from './pages/authenticateInstagram';
 import SplashScreen from './pages/splashScreen';
 
 // Api
@@ -169,12 +168,6 @@ export default () => {
     return <InstagramSetup token={token} setUserInformation={setUserInformation} />
   }
 
-  // // If the user exists but they dont have an instagram token, they need to be authenticated
-  // const isConnectedToInstagram = !userInformation.instagram || !userInformation.instagram.token;
-  // if ( isConnectedToInstagram ) {
-  //   return <AuthenticateInstagram currentUser={currentUser} setUserInformation={setUserInformation}  />
-  // }
-
   return (
     <IonApp>
       <IonReactRouter>
@@ -204,19 +197,9 @@ export default () => {
               <IonIcon icon={cog} />
               <IonLabel><Trans>Settings</Trans></IonLabel>
             </IonTabButton>
-
-            {/* <IonTabButton tab="stats" href="/stats">
-              <IonIcon icon={statsChart} />
-              <IonLabel>Stats</IonLabel>
-            </IonTabButton> */}
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>
-      {/* <IonPopover
-        isOpen={!userInformation.instagram}
-      >
-        Hello world
-      </IonPopover> */}
     </IonApp>
   );
 }
