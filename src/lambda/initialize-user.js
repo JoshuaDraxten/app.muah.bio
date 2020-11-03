@@ -1,6 +1,3 @@
-const { Magic } = require('@magic-sdk/admin');
-const magicAdmin = new Magic('sk_live_A1480198431AED9D');
-
 const fetch = require('node-fetch');
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://joshuad:!7PrMT6ww&LqZDxgRU@cluster0.5j0rh.mongodb.net/user_data?retryWrites=true&w=majority";
@@ -44,14 +41,15 @@ const generateUser = async ({ ig_username, email, posts }) => {
   }
 };
 
-exports.handler = async event => {
+exports.handler = async ( event, context ) => {
+    const { email } = context.clientContext.user;
+
     const client = await connectToDatabase(uri);
     const collection = client.db("Muah_bio").collection("users");
 
-    let { ig_username, token, posts } = event.queryStringParameters;
+    let { ig_username, posts } = event.queryStringParameters;
 
     posts = JSON.parse( posts )
-    const { email } = await magicAdmin.users.getMetadataByToken( token );
     
     const userExists = await collection.find( { "instagram.username": ig_username } ).toArray()[0];
     if ( userExists ) {

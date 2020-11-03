@@ -1,6 +1,3 @@
-const { Magic } = require('@magic-sdk/admin');
-const magicAdmin = new Magic('sk_live_A1480198431AED9D');
-
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://joshuad:!7PrMT6ww&LqZDxgRU@cluster0.5j0rh.mongodb.net/user_data?retryWrites=true&w=majority";
 
@@ -20,9 +17,9 @@ function connectToDatabase (uri) {
     });
 }
 
-exports.handler = async event => {
-  const { token } = event.queryStringParameters;
-  const { email } = await magicAdmin.users.getMetadataByToken( token );
+exports.handler = async ( event, context ) => {
+  const { identity, user } = context.clientContext;
+  const { email } = user;
 
   const client = await connectToDatabase(uri);
   const collection = client.db("Muah_bio").collection("users");

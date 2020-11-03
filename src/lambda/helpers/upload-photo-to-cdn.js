@@ -53,7 +53,7 @@ const uploadFileToFtp = (fileName, remoteDir='', ftpConnectionInformation) => {
 exports.uploadPhotoToCDN =  async ({ url, folder, filename }) => {
     await downloadFile( url, `${filename}.jpeg` );
     await uploadFileToFtp(`${filename}.jpeg`, folder, ftpConnectionInformation);
-    await deleteFile(`${filename}.jpeg`);
+    // await deleteFile(`${filename}.jpeg`);
 
     return `${cdnHREF}${folder}/${filename}.jpeg`;
 }

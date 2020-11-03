@@ -23,17 +23,15 @@ import updateSettings from '../api/updateSettings';
 import { Trans } from '@lingui/macro';
 import { withI18n } from "@lingui/react"
 
-import { Magic } from 'magic-sdk';
-const magic = new Magic('pk_live_452F1F42DDE138C5');
+import netlifyIdentity from 'netlify-identity-widget';
 
 const SettingsPage = ({ i18n, userInformation, setUserInformation }) => {
   const logOut = async () => {
     const confirmLogout = window.confirm( i18n._("Are you sure you want to log out?") );
     if ( !confirmLogout ) return;
   
-    magic.user.logout().then(
-      () => window.location = window.location.origin
-    );
+    netlifyIdentity.logout();
+    window.location = window.location.origin;
   }
 
   // Defaults

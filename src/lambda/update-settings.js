@@ -1,6 +1,3 @@
-const { Magic } = require('@magic-sdk/admin');
-const magicAdmin = new Magic('sk_live_A1480198431AED9D');
-
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://joshuad:!7PrMT6ww&LqZDxgRU@cluster0.5j0rh.mongodb.net/user_data?retryWrites=true&w=majority";
 
@@ -20,8 +17,9 @@ function connectToDatabase (uri) {
     });
 }
 
-exports.handler = async event => {
-    let { userId, settings } = event.queryStringParameters;
+exports.handler = async ( event, context ) => {
+    const { email } = context.clientContext.user;
+    let { settings } = event.queryStringParameters;
     console.log( settings )
     settings = JSON.parse(settings);
 
@@ -31,7 +29,7 @@ exports.handler = async event => {
     const collection = client.db("Muah_bio").collection("users");
 
     const response = await collection.updateOne(
-        { _id: userId },
+        { email },
         { $set: { "settings" : settings } }
     )
 

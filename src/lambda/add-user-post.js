@@ -1,6 +1,3 @@
-const { Magic } = require('@magic-sdk/admin');
-const magicAdmin = new Magic('sk_live_A1480198431AED9D');
-
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://joshuad:!7PrMT6ww&LqZDxgRU@cluster0.5j0rh.mongodb.net/user_data?retryWrites=true&w=majority";
 
@@ -22,10 +19,10 @@ function connectToDatabase (uri) {
     });
 }
 
-exports.handler = async event => {
+exports.handler = async ( event, context ) => {
+    const { email } = context.clientContext.user;
     let { ig_username, token, post, position } = event.queryStringParameters;
 
-    const { email } = await magicAdmin.users.getMetadataByToken( token );
     post = JSON.parse(post);
 
     // We need to host our own version of the photo

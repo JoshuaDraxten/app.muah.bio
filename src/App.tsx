@@ -3,19 +3,12 @@
 import React, { useEffect, useState } from "react";
 import {
   IonApp,
-  // IonPopover,
   IonRouterOutlet,
   IonTabs,
   IonTabBar,
-  // IonButton,
   IonTabButton,
   IonIcon,
   IonLabel,
-  // IonPage,
-  // IonHeader,
-  // IonToolbar,
-  // IonTitle,
-  // IonContent
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
@@ -24,7 +17,7 @@ import { personCircle, cog } from 'ionicons/icons';
 // Pages
 import Profile from "./pages/profile";
 import Settings from "./pages/settings";
-import LoginScreen from './pages/loginScreen';
+// import LoginScreen from './pages/loginScreen';
 import InstagramSetup from './pages/instagramSetup';
 import SplashScreen from './pages/splashScreen';
 
@@ -57,14 +50,39 @@ import './theme/variables.css';
 // Internationalization
 import { Trans } from '@lingui/macro';
 
-// 🎶️ Do you beleive in magic ✨️
-import { Magic } from 'magic-sdk';
-const magic = new Magic('pk_live_452F1F42DDE138C5');
-window.magic = magic
+// Netlify Authentication
+import netlifyIdentity from 'netlify-identity-widget';
+window.netlifyIdentity = netlifyIdentity;
+netlifyIdentity.init({});
+
+function modifyNetlifyAuth(){
+  const tryAgainLater = () => {
+      setTimeout( modifyNetlifyAuth, 100 );
+      console.log("waiting...")
+      return;
+  }
+
+  const modal = document.getElementById("netlify-identity-widget");
+  if (!modal) return tryAgainLater()
+
+  const modalDocument = modal.contentDocument;
+  if ( modalDocument.body.innerHTML === '' ) return tryAgainLater();
+
+  // Remove close button and callout
+  [...modalDocument.querySelectorAll(".btnClose, .callOut")].forEach(
+    node => node.style.display = 'none'
+  );
+}
+modifyNetlifyAuth();
+
+// // 🎶️ Do you beleive in magic ✨️ (Not yet I don't)
+// import { Magic } from 'magic-sdk';
+// const magic = new Magic('pk_live_452F1F42DDE138C5');
+// window.magic = magic
 
 export default () => {
+  const [ isLoading, setIsLoading ] = useState( true );
   const [ token, setToken ] = useState('');
-  const [ isLoggedIn, setIsLoggedIn ] = useState( null );
   const [ userInformation, setUserInformation ] = useState( null );
 
   // eslint-disable-next-line
@@ -139,26 +157,32 @@ export default () => {
   // eslint-disable-next-line
   }, [userInformationIsNull])
 
-  if ( isLoggedIn === null ) {
-    magic.user.isLoggedIn().then(setIsLoggedIn);
-    return <SplashScreen />
+  netlifyIdentity.on('login', user => {
+    console.log( 'logged in' );
+    netlifyIdentity.close();
+    setIsLoading( false );
+
+    getUser().then( response => {
+        setUserInformation( response )
+    })
+  } );
+  if ( netlifyIdentity.currentUser() === null ) {
+    netlifyIdentity.open();
+    return null;
   }
 
-  if ( isLoggedIn === false ) {
-    return <LoginScreen magic={magic} setIsLoggedIn={setIsLoggedIn} />
-  }
-
-  if ( isLoggedIn === true && userInformation === null ) {
+  if ( userInformation === null ) {
     if ( !window.hasFetchedToken ) {
       // Prevent repeating this more than once
       window.hasFetchedToken = true;
-      magic.user.getIdToken().then(token => {
-        console.log( "Got user!" )
-        setToken(token);
-        getUser(token).then( userInfo => {
-          setUserInformation(userInfo)
-        })
-      })
+      const token = netlifyIdentity.currentUser().token.access_token;
+      
+      setToken( token );
+
+      getUser().then( userInfo => {
+        setUserInformation( userInfo );
+        setIsLoading( false )
+      });
     }
     return <SplashScreen />
   }
@@ -166,6 +190,10 @@ export default () => {
   if ( userInformation.error ) {
     // Gotta initialize the user!
     return <InstagramSetup token={token} setUserInformation={setUserInformation} />
+  }
+
+  if ( isLoading === true ) {
+    return <SplashScreen />
   }
 
   return (
