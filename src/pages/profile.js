@@ -141,8 +141,9 @@ const Profile = ({ i18n, userInformation, username, posts, updatePost}) => {
         </IonHeader>
         {  noPublishedPosts || !hasAffiliateSetup ?
           <div className="disclaimer" style={{marginBottom: 0}}>
-            {noPublishedPosts && <p><Trans>Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products.</Trans></p>}
+            {noPublishedPosts && <p><Trans>Welcome to Muah.bio! Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products.</Trans></p>}
             {!hasAffiliateSetup && <p><Trans>Remember to <b>connect your affiliate accounts</b> in settings to add products!</Trans></p>}
+            {!hasAffiliateSetup && <p><Trans>If you dont have an affiliate relationship with anyone, you can <a target="_blank" href="https://cli.linksynergy.com/cli/publisher/registration/registration.php?mid=2417">apply to Sephora</a> or <a target="_blank" href="https://affiliate-program.amazon.com/">to Amazon</a></Trans></p>}
           </div>
         : null}
         <IonGrid style={{maxWidth: 1000}}>

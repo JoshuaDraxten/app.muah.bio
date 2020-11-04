@@ -17,27 +17,27 @@ msgstr ""
 #~ msgid "Affiliate Accounts"
 #~ msgstr "Affiliate Accounts"
 
-#: src/pages/settings.js:104
+#: src/pages/settings.js:102
 msgid "Affiliate Disclaimer Text"
 msgstr "Affiliate Disclaimer Text"
 
-#: src/pages/settings.js:111
+#: src/pages/settings.js:109
 msgid "Amazon Affiliate Account"
 msgstr "Amazon Affiliate Account"
 
-#: src/pages/settings.js:114
+#: src/pages/settings.js:112
 msgid "Amazon Tracking ID"
 msgstr "Amazon Tracking ID"
 
-#: src/pages/settings.js:31
+#: src/pages/settings.js:30
 msgid "Are you sure you want to log out?"
 msgstr "Are you sure you want to log out?"
 
-#: src/pages/settings.js:82
+#: src/pages/settings.js:80
 msgid "Bio Page Display"
 msgstr "Bio Page Display"
 
-#: src/pages/settings.js:95
+#: src/pages/settings.js:93
 msgid "Button Text"
 msgstr "Button Text"
 
@@ -53,7 +53,7 @@ msgstr "Connect"
 msgid "Connect your instagram account to start tagging your posts"
 msgstr "Connect your instagram account to start tagging your posts"
 
-#: src/pages/profile.js:104
+#: src/pages/profile.js:114
 msgid "Copy Url"
 msgstr "Copy Url"
 
@@ -90,8 +90,12 @@ msgid "Found this product in your clipboard"
 msgstr "Found this product in your clipboard"
 
 #: src/pages/profile.js:134
-msgid "Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
-msgstr "Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
+#~ msgid "Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
+#~ msgstr "Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
+
+#: src/pages/profile.js:146
+msgid "If you dont have an affiliate relationship with anyone, you can <0>apply to Sephora</0> or <1>to Amazon</1>"
+msgstr "If you dont have an affiliate relationship with anyone, you can <0>apply to Sephora</0> or <1>to Amazon</1>"
 
 #: src/pages/instagramSetup.js:70
 msgid "Instagram account doesnt exist or you are on a computer blocked by Instagram"
@@ -105,7 +109,7 @@ msgstr "Log In"
 msgid "Log In or Sign Up"
 msgstr "Log In or Sign Up"
 
-#: src/pages/settings.js:152
+#: src/pages/settings.js:150
 msgid "Log Out"
 msgstr "Log Out"
 
@@ -125,7 +129,7 @@ msgstr "One more thing"
 msgid "Optional product tag (ex: lips)"
 msgstr "Optional product tag (ex: lips)"
 
-#: src/pages/profile.js:110
+#: src/pages/profile.js:120
 msgid "Preview Profile"
 msgstr "Preview Profile"
 
@@ -133,25 +137,25 @@ msgstr "Preview Profile"
 msgid "Product name"
 msgstr "Product name"
 
-#: src/App.tsx:147
-#: src/pages/profile.js:92
-#: src/pages/profile.js:129
+#: src/App.tsx:165
+#: src/pages/profile.js:102
+#: src/pages/profile.js:139
 msgid "Profile"
 msgstr "Profile"
 
-#: src/pages/settings.js:130
+#: src/pages/settings.js:128
 msgid "Rakuten Affiliate Account"
 msgstr "Rakuten Affiliate Account"
 
-#: src/pages/settings.js:133
+#: src/pages/settings.js:131
 msgid "Rakuten Web Services Token"
 msgstr "Rakuten Web Services Token"
 
-#: src/pages/profile.js:135
+#: src/pages/profile.js:145
 msgid "Remember to <0>connect your affiliate accounts</0> in settings to add products!"
 msgstr "Remember to <0>connect your affiliate accounts</0> in settings to add products!"
 
-#: src/pages/settings.js:69
+#: src/pages/settings.js:67
 msgid "Save"
 msgstr "Save"
 
@@ -169,13 +173,13 @@ msgstr "Search for products or paste url"
 msgid "Search for products to tag this post with using the search bar below"
 msgstr "Search for products to tag this post with using the search bar below"
 
-#: src/App.tsx:152
-#: src/pages/settings.js:66
-#: src/pages/settings.js:77
+#: src/App.tsx:170
+#: src/pages/settings.js:64
+#: src/pages/settings.js:75
 msgid "Settings"
 msgstr "Settings"
 
-#: src/pages/settings.js:155
+#: src/pages/settings.js:153
 msgid "Settings Updated"
 msgstr "Settings Updated"
 
@@ -187,23 +191,27 @@ msgstr "Tagged Products"
 msgid "URL"
 msgstr "URL"
 
-#: src/pages/settings.js:100
+#: src/pages/settings.js:98
 msgid "Visit Website"
 msgstr "Visit Website"
+
+#: src/pages/profile.js:144
+msgid "Welcome to Muah.bio! Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
+msgstr "Welcome to Muah.bio! Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
 
 #: src/App.tsx:117
 #~ msgid "You are on the waitlist"
 #~ msgstr "You are on the waitlist"
 
-#: src/pages/settings.js:127
+#: src/pages/settings.js:125
 msgid "You can find your Amazon Tracking ID by going <0>here</0>"
 msgstr "You can find your Amazon Tracking ID by going <0>here</0>"
 
-#: src/pages/settings.js:146
+#: src/pages/settings.js:144
 msgid "You can find your Rakuten Web Services Token by going to <0>Links > Web Services</0> page in the rakuten advertizing dashboard"
 msgstr "You can find your Rakuten Web Services Token by going to <0>Links > Web Services</0> page in the rakuten advertizing dashboard"
 
-#: src/pages/settings.js:149
+#: src/pages/settings.js:147
 msgid "Your Account"
 msgstr "Your Account"
 
@@ -223,7 +231,7 @@ msgstr "Your Muah.bio profile URL has been copied to your clipboard"
 #~ msgid "Your Muah.bio profile has been copied to your clipboard"
 #~ msgstr "Your Muah.bio profile has been copied to your clipboard"
 
-#: src/pages/settings.js:85
+#: src/pages/settings.js:83
 msgid "Your Website"
 msgstr "Your Website"
 

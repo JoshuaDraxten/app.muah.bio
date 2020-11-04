@@ -11,11 +11,11 @@
     "origin": [
       [
         "src/pages/profile.js",
-        92
+        102
       ],
       [
         "src/pages/profile.js",
-        129
+        139
       ]
     ]
   },
@@ -23,7 +23,7 @@
     "origin": [
       [
         "src/pages/profile.js",
-        104
+        114
       ]
     ]
   },
@@ -31,15 +31,15 @@
     "origin": [
       [
         "src/pages/profile.js",
-        110
+        120
       ]
     ]
   },
-  "Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products.": {
+  "Welcome to Muah.bio! Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products.": {
     "origin": [
       [
         "src/pages/profile.js",
-        134
+        144
       ]
     ]
   },
@@ -47,7 +47,15 @@
     "origin": [
       [
         "src/pages/profile.js",
-        135
+        145
+      ]
+    ]
+  },
+  "If you dont have an affiliate relationship with anyone, you can <0>apply to Sephora</0> or <1>to Amazon</1>": {
+    "origin": [
+      [
+        "src/pages/profile.js",
+        146
       ]
     ]
   }

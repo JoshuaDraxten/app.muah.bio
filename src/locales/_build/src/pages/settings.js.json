@@ -3,7 +3,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        31
+        30
       ]
     ]
   },
@@ -11,11 +11,11 @@
     "origin": [
       [
         "src/pages/settings.js",
-        66
+        64
       ],
       [
         "src/pages/settings.js",
-        77
+        75
       ]
     ]
   },
@@ -23,7 +23,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        69
+        67
       ]
     ]
   },
@@ -31,7 +31,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        82
+        80
       ]
     ]
   },
@@ -39,7 +39,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        85
+        83
       ]
     ]
   },
@@ -47,7 +47,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        95
+        93
       ]
     ]
   },
@@ -55,7 +55,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        100
+        98
       ]
     ]
   },
@@ -63,7 +63,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        104
+        102
       ]
     ]
   },
@@ -71,7 +71,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        111
+        109
       ]
     ]
   },
@@ -79,7 +79,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        114
+        112
       ]
     ]
   },
@@ -87,7 +87,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        127
+        125
       ]
     ]
   },
@@ -95,7 +95,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        130
+        128
       ]
     ]
   },
@@ -103,7 +103,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        133
+        131
       ]
     ]
   },
@@ -111,7 +111,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        146
+        144
       ]
     ]
   },
@@ -119,7 +119,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        149
+        147
       ]
     ]
   },
@@ -127,7 +127,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        152
+        150
       ]
     ]
   },
@@ -135,7 +135,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        155
+        153
       ]
     ]
   }
