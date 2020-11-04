@@ -20,7 +20,6 @@ import {
   IonLabel,
   IonListHeader,
   IonModal,
-  IonPage,
   IonReorder,
   IonReorderGroup,
   IonSearchbar,
@@ -142,7 +141,7 @@ function EditPost({ i18n, userInformation, post, updatePost, closePost } ){
   ))
 
   return (
-    <IonPage>
+    <>
       <IonContent fullscreen ref={contentRef}>
         <div className=".header-buttons">
           <IonButtons slot="end" className="header-buttons">
@@ -243,7 +242,7 @@ function EditPost({ i18n, userInformation, post, updatePost, closePost } ){
           </Trans>
         </IonToolbar>
       </IonFooter>
-    </IonPage>
+    </>
   );
 }
 

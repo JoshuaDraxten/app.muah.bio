@@ -223,7 +223,7 @@ export default () => {
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route path="/:tab(home)" exact={true} render={props => <div>
+            <Route path="/:tab(profile)/:postId?" exact={true} render={props => <div>
               <Profile
                 {...props}
                 userInformation={userInformation}
@@ -234,11 +234,11 @@ export default () => {
             <Route path="/:tab(settings)" exact={true} render={ props =>
               <Settings {...props} userInformation={userInformation} setUserInformation={setUserInformation}/>
             }/>
-            <Route exact path="/" render={() => <Redirect to="/home" />} />
+            <Route exact path="/" render={() => <Redirect to="/profile" />} />
           </IonRouterOutlet>
           
           <IonTabBar slot="bottom">
-            <IonTabButton tab="home" href="/home">
+            <IonTabButton tab="profile" href="/profile">
               <IonIcon icon={personCircle} />
               <IonLabel><Trans>Profile</Trans></IonLabel>
             </IonTabButton>

@@ -134,7 +134,7 @@ export default ({ userInformation, addProduct, closeSearch }) => {
   }
 
   return (
-    <IonPage onClick={() => searchInput.current.setFocus()}>
+    <>
       <IonHeader>
         <IonToolbar>
           <Trans render={ ({translation}) => 
@@ -153,7 +153,7 @@ export default ({ userInformation, addProduct, closeSearch }) => {
           </Trans>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
+      <IonContent onClick={() => searchInput.current.setFocus()}>
         { (query === "" && results.length === 1) ?
           <IonListHeader>
             <IonLabel><Trans>Found this product in your clipboard</Trans></IonLabel>
@@ -166,6 +166,6 @@ export default ({ userInformation, addProduct, closeSearch }) => {
           <ProductResult product={product} key={i} addProduct={addProduct} closeSearch={closeSearch} wordsToBold={query.split(' ').map(x=>x.toLowerCase())}/>
         )}
       </IonContent>
-    </IonPage>
+    </>
   )
 }

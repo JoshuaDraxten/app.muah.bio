@@ -4,7 +4,6 @@ import {
   IonHeader,
   IonItem,
   IonInput,
-  IonPage,
   IonTitle,
   IonToolbar,
   IonLabel,
@@ -58,7 +57,7 @@ const SettingsPage = ({ i18n, userInformation, setUserInformation }) => {
   }
 
   return (
-    <IonPage>
+    <>
       <IonHeader>
         <IonToolbar>
           <IonTitle><Trans>Settings</Trans></IonTitle>
@@ -159,7 +158,7 @@ const SettingsPage = ({ i18n, userInformation, setUserInformation }) => {
           ></IonToast>
         }>Settings Updated</Trans>
       </IonContent>
-    </IonPage>
+    </>
   );
 };
 

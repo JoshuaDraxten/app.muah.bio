@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   IonContent,
   IonHeader,
-  IonPage,
   IonTitle,
   IonToolbar,
   IonGrid,
@@ -19,6 +18,9 @@ import {
 } from '@ionic/react';
 import './profile.css';
 import EditPost from './editPost'
+
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 // Internationalization
 import { Trans } from '@lingui/macro';
@@ -60,15 +62,17 @@ function copyTextToClipboard(text) {
 }
 
 const PostPreview = ({ post, onClick }) => (
-  <div onClick={onClick} to={"/edit/"+post.id}
+  <Link onClick={onClick} to={"/profile/"+post.id}
     key={post.id}
     className={"photo-grid__photo" + (post.products.length!==0 ? " published" : "")}
     style={{ backgroundImage: `linear-gradient(white, white), url('${ post.media_url }')` }}
-  ></div>
+  ></Link>
 )
 
-const Profile = ({ i18n, userInformation, username, posts, updatePost}) => {
-  const [ openedPost, setOpenedPost ] = useState( false );
+const Profile = ({ i18n, history, userInformation, username, posts, updatePost}) => {
+  let { postId } = useParams();
+  const openedPost = posts.map( post => post.id ).indexOf( postId );
+  
   const [ showProfileUrlOptions, setShowProfileUrlOptions ] = useState({ opened: false, event: undefined });
   const [ toastMessage, setToastMessage ] = useState("");
 
@@ -96,7 +100,7 @@ const Profile = ({ i18n, userInformation, username, posts, updatePost}) => {
   );
 
   return (
-    <IonPage>
+    <>
       <IonHeader>
         <IonToolbar className="hide-title-on-ios">
           <IonTitle><Trans>Profile</Trans></IonTitle>
@@ -150,17 +154,21 @@ const Profile = ({ i18n, userInformation, username, posts, updatePost}) => {
           <IonRow>
             {posts.map((post, index) => (
               <IonCol size="4" key={index}>
-                <PostPreview post={post} onClick={ () => setOpenedPost(index) }/>
+                <PostPreview post={post} />
               </IonCol>
             ))}
           </IonRow>
         </IonGrid>
-        { posts[openedPost] ? <IonModal isOpen={posts[openedPost]} onDidDismiss={() => setOpenedPost(null)}>
-          <EditPost userInformation={userInformation} post={posts[openedPost]} updatePost={updatePost} closePost={() => setOpenedPost(null)} />
+        { openedPost !== -1 ? <IonModal isOpen={openedPost !== -1} onDidDismiss={() => history.push('/profile/')}>
+          <EditPost
+            userInformation={userInformation}
+            post={posts[openedPost]}
+            updatePost={updatePost}
+            closePost={() => history.push('/profile/')} />
         </IonModal> : null}
       </IonContent>
 
-    </IonPage>
+    </>
   );
 }
 export default withI18n()(Profile);
