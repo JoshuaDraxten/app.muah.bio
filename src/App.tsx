@@ -24,7 +24,8 @@ import SplashScreen from './pages/splashScreen';
 // Api
 import getUser from './api/getUser';
 import addUserPost from "./api/addUserPost";
-import updateUserPost from './api/updateUserPost'
+import updateUserPost from './api/updateUserPost';
+import clientSideGetIGGosts from './api/clientSideGetIGPosts';
 
 import { Route, Redirect } from "react-router-dom";
 
@@ -98,7 +99,13 @@ export default () => {
     );
     setUserInformation( userInformationCopy );
 
-    addUserPost({ token, post, position });
+    console.log( userInformation );
+
+    addUserPost({
+      ig_username: userInformation.instagram.username,
+      post,
+      position
+    });
   }
 
   const updatePost = ( postId, postData ) => {
@@ -126,6 +133,20 @@ export default () => {
   useEffect(() => {
     if ( userInformationIsNull ) return;
 
+    // Load posts
+    clientSideGetIGGosts( userInformation.instagram.username ).then( posts => {
+      const existingIds = userInformation.posts.map( post => post.id );
+
+      posts.forEach( (post, position) => {
+        if ( !existingIds.includes( post.id ) ) {
+          console.log( "Adding post", post )
+          post.products = []
+          addPost({ post, position });
+        }
+      });
+
+    });
+
     // TODO: Do this later
     // // Check if the instagram data has been updated
     // if ( userInformation.instagram ) {
@@ -135,12 +156,12 @@ export default () => {
     //     console.log("Checking for new posts")
 
     //     // If there's a new post, add it
-    //     posts.forEach( (post, position) => {
-    //       if ( !existingIds.includes( post.id ) ) {
-    //         post.products = []
-    //         addPost({ post, position });
-    //       }
-    //     });
+        // posts.forEach( (post, position) => {
+        //   if ( !existingIds.includes( post.id ) ) {
+        //     post.products = []
+        //     addPost({ post, position });
+        //   }
+        // });
 
     //   });
     // }
