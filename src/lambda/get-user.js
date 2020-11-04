@@ -18,8 +18,13 @@ function connectToDatabase (uri) {
 }
 
 exports.handler = async ( event, context ) => {
-  console.log( JSON.stringify(event), JSON.stringify(context) )
-  const { identity, user } = context.clientContext;
+  const { user } = context.clientContext;
+  if ( !user ) {
+    return {
+      statusCode: 404,
+      body: JSON.stringify({error: "User Does not exist"}) ,
+    }
+  }
   const { email } = user;
 
   const client = await connectToDatabase(uri);
