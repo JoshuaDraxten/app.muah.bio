@@ -18,6 +18,7 @@ function connectToDatabase (uri) {
 }
 
 exports.handler = async ( event, context ) => {
+  console.log( JSON.stringify(event), JSON.stringify(context) )
   const { identity, user } = context.clientContext;
   const { email } = user;
 
