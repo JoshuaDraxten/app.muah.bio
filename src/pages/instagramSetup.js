@@ -31,7 +31,7 @@ const InstagramSetup = ({ i18n, token, setUserInformation }) => {
     const handleSetup = async e => {
         e.preventDefault();
 
-        let cleanedInstagramTag = instagramTag.toLowerCase().replace(/[^a-z]/g, '');
+        let cleanedInstagramTag = instagramTag.trim().toLowerCase().replace(/[^a-z0-9._]/g, '');
         if ( cleanedInstagramTag.length < 3 ) {
             setTagError( i18n._("{username} is not a valid instagram username", {username: cleanedInstagramTag}) );
         }
