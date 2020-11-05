@@ -3,7 +3,6 @@ import {
   IonContent,
   IonHeader,
   IonListHeader,
-  IonPage,
   IonSearchbar,
   IonItem,
   IonThumbnail,
