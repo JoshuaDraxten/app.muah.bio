@@ -87,7 +87,7 @@ export default () => {
   const [ token, setToken ] = useState('');
   const [ userInformation, setUserInformation ] = useState( null );
 
-  if ( userInformation.error === "User Does not exist" ) {
+  if ( userInformation && userInformation.error === "User Does not exist" ) {
     netlifyIdentity.logout();
     window.location = window.location.origin;
   }
