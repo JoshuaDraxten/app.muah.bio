@@ -121,7 +121,6 @@ export default () => {
     setUserInformation( userInformationCopy );
 
     updateUserPost({
-      ig_username: userInformation.instagram.username,
       token,
       post: postData,
       userEmail: userInformation.email
