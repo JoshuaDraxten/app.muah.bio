@@ -13,6 +13,7 @@ const ftpConnectionInformation = {
 exports.uploadPhotoToCDN =  async ({ url, folder, filename }) => {
     const imageBuffer = await fetch( url )
         .then(res => res.buffer())
+        .catch(console.error)
 
     var c = new ftp();
     c.on('ready', function() {
