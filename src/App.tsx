@@ -87,6 +87,11 @@ export default () => {
   const [ token, setToken ] = useState('');
   const [ userInformation, setUserInformation ] = useState( null );
 
+  if ( userInformation.error === "User Does not exist" ) {
+    netlifyIdentity.logout();
+    window.location = window.location.origin;
+  }
+
   // eslint-disable-next-line
   const addPost = ({ post, position=0 }) => {
     const { posts } = userInformation;
