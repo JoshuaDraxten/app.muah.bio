@@ -15,18 +15,22 @@ exports.uploadPhotoToCDN =  async ({ url, folder, filename }) => {
         .then(res => res.buffer())
         .catch(console.error)
 
-    var c = new ftp();
-    c.on('ready', function() {
-        c.put(imageBuffer, folder+"/"+filename+".jpeg", function(err) {
-            if (err) {
-                reject();
-                throw err;
-            }
-            c.end();
-            // resolve();
-        });
-    });
-    c.connect(ftpConnectionInformation);
+    await (async function(){
+        return new Promise(( resolve, reject ) => {
+            var c = new ftp();
+            c.on('ready', function() {
+                c.put(imageBuffer, folder+"/"+filename+".jpeg", function(err) {
+                    if (err) {
+                        reject();
+                        throw err;
+                    }
+                    c.end();
+                    resolve();
+                });
+            });
+            c.connect(ftpConnectionInformation);
+        })
+    })()
 
     return `${cdnHREF}${folder}/${filename}.jpeg`;
 }
