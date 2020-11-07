@@ -3,7 +3,6 @@ import {
   IonContent,
   IonHeader,
   IonItem,
-  IonInput,
   IonTitle,
   IonToolbar,
   IonLabel,
@@ -29,7 +28,7 @@ const AffiliateSettingsPage = ({ hasAffiliateSetup, userInformation, setUserInfo
     rakuten: { token: '' },
     amazon: { trackingID: '' }
   }
-  const [ linkInBioPage, setLinkInBioPage ] = useState( userInformation.settings.linkInBioPage );
+  const linkInBioPage = userInformation.settings.linkInBioPage;
   const [ affiliatePrograms, setAffiliatePrograms ] = useState( { ...affiliateDefaults, ...userInformation.settings.affiliatePrograms });
 
   const [ didUpdateSettings, setDidUpdateSettings ] = useState( false );

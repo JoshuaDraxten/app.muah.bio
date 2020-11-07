@@ -39,7 +39,7 @@ const SettingsPage = ({ i18n, userInformation, setUserInformation }) => {
     amazon: { trackingID: '' }
   }
   const [ linkInBioPage, setLinkInBioPage ] = useState( userInformation.settings.linkInBioPage );
-  const [ affiliatePrograms, setAffiliatePrograms ] = useState( { ...affiliateDefaults, ...userInformation.settings.affiliatePrograms });
+  const affiliatePrograms  = { ...affiliateDefaults, ...userInformation.settings.affiliatePrograms };
 
   const [ didUpdateSettings, setDidUpdateSettings ] = useState( false );
   const userId = userInformation._id;

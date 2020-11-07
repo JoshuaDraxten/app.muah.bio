@@ -87,7 +87,6 @@ export default () => {
   const [ isLoading, setIsLoading ] = useState( true );
   const [ token, setToken ] = useState('');
   const [ userInformation, setUserInformation ] = useState( null );
-  const [ showAffiliateSetupScreen, setShowAffiliateSetupScreen ] = useState( true );
 
   if ( userInformation && userInformation.error === "User Does not exist" ) {
     netlifyIdentity.logout();
@@ -152,25 +151,6 @@ export default () => {
       });
 
     });
-
-    // TODO: Do this later
-    // // Check if the instagram data has been updated
-    // if ( userInformation.instagram ) {
-    //   getIGMedia(userInformation.instagram).then( posts => {
-    //     console.log( posts )
-    //     const existingIds = userInformation.posts.map( post => post.id );
-    //     console.log("Checking for new posts")
-
-    //     // If there's a new post, add it
-        // posts.forEach( (post, position) => {
-        //   if ( !existingIds.includes( post.id ) ) {
-        //     post.products = []
-        //     addPost({ post, position });
-        //   }
-        // });
-
-    //   });
-    // }
 
     let userInformationCopy = { ...userInformation };
     userInformationCopy.posts.sort(
