@@ -12,11 +12,12 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
-import { personCircle, cog } from 'ionicons/icons';
+import { personCircle, cog, cash } from 'ionicons/icons';
 
 // Pages
 import Profile from "./pages/profile";
 import Settings from "./pages/settings";
+import AffiliateSettings from './pages/affiliateSettings';
 // import LoginScreen from './pages/loginScreen';
 import InstagramSetup from './pages/instagramSetup';
 import SplashScreen from './pages/splashScreen';
@@ -86,6 +87,7 @@ export default () => {
   const [ isLoading, setIsLoading ] = useState( true );
   const [ token, setToken ] = useState('');
   const [ userInformation, setUserInformation ] = useState( null );
+  const [ showAffiliateSetupScreen, setShowAffiliateSetupScreen ] = useState( true );
 
   if ( userInformation && userInformation.error === "User Does not exist" ) {
     netlifyIdentity.logout();
@@ -222,6 +224,14 @@ export default () => {
     return <SplashScreen />
   }
 
+  const hasAffiliateSetup = (
+    Object.keys(userInformation.settings.affiliatePrograms).length > 0 &&
+    (
+      userInformation.settings.affiliatePrograms.amazon.trackingId ||
+      userInformation.settings.affiliatePrograms.rakuten.token
+    )
+  );
+
   return (
     <IonApp>
       <IonReactRouter>
@@ -238,7 +248,14 @@ export default () => {
             <Route path="/:tab(settings)" exact={true} render={ props =>
               <Settings {...props} userInformation={userInformation} setUserInformation={setUserInformation}/>
             }/>
-            <Route exact path="/" render={() => <Redirect to="/profile" />} />
+            <Route path="/:tab(affiliates)" exact={true} render={ props =>
+              <AffiliateSettings
+                {...props}
+                hasAffiliateSetup={hasAffiliateSetup}
+                userInformation={userInformation}
+                setUserInformation={setUserInformation}/>
+            }/>
+            <Route exact path="/" render={() => <Redirect to={hasAffiliateSetup ? "/profile" : "/affiliates"} />} />
           </IonRouterOutlet>
           
           <IonTabBar slot="bottom">
@@ -247,10 +264,16 @@ export default () => {
               <IonLabel><Trans>Profile</Trans></IonLabel>
             </IonTabButton>
 
+            <IonTabButton tab="affiliates" href="/affiliates">
+              <IonIcon icon={cash} />
+              <IonLabel><Trans>Affiliates</Trans></IonLabel>
+            </IonTabButton>
+
             <IonTabButton tab="settings" href="/settings">
               <IonIcon icon={cog} />
               <IonLabel><Trans>Settings</Trans></IonLabel>
             </IonTabButton>
+
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>

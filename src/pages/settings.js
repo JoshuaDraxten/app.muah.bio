@@ -105,44 +105,6 @@ const SettingsPage = ({ i18n, userInformation, setUserInformation }) => {
           </IonItem>
           
           <IonItemDivider>
-            <IonLabel><Trans>Amazon Affiliate Account</Trans></IonLabel>
-          </IonItemDivider>
-          <IonItem>
-            <IonLabel position="stacked"><Trans>Amazon Tracking ID</Trans></IonLabel>
-            <IonTextarea
-              value={ affiliatePrograms.amazon.trackingID }
-              onIonChange={ e => 
-                setAffiliatePrograms( x => ({
-                  ...x,
-                  amazon: {
-                    ...affiliatePrograms.amazon,
-                    trackingID: e.target.value
-                  }
-                }) )
-              }></IonTextarea>
-          </IonItem>
-          <IonItem><span><Trans>You can find your Amazon Tracking ID by going <a href="https://affiliate-program.amazon.com/home/account/tag/manage" target="_blank" rel="noopener noreferrer">here</a></Trans></span></IonItem>
-          
-          <IonItemDivider>
-            <IonLabel><Trans>Rakuten Affiliate Account</Trans> (Sephora, Benefit, e.l.f., etc)</IonLabel>
-          </IonItemDivider>
-          <IonItem>
-            <IonLabel position="stacked"><Trans>Rakuten Web Services Token</Trans></IonLabel>
-            <IonTextarea
-              value={ affiliatePrograms.rakuten.token }
-              onIonChange={ e => 
-                setAffiliatePrograms( x => ({
-                  ...x,
-                  rakuten: {
-                    ...affiliatePrograms.rakuten,
-                    token: e.target.value
-                  }
-                }) )
-              }></IonTextarea>
-          </IonItem>
-          <IonItem><p><Trans>You can find your Rakuten Web Services Token by going to <a href="https://cli.linksynergy.com/cli/publisher/links/webServices.php" target="_blank" rel="noopener noreferrer">Links &gt; Web Services</a> page in the rakuten advertizing dashboard</Trans></p></IonItem>
-
-          <IonItemDivider>
             <IonLabel><Trans>Your Account</Trans></IonLabel>
           </IonItemDivider>
           <br />
