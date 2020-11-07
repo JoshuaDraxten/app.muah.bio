@@ -122,9 +122,9 @@ const AffiliateSettingsPage = ({ hasAffiliateSetup, userInformation, setUserInfo
             isOpen={didUpdateSettings}
             onDidDismiss={() => setDidUpdateSettings(false)}
             message={translation}
-            duration={1000}
+            duration={2000}
           ></IonToast>
-        }>Affiliate Accounts Updated</Trans>
+        }>Affiliate Accounts Updated. Go to your profile to start tagging products!</Trans>
       </IonContent>
     </>
   );
