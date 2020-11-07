@@ -144,12 +144,12 @@ const Profile = ({ i18n, history, userInformation, username, posts, updatePost})
             <IonTitle size="large"><Trans>Profile</Trans></IonTitle>
           </IonToolbar>
         </IonHeader>
-        {  noPublishedPosts || !hasAffiliateSetup ?
+        { noPublishedPosts || !hasAffiliateSetup ?
           <div className="disclaimer" style={{marginBottom: 0}}>
             {noPublishedPosts && <p><Trans>Welcome to Muah.bio! Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products.</Trans></p>}
             {!hasAffiliateSetup && <p><Trans>Remember to <b>connect your affiliate accounts</b> in settings to add products!</Trans></p>}
           </div>
-        : null}
+        : null }
         <IonGrid style={{maxWidth: 1000}}>
           <IonRow>
             {posts.map((post, index) => (

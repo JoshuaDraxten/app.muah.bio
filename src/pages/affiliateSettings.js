@@ -99,7 +99,7 @@ const AffiliateSettingsPage = ({ hasAffiliateSetup, userInformation, setUserInfo
           <IonItem><span><Trans>You can find your Amazon Tracking ID by going <a href="https://affiliate-program.amazon.com/home/account/tag/manage" target="_blank" rel="noopener noreferrer">here</a></Trans></span></IonItem>
           
           <IonItemDivider>
-            <IonLabel><Trans>Rakuten Affiliate Account</Trans> (Sephora, Benefit, e.l.f., <Trans>etc</Trans>)</IonLabel>
+            <IonLabel className="ion-text-wrap"><Trans>Rakuten Affiliate Account</Trans> <span style={{whiteSpace: "nowrap"}}>(Sephora, Benefit, e.l.f., <Trans>etc</Trans>)</span></IonLabel>
           </IonItemDivider>
           <IonItem>
             <IonLabel position="stacked"><Trans>Rakuten Web Services Token</Trans></IonLabel>
