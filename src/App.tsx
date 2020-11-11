@@ -51,6 +51,7 @@ import './theme/variables.css';
 
 // Internationalization
 import { Trans } from '@lingui/macro';
+import { withI18n } from "@lingui/react"
 
 // Netlify Authentication
 import netlifyIdentity from 'netlify-identity-widget';
@@ -83,7 +84,7 @@ modifyNetlifyAuth();
 // const magic = new Magic('pk_live_452F1F42DDE138C5');
 // window.magic = magic
 
-export default () => {
+const App = ({ i18n }) => {
   const [ isLoading, setIsLoading ] = useState( true );
   const [ token, setToken ] = useState('');
   const [ userInformation, setUserInformation ] = useState( null );
@@ -212,12 +213,16 @@ export default () => {
     )
   );
 
+  const profile = i18n._('profile');
+  const settings = i18n._('settings');
+  const affiliates = i18n._('affiliates');
+
   return (
     <IonApp>
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route path="/:tab(profile)/:postId?" exact={true} render={props => <div>
+            <Route path={`/:tab(${profile})/:postId?`} exact={true} render={props => <div>
               <Profile
                 {...props}
                 userInformation={userInformation}
@@ -225,31 +230,31 @@ export default () => {
                 posts={userInformation.posts}
                 updatePost={updatePost} />
             </div>} />
-            <Route path="/:tab(settings)" exact={true} render={ props =>
+            <Route path={`/:tab(${settings})`} exact={true} render={ props =>
               <Settings {...props} userInformation={userInformation} setUserInformation={setUserInformation}/>
             }/>
-            <Route path="/:tab(affiliates)" exact={true} render={ props =>
+            <Route path={`/:tab(${affiliates})`} exact={true} render={ props =>
               <AffiliateSettings
                 {...props}
                 hasAffiliateSetup={hasAffiliateSetup}
                 userInformation={userInformation}
                 setUserInformation={setUserInformation}/>
             }/>
-            <Route exact path="/" render={() => <Redirect to={hasAffiliateSetup ? "/profile" : "/affiliates"} />} />
+            <Route render={() => <Redirect to={hasAffiliateSetup ? "/"+profile : "/"+affiliates} />} />
           </IonRouterOutlet>
           
           <IonTabBar slot="bottom">
-            <IonTabButton tab="profile" href="/profile">
+            <IonTabButton tab="profile" href={"/"+profile}>
               <IonIcon icon={personCircle} />
               <IonLabel><Trans>Profile</Trans></IonLabel>
             </IonTabButton>
 
-            <IonTabButton tab="affiliates" href="/affiliates">
+            <IonTabButton tab="affiliates" href={"/"+affiliates}>
               <IonIcon icon={cash} />
               <IonLabel><Trans>Affiliates</Trans></IonLabel>
             </IonTabButton>
 
-            <IonTabButton tab="settings" href="/settings">
+            <IonTabButton tab="settings" href={"/"+settings}>
               <IonIcon icon={cog} />
               <IonLabel><Trans>Settings</Trans></IonLabel>
             </IonTabButton>
@@ -260,3 +265,5 @@ export default () => {
     </IonApp>
   );
 }
+
+export default withI18n()(App);

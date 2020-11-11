@@ -14,7 +14,8 @@ import {
   IonList,
   IonItem,
   IonLabel,
-  IonToast
+  IonToast,
+  IonChip
 } from '@ionic/react';
 import './profile.css';
 import EditPost from './editPost'
@@ -61,8 +62,8 @@ function copyTextToClipboard(text) {
   });
 }
 
-const PostPreview = ({ post, onClick }) => (
-  <Link onClick={onClick} to={"/profile/"+post.id}
+const PostPreview = ({ url, post, onClick }) => (
+  <Link onClick={onClick} to={url}
     key={post.id}
     className={"photo-grid__photo" + (post.products.length!==0 ? " published" : "")}
     style={{ backgroundImage: `linear-gradient(white, white), url('${ post.media_url }')` }}
@@ -88,6 +89,8 @@ const Profile = ({ i18n, history, userInformation, username, posts, updatePost})
   }
 
   console.log( userInformation, posts )
+
+  const daysTillTrialIsOver = 30 - Math.floor((new Date() - new Date( userInformation.createDate )) / ( 1000 * 60 * 60 * 24 ) )
 
   const noPublishedPosts = posts.filter( post => post.products.length > 0 ).length === 0;
 
@@ -150,21 +153,27 @@ const Profile = ({ i18n, history, userInformation, username, posts, updatePost})
             {!hasAffiliateSetup && <p><Trans>Remember to <b>connect your affiliate accounts</b> in settings to add products!</Trans></p>}
           </div>
         : null }
+        { daysTillTrialIsOver > -1 &&
+          <div className="trial-warning">
+            <IonChip color={"warning"}><Trans>
+              Your trial account expires in {daysTillTrialIsOver} days
+            </Trans></IonChip>
+          </div>}
         <IonGrid style={{maxWidth: 1000}}>
           <IonRow>
             {posts.map((post, index) => (
               <IonCol size="4" key={index}>
-                <PostPreview post={post} />
+                <PostPreview url={`/${i18n._("profile")}/${post.id}`} post={post} />
               </IonCol>
             ))}
           </IonRow>
         </IonGrid>
-        { openedPost !== -1 ? <IonModal isOpen={openedPost !== -1} onDidDismiss={() => history.push('/profile/')}>
+        { openedPost !== -1 ? <IonModal isOpen={openedPost !== -1} onDidDismiss={() => history.push('/'+i18n._("profile")+'/')}>
           <EditPost
             userInformation={userInformation}
             post={posts[openedPost]}
             updatePost={updatePost}
-            closePost={() => history.push('/profile/')} />
+            closePost={() => history.push('/'+i18n._("profile")+'/')} />
         </IonModal> : null}
       </IonContent>
 

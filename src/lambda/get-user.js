@@ -30,12 +30,12 @@ exports.handler = async ( event, context ) => {
   const client = await connectToDatabase(uri);
   const collection = client.db("Muah_bio").collection("users");
 
-  const users = await collection.find( { email } ).toArray();
+  const userData = await collection.findOne( { email } );
 
-  if ( users.length > 0 ) {
+  if ( userData ) {
       return {
           statusCode: 200,
-          body: JSON.stringify( users[0] ),
+          body: JSON.stringify( { ...userData, createDate: userData._id.getTimestamp() } ),
       }
   }
 

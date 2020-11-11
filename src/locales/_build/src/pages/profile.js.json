@@ -3,7 +3,7 @@
     "origin": [
       [
         "src/pages/profile.js",
-        82
+        87
       ]
     ]
   },
@@ -11,11 +11,11 @@
     "origin": [
       [
         "src/pages/profile.js",
-        102
+        109
       ],
       [
         "src/pages/profile.js",
-        139
+        147
       ]
     ]
   },
@@ -23,7 +23,7 @@
     "origin": [
       [
         "src/pages/profile.js",
-        114
+        126
       ]
     ]
   },
@@ -31,7 +31,7 @@
     "origin": [
       [
         "src/pages/profile.js",
-        120
+        132
       ]
     ]
   },
@@ -39,7 +39,7 @@
     "origin": [
       [
         "src/pages/profile.js",
-        144
+        152
       ]
     ]
   },
@@ -47,15 +47,27 @@
     "origin": [
       [
         "src/pages/profile.js",
-        145
+        153
       ]
     ]
   },
-  "If you dont have an affiliate relationship with anyone, you can <0>apply to Sephora</0> or <1>to Amazon</1>": {
+  "Your trial account expires in {daysTillTrialIsOver} days": {
     "origin": [
       [
         "src/pages/profile.js",
-        146
+        158
+      ]
+    ]
+  },
+  "profile": {
+    "origin": [
+      [
+        "src/pages/profile.js",
+        166
+      ],
+      [
+        "src/pages/profile.js",
+        176
       ]
     ]
   }

@@ -1,0 +1,94 @@
+{
+  "Affiliates": {
+    "origin": [
+      [
+        "src/pages/affiliateSettings.js",
+        53
+      ],
+      [
+        "src/pages/affiliateSettings.js",
+        64
+      ]
+    ]
+  },
+  "Save": {
+    "origin": [
+      [
+        "src/pages/affiliateSettings.js",
+        56
+      ]
+    ]
+  },
+  "If you dont have an affiliate relationship with anyone, you can <0>apply to Sephora</0> or <1>to Amazon</1>": {
+    "origin": [
+      [
+        "src/pages/affiliateSettings.js",
+        70
+      ]
+    ]
+  },
+  "Amazon Affiliate Account": {
+    "origin": [
+      [
+        "src/pages/affiliateSettings.js",
+        82
+      ]
+    ]
+  },
+  "Amazon Tracking ID": {
+    "origin": [
+      [
+        "src/pages/affiliateSettings.js",
+        85
+      ]
+    ]
+  },
+  "You can find your Amazon Tracking ID by going <0>here</0>": {
+    "origin": [
+      [
+        "src/pages/affiliateSettings.js",
+        98
+      ]
+    ]
+  },
+  "Rakuten Affiliate Account": {
+    "origin": [
+      [
+        "src/pages/affiliateSettings.js",
+        101
+      ]
+    ]
+  },
+  "etc": {
+    "origin": [
+      [
+        "src/pages/affiliateSettings.js",
+        101
+      ]
+    ]
+  },
+  "Rakuten Web Services Token": {
+    "origin": [
+      [
+        "src/pages/affiliateSettings.js",
+        104
+      ]
+    ]
+  },
+  "You can find your Rakuten Web Services Token by going to <0>Links > Web Services</0> page in the rakuten advertizing dashboard": {
+    "origin": [
+      [
+        "src/pages/affiliateSettings.js",
+        117
+      ]
+    ]
+  },
+  "Affiliate Accounts Updated. Go to your profile to start tagging products!": {
+    "origin": [
+      [
+        "src/pages/affiliateSettings.js",
+        119
+      ]
+    ]
+  }
+}

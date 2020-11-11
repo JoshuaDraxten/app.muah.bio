@@ -3,7 +3,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        30
+        29
       ]
     ]
   },
@@ -11,11 +11,11 @@
     "origin": [
       [
         "src/pages/settings.js",
-        64
+        63
       ],
       [
         "src/pages/settings.js",
-        75
+        74
       ]
     ]
   },
@@ -23,7 +23,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        67
+        66
       ]
     ]
   },
@@ -31,7 +31,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        80
+        79
       ]
     ]
   },
@@ -39,7 +39,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        83
+        82
       ]
     ]
   },
@@ -47,7 +47,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        93
+        92
       ]
     ]
   },
@@ -55,7 +55,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        98
+        97
       ]
     ]
   },
@@ -63,55 +63,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        102
-      ]
-    ]
-  },
-  "Amazon Affiliate Account": {
-    "origin": [
-      [
-        "src/pages/settings.js",
-        109
-      ]
-    ]
-  },
-  "Amazon Tracking ID": {
-    "origin": [
-      [
-        "src/pages/settings.js",
-        112
-      ]
-    ]
-  },
-  "You can find your Amazon Tracking ID by going <0>here</0>": {
-    "origin": [
-      [
-        "src/pages/settings.js",
-        125
-      ]
-    ]
-  },
-  "Rakuten Affiliate Account": {
-    "origin": [
-      [
-        "src/pages/settings.js",
-        128
-      ]
-    ]
-  },
-  "Rakuten Web Services Token": {
-    "origin": [
-      [
-        "src/pages/settings.js",
-        131
-      ]
-    ]
-  },
-  "You can find your Rakuten Web Services Token by going to <0>Links > Web Services</0> page in the rakuten advertizing dashboard": {
-    "origin": [
-      [
-        "src/pages/settings.js",
-        144
+        101
       ]
     ]
   },
@@ -119,7 +71,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        147
+        108
       ]
     ]
   },
@@ -127,7 +79,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        150
+        111
       ]
     ]
   },
@@ -135,7 +87,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        153
+        114
       ]
     ]
   }

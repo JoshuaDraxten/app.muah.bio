@@ -1,9 +1,41 @@
 {
+  "profile": {
+    "origin": [
+      [
+        "src/App.tsx",
+        160
+      ]
+    ]
+  },
+  "settings": {
+    "origin": [
+      [
+        "src/App.tsx",
+        161
+      ]
+    ]
+  },
+  "affiliates": {
+    "origin": [
+      [
+        "src/App.tsx",
+        162
+      ]
+    ]
+  },
   "Profile": {
     "origin": [
       [
         "src/App.tsx",
-        165
+        178
+      ]
+    ]
+  },
+  "Affiliates": {
+    "origin": [
+      [
+        "src/App.tsx",
+        183
       ]
     ]
   },
@@ -11,7 +43,7 @@
     "origin": [
       [
         "src/App.tsx",
-        170
+        188
       ]
     ]
   }
