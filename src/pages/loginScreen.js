@@ -88,6 +88,11 @@ const LoginScreen = ({ i18n, setUserInformation }) => {
                 <IonGrid fixed>
                     <IonRow>
                         <form className="login-form" onSubmit={handleLogin}>
+                            <div style={{ textAlign: "center" }}>
+                                <img style={{maxWidth: "33%"}} alt="" src="/images/icons-192.png"/>
+                                <h2>Muah.bio</h2>
+                                <br />
+                            </div>
                             <IonItem>
                                 <IonLabel position="stacked"><Trans>Your Email Address</Trans></IonLabel>
                                 <IonInput
