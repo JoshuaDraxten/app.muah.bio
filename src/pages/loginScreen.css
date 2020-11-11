@@ -6,3 +6,10 @@
     width: 100%;
     max-width: 600px;
 }
+
+.link-btn {
+    outline: none;
+    display: inline;
+    background: transparent;
+    color: var(--ion-color-primary, #3880ff);
+}

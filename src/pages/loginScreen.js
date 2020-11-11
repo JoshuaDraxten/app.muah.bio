@@ -118,16 +118,18 @@ const LoginScreen = ({ i18n, setUserInformation }) => {
                                 { screenMode === 1 &&  <Trans>Log In</Trans> }
                             </IonButton>
                             
-                            <a href="#"
+                            <button
+                                type="button"
+                                className="link-btn"
                                 onClick={() => setScreenMode(mode => !mode*1) }
-                                style={{ display: 'block', textAlign: 'center', padding: "20px" }} >
+                                style={{ display: 'block', width: '100%', textAlign: 'center', padding: "20px" }} >
                                 { screenMode === 0 && <>
                                     <Trans>Already have an account?</Trans> <Trans>Log In</Trans>
                                 </> }
                                 { screenMode === 1 && <>
                                     <Trans>Don't have an account yet?</Trans> <Trans>Sign Up</Trans>
                                 </> }
-                            </a>
+                            </button>
                         </form>
                     </IonRow>
                 </IonGrid>
