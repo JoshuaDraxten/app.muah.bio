@@ -1,7 +1,5 @@
-import netlifyIdentity from 'netlify-identity-widget';
-
 export default async function({ ig_username, post, position=0 }){
-    const Authorization = "Bearer " + netlifyIdentity.currentUser().token.access_token;
+    const Authorization = "Bearer " + window.auth.currentUser().token.access_token;
 
     const params = new URLSearchParams({
         ig_username,

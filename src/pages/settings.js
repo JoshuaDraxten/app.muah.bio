@@ -22,8 +22,6 @@ import updateSettings from '../api/updateSettings';
 import { Trans } from '@lingui/macro';
 import { withI18n } from "@lingui/react"
 
-import netlifyIdentity from 'netlify-identity-widget';
-
 const SettingsPage = ({ i18n, userInformation, setUserInformation }) => {
   const logOut = async () => {
     const confirmLogout = window.confirm( i18n._("Are you sure you want to log out?") );
