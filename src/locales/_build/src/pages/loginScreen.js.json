@@ -1,17 +1,29 @@
 {
-  "Log In or Sign Up": {
+  "Signup requires a valid password": {
     "origin": [
       [
         "src/pages/loginScreen.js",
-        42
+        36
       ]
     ]
   },
-  "Your Email Address": {
+  "A user with this email address has already been registered": {
     "origin": [
       [
         "src/pages/loginScreen.js",
-        55
+        37
+      ]
+    ]
+  },
+  "Sign Up": {
+    "origin": [
+      [
+        "src/pages/loginScreen.js",
+        83
+      ],
+      [
+        "src/pages/loginScreen.js",
+        117
       ]
     ]
   },
@@ -19,7 +31,71 @@
     "origin": [
       [
         "src/pages/loginScreen.js",
-        62
+        84
+      ],
+      [
+        "src/pages/loginScreen.js",
+        118
+      ],
+      [
+        "src/pages/loginScreen.js",
+        125
+      ]
+    ]
+  },
+  "Your Email Address": {
+    "origin": [
+      [
+        "src/pages/loginScreen.js",
+        92
+      ]
+    ]
+  },
+  "hello@example.com": {
+    "origin": [
+      [
+        "src/pages/loginScreen.js",
+        96
+      ]
+    ]
+  },
+  "Your Password": {
+    "origin": [
+      [
+        "src/pages/loginScreen.js",
+        102
+      ]
+    ]
+  },
+  "Error": {
+    "origin": [
+      [
+        "src/pages/loginScreen.js",
+        113
+      ]
+    ]
+  },
+  "Already have an account?": {
+    "origin": [
+      [
+        "src/pages/loginScreen.js",
+        125
+      ]
+    ]
+  },
+  "Dont have an account yet?": {
+    "origin": [
+      [
+        "src/pages/loginScreen.js",
+        128
+      ]
+    ]
+  },
+  "Sign up": {
+    "origin": [
+      [
+        "src/pages/loginScreen.js",
+        128
       ]
     ]
   }

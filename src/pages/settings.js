@@ -29,7 +29,7 @@ const SettingsPage = ({ i18n, userInformation, setUserInformation }) => {
     const confirmLogout = window.confirm( i18n._("Are you sure you want to log out?") );
     if ( !confirmLogout ) return;
   
-    netlifyIdentity.logout();
+    window.auth.currentUser().logout();
     window.location = window.location.origin;
   }
 

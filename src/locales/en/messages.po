@@ -13,6 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/pages/loginScreen.js:37
+msgid "A user with this email address has already been registered"
+msgstr "A user with this email address has already been registered"
+
 #: src/pages/settings.js:103
 #~ msgid "Affiliate Accounts"
 #~ msgstr "Affiliate Accounts"
@@ -25,11 +29,15 @@ msgstr "Affiliate Accounts Updated. Go to your profile to start tagging products
 msgid "Affiliate Disclaimer Text"
 msgstr "Affiliate Disclaimer Text"
 
-#: src/App.tsx:183
+#: src/App.tsx:189
 #: src/pages/affiliateSettings.js:53
 #: src/pages/affiliateSettings.js:64
 msgid "Affiliates"
 msgstr "Affiliates"
+
+#: src/pages/loginScreen.js:125
+msgid "Already have an account?"
+msgstr "Already have an account?"
 
 #: src/pages/affiliateSettings.js:82
 msgid "Amazon Affiliate Account"
@@ -75,6 +83,10 @@ msgstr "Creating your account"
 msgid "Delete"
 msgstr "Delete"
 
+#: src/pages/loginScreen.js:128
+msgid "Dont have an account yet?"
+msgstr "Dont have an account yet?"
+
 #: src/pages/editPost.js:69
 msgid "Edit Product"
 msgstr "Edit Product"
@@ -95,6 +107,10 @@ msgstr "Edit Product"
 msgid "Edit {productName}"
 msgstr "Edit {productName}"
 
+#: src/pages/loginScreen.js:113
+msgid "Error"
+msgstr "Error"
+
 #: src/pages/productSearch.js:158
 msgid "Found this product in your clipboard"
 msgstr "Found this product in your clipboard"
@@ -111,13 +127,15 @@ msgstr "If you dont have an affiliate relationship with anyone, you can <0>apply
 msgid "Instagram account doesnt exist or you are on a computer blocked by Instagram"
 msgstr "Instagram account doesnt exist or you are on a computer blocked by Instagram"
 
-#: src/pages/loginScreen.js:62
+#: src/pages/loginScreen.js:84
+#: src/pages/loginScreen.js:118
+#: src/pages/loginScreen.js:125
 msgid "Log In"
 msgstr "Log In"
 
 #: src/pages/loginScreen.js:42
-msgid "Log In or Sign Up"
-msgstr "Log In or Sign Up"
+#~ msgid "Log In or Sign Up"
+#~ msgstr "Log In or Sign Up"
 
 #: src/pages/settings.js:111
 msgid "Log Out"
@@ -147,7 +165,7 @@ msgstr "Preview Profile"
 msgid "Product name"
 msgstr "Product name"
 
-#: src/App.tsx:178
+#: src/App.tsx:184
 #: src/pages/profile.js:109
 #: src/pages/profile.js:147
 msgid "Profile"
@@ -184,7 +202,7 @@ msgstr "Search for products or paste url"
 msgid "Search for products to tag this post with using the search bar below"
 msgstr "Search for products to tag this post with using the search bar below"
 
-#: src/App.tsx:188
+#: src/App.tsx:194
 #: src/pages/settings.js:63
 #: src/pages/settings.js:74
 msgid "Settings"
@@ -193,6 +211,19 @@ msgstr "Settings"
 #: src/pages/settings.js:114
 msgid "Settings Updated"
 msgstr "Settings Updated"
+
+#: src/pages/loginScreen.js:83
+#: src/pages/loginScreen.js:117
+msgid "Sign Up"
+msgstr "Sign Up"
+
+#: src/pages/loginScreen.js:128
+msgid "Sign up"
+msgstr "Sign up"
+
+#: src/pages/loginScreen.js:36
+msgid "Signup requires a valid password"
+msgstr "Signup requires a valid password"
 
 #: src/pages/editPost.js:161
 msgid "Tagged Products"
@@ -226,7 +257,7 @@ msgstr "You can find your Rakuten Web Services Token by going to <0>Links > Web 
 msgid "Your Account"
 msgstr "Your Account"
 
-#: src/pages/loginScreen.js:55
+#: src/pages/loginScreen.js:92
 msgid "Your Email Address"
 msgstr "Your Email Address"
 
@@ -242,6 +273,10 @@ msgstr "Your Muah.bio profile URL has been copied to your clipboard"
 #~ msgid "Your Muah.bio profile has been copied to your clipboard"
 #~ msgstr "Your Muah.bio profile has been copied to your clipboard"
 
+#: src/pages/loginScreen.js:102
+msgid "Your Password"
+msgstr "Your Password"
+
 #: src/pages/settings.js:82
 msgid "Your Website"
 msgstr "Your Website"
@@ -250,7 +285,7 @@ msgstr "Your Website"
 msgid "Your trial account expires in {daysTillTrialIsOver} days"
 msgstr "Your trial account expires in {daysTillTrialIsOver} days"
 
-#: src/App.tsx:162
+#: src/App.tsx:168
 msgid "affiliates"
 msgstr "affiliates"
 
@@ -262,13 +297,18 @@ msgstr "etc"
 #~ msgid "ex: Lips"
 #~ msgstr "ex: Lips"
 
-#: src/App.tsx:160
+#: src/pages/loginScreen.js:96
+msgid "hello@example.com"
+msgstr "hello@example.com"
+
+#: src/App.tsx:166
 #: src/pages/profile.js:166
+#: src/pages/profile.js:171
 #: src/pages/profile.js:176
 msgid "profile"
 msgstr "profile"
 
-#: src/App.tsx:161
+#: src/App.tsx:167
 msgid "settings"
 msgstr "settings"
 

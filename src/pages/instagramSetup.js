@@ -23,7 +23,7 @@ import { withI18n } from "@lingui/react"
 
 import './loginScreen.css';
 
-const InstagramSetup = ({ i18n, token, setUserInformation }) => {
+const InstagramSetup = ({ i18n, setUserInformation }) => {
     const [ instagramTag, setInstagramTag ] = useState('');
     const [ tagError, setTagError ] = useState('');
     const [ isLoading, setIsLoading ] = useState(false);
@@ -61,12 +61,12 @@ const InstagramSetup = ({ i18n, token, setUserInformation }) => {
             }
 
             console.log("Initializing user...")
-            let userInformation = await initializeUser({ posts, ig_username: instagramTag, token });
+            let userInformation = await initializeUser({ posts, ig_username: instagramTag });
             
             userInformation.posts = uncachedPosts;
             setUserInformation( userInformation );
-            setIsLoading( false );
         } catch (error) {
+            console.error( error )
             setTagError( i18n._("Instagram account doesnt exist or you are on a computer blocked by Instagram") );
             setIsLoading( false );
         }

@@ -1,5 +1,4 @@
-// import netlifyIdentity from 'netlify-identity-widget';
-// import getUser from '../api/getUser';
+import getUser from '../api/getUser';
 
 import React, { useState } from 'react';
 
@@ -7,6 +6,7 @@ import {
     IonPage,
     IonContent,
     IonHeader,
+    IonLabel,
     IonToolbar,
     IonTitle,
     IonButton,
@@ -14,6 +14,7 @@ import {
     IonRow,
     IonItem,
     IonInput,
+    IonLoading,
 
 } from '@ionic/react';
 
@@ -23,46 +24,114 @@ import { withI18n } from "@lingui/react"
 
 import './loginScreen.css';
 
-const LoginScreen = ({ i18n, magic, setIsLoggedIn, setCurrentUser, setUserInformation }) => {
+const LoginScreen = ({ i18n, setUserInformation }) => {
+    const [ screenMode, setScreenMode ] = useState(0); // 0 = create account | 1 = log in
     const [ email, setEmail ] = useState('');
-    const [ emailError ] = useState('');
+    const [ error, setError ] = useState('');
+    const [ password, setPassword ] = useState('');
+    const [ isLoading, setIsLoading ] = useState( false );
+
+    const translateError = ( error ) => {
+        const translatedError = {
+            "Signup requires a valid password": i18n._("Signup requires a valid password"),
+            "A user with this email address has already been registered": i18n._("A user with this email address has already been registered"),
+
+        }[error];
+
+        if ( translatedError ) return translatedError;
+        return error;
+    }
 
     const handleLogin = e => {
-        magic.auth.loginWithMagicLink({ email })
-            .catch(console.error)
-            .then(() => setIsLoggedIn(true));
-        
+        setIsLoading( true );
+        if ( screenMode === 0 ) {
+            window.auth.signup( email, password )
+            .catch( err => {
+                setIsLoading( false );
+                setError( translateError( err.json.msg ) )
+            })
+            // We just created this account, so there is no user account associated with it
+            .then( () => {
+                window.auth.login( email, password, true ).then( () => {
+                    setUserInformation({ error: "User doesnt exist" })
+                })
+             } )
+        }
+
+        if ( screenMode === 1 ) {
+            window.auth.login( email, password, true )
+                .catch( err => {
+                    setIsLoading( false );
+                    setError( translateError( err.json.msg ) )
+                })
+                .then( () => {
+                    getUser().then( response => {
+                        setUserInformation( response )
+                    })
+                })
+        }
+
+
         e.preventDefault();
     }
 
+    console.log( error )
     return (
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <IonTitle><Trans>Log In or Sign Up</Trans></IonTitle>
+                    { screenMode === 0 &&  <IonTitle><Trans>Sign Up</Trans></IonTitle> }
+                    { screenMode === 1 &&  <IonTitle><Trans>Log In</Trans></IonTitle> }
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>
                 <IonGrid fixed>
                     <IonRow>
                         <form className="login-form" onSubmit={handleLogin}>
-                            {/* <h2><Trans>Log in to your account</Trans></h2> */}
                             <IonItem>
-                                {/* <IonLabel position="stacked"><Trans>Email Address</Trans></IonLabel> */}
+                                <IonLabel position="stacked"><Trans>Your Email Address</Trans></IonLabel>
                                 <IonInput
                                     type="email"
                                     inputMode="email"
-                                    placeholder={i18n._("Your Email Address")}
+                                    placeholder={i18n._("hello@example.com")}
                                     value={email}
                                     onIonChange={e => setEmail(e.target.value)}
                                 />
-                                { emailError ? <p style={{color: "red"}}>{emailError}</p> : null }
                             </IonItem>
+                            <IonItem>
+                                <IonLabel position="stacked"><Trans>Your Password</Trans></IonLabel>
+                                <IonInput
+                                    type="password"
+                                    inputMode="password"
+                                    placeholder="••••••••"
+                                    value={password}
+                                    onIonChange={e => setPassword(e.target.value)}
+                                />
+                            </IonItem>
+                            { error ? <IonItem>
+                                <p style={{color: "red"}}>
+                                <Trans>Error</Trans>: {error}</p>
+                                </IonItem> : null }
                             <br />
-                            <IonButton expand="full" size="large" type="submit"><Trans>Log In</Trans></IonButton>
+                            <IonButton expand="full" size="large" type="submit">
+                                { screenMode === 0 &&  <Trans>Sign Up</Trans> }
+                                { screenMode === 1 &&  <Trans>Log In</Trans> }
+                            </IonButton>
+                            
+                            <a href="#"
+                                onClick={() => setScreenMode(mode => !mode*1) }
+                                style={{ display: 'block', textAlign: 'center', padding: "20px" }} >
+                                { screenMode === 0 && <>
+                                    <Trans>Already have an account?</Trans> <Trans>Log In</Trans>
+                                </> }
+                                { screenMode === 1 && <>
+                                    <Trans>Dont have an account yet?</Trans> <Trans>Sign up</Trans>
+                                </> }
+                            </a>
                         </form>
                     </IonRow>
                 </IonGrid>
+                <IonLoading isOpen={isLoading} />
             </IonContent>
         </IonPage>
     );

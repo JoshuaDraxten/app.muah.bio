@@ -19,6 +19,7 @@
     "@types/react-router-dom": "^5.1.3",
     "axios": "^0.20.0",
     "ftp": "^0.3.10",
+    "gotrue-js": "^0.9.27",
     "ionicons": "^5.2.3",
     "magic-sdk": "^3.0.1",
     "metaget": "^1.0.7",

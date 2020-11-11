@@ -18,7 +18,7 @@ import { personCircle, cog, cash } from 'ionicons/icons';
 import Profile from "./pages/profile";
 import Settings from "./pages/settings";
 import AffiliateSettings from './pages/affiliateSettings';
-// import LoginScreen from './pages/loginScreen';
+import LoginScreen from './pages/loginScreen';
 import InstagramSetup from './pages/instagramSetup';
 import SplashScreen from './pages/splashScreen';
 
@@ -54,30 +54,37 @@ import { Trans } from '@lingui/macro';
 import { withI18n } from "@lingui/react"
 
 // Netlify Authentication
-import netlifyIdentity from 'netlify-identity-widget';
-window.netlifyIdentity = netlifyIdentity;
-var userLang = ( navigator.language || navigator.userLanguage).slice(0,2);
-netlifyIdentity.init({ locale: userLang });
+import GoTrue from 'gotrue-js';
+window.auth = new GoTrue({
+  APIUrl: 'https://app.muah.bio/.netlify/identity',
+  audience: '',
+  setCookie: false,
+});
 
-function modifyNetlifyAuth(){
-  const tryAgainLater = () => {
-      setTimeout( modifyNetlifyAuth, 100 );
-      console.log("waiting...")
-      return;
-  }
+// import netlifyIdentity from 'netlify-identity-widget';
+// window.netlifyIdentity = netlifyIdentity;
+// var userLang = ( navigator.language || navigator.userLanguage).slice(0,2);
+// netlifyIdentity.init({ locale: userLang });
 
-  const modal = document.getElementById("netlify-identity-widget");
-  if (!modal) return tryAgainLater()
+// function modifyNetlifyAuth(){
+//   const tryAgainLater = () => {
+//       setTimeout( modifyNetlifyAuth, 100 );
+//       console.log("waiting...")
+//       return;
+//   }
 
-  const modalDocument = modal.contentDocument;
-  if ( modalDocument.body.innerHTML === '' ) return tryAgainLater();
+//   const modal = document.getElementById("netlify-identity-widget");
+//   if (!modal) return tryAgainLater()
 
-  // Remove close button and callout
-  [...modalDocument.querySelectorAll(".btnClose, .callOut")].forEach(
-    node => node.style.display = 'none'
-  );
-}
-modifyNetlifyAuth();
+//   const modalDocument = modal.contentDocument;
+//   if ( modalDocument.body.innerHTML === '' ) return tryAgainLater();
+
+//   // Remove close button and callout
+//   [...modalDocument.querySelectorAll(".btnClose, .callOut")].forEach(
+//     node => node.style.display = 'none'
+//   );
+// }
+// modifyNetlifyAuth();
 
 // // 🎶️ Do you beleive in magic ✨️ (Not yet I don't)
 // import { Magic } from 'magic-sdk';
@@ -90,7 +97,7 @@ const App = ({ i18n }) => {
   const [ userInformation, setUserInformation ] = useState( null );
 
   if ( userInformation && userInformation.error === "User Does not exist" ) {
-    netlifyIdentity.logout();
+    window.auth.currentUser().logout();
     window.location = window.location.origin;
   }
 
@@ -166,27 +173,27 @@ const App = ({ i18n }) => {
   // eslint-disable-next-line
   }, [userInformationIsNull])
 
-  netlifyIdentity.on('login', user => {
-    console.log( 'logged in' );
-    netlifyIdentity.close();
-    setIsLoading( false );
+  // netlifyIdentity.on('login', user => {
+  //   console.log( 'logged in' );
+  //   netlifyIdentity.close();
+  //   setIsLoading( false );
 
-    getUser().then( response => {
-        setUserInformation( response )
-    })
-  } );
-  if ( netlifyIdentity.currentUser() === null ) {
-    netlifyIdentity.open();
-    return null;
+    // getUser().then( response => {
+    //     setUserInformation( response )
+    // })
+  // } );
+  console.log( window.auth.currentUser() )
+  if ( window.auth.currentUser() === null ) {
+    return <LoginScreen setUserInformation={userInfo => {setUserInformation(userInfo); setIsLoading(false)}} />;
   }
 
   if ( userInformation === null ) {
     if ( !window.hasFetchedToken ) {
       // Prevent repeating this more than once
       window.hasFetchedToken = true;
-      const token = netlifyIdentity.currentUser().token.access_token;
+      // const token = netlifyIdentity.currentUser().token.access_token;
       
-      setToken( token );
+      // setToken( token );
 
       getUser().then( userInfo => {
         setUserInformation( userInfo );
