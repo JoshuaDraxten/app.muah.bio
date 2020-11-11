@@ -61,39 +61,8 @@ window.auth = new GoTrue({
   setCookie: false,
 });
 
-// import netlifyIdentity from 'netlify-identity-widget';
-// window.netlifyIdentity = netlifyIdentity;
-// var userLang = ( navigator.language || navigator.userLanguage).slice(0,2);
-// netlifyIdentity.init({ locale: userLang });
-
-// function modifyNetlifyAuth(){
-//   const tryAgainLater = () => {
-//       setTimeout( modifyNetlifyAuth, 100 );
-//       console.log("waiting...")
-//       return;
-//   }
-
-//   const modal = document.getElementById("netlify-identity-widget");
-//   if (!modal) return tryAgainLater()
-
-//   const modalDocument = modal.contentDocument;
-//   if ( modalDocument.body.innerHTML === '' ) return tryAgainLater();
-
-//   // Remove close button and callout
-//   [...modalDocument.querySelectorAll(".btnClose, .callOut")].forEach(
-//     node => node.style.display = 'none'
-//   );
-// }
-// modifyNetlifyAuth();
-
-// // 🎶️ Do you beleive in magic ✨️ (Not yet I don't)
-// import { Magic } from 'magic-sdk';
-// const magic = new Magic('pk_live_452F1F42DDE138C5');
-// window.magic = magic
-
 const App = ({ i18n }) => {
   const [ isLoading, setIsLoading ] = useState( true );
-  const [ token, setToken ] = useState('');
   const [ userInformation, setUserInformation ] = useState( null );
 
   if ( userInformation && userInformation.error === "User Does not exist" ) {
@@ -135,7 +104,6 @@ const App = ({ i18n }) => {
     setUserInformation( userInformationCopy );
 
     updateUserPost({
-      token,
       post: postData,
       userEmail: userInformation.email
     });
@@ -173,15 +141,6 @@ const App = ({ i18n }) => {
   // eslint-disable-next-line
   }, [userInformationIsNull])
 
-  // netlifyIdentity.on('login', user => {
-  //   console.log( 'logged in' );
-  //   netlifyIdentity.close();
-  //   setIsLoading( false );
-
-    // getUser().then( response => {
-    //     setUserInformation( response )
-    // })
-  // } );
   console.log( window.auth.currentUser() )
   if ( window.auth.currentUser() === null ) {
     return <LoginScreen setUserInformation={userInfo => {setUserInformation(userInfo); setIsLoading(false)}} />;
@@ -191,9 +150,6 @@ const App = ({ i18n }) => {
     if ( !window.hasFetchedToken ) {
       // Prevent repeating this more than once
       window.hasFetchedToken = true;
-      // const token = netlifyIdentity.currentUser().token.access_token;
-      
-      // setToken( token );
 
       getUser().then( userInfo => {
         setUserInformation( userInfo );
@@ -205,7 +161,7 @@ const App = ({ i18n }) => {
 
   if ( userInformation.error ) {
     // Gotta initialize the user!
-    return <InstagramSetup token={token} setUserInformation={setUserInformation} />
+    return <InstagramSetup setUserInformation={setUserInformation} />
   }
 
   if ( isLoading === true ) {
