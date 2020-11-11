@@ -37,7 +37,7 @@ msgstr "Afiliados"
 
 #: src/pages/loginScreen.js:125
 msgid "Already have an account?"
-msgstr ""
+msgstr "¿Ya tienes una cuenta?"
 
 #: src/pages/affiliateSettings.js:82
 msgid "Amazon Affiliate Account"
@@ -84,8 +84,8 @@ msgid "Delete"
 msgstr "Eliminar"
 
 #: src/pages/loginScreen.js:128
-msgid "Dont have an account yet?"
-msgstr ""
+msgid "Don't have an account yet?"
+msgstr "¿Aún no tienes una cuenta?"
 
 #: src/pages/editPost.js:69
 msgid "Edit Product"
@@ -105,7 +105,7 @@ msgstr "Editar {productName}"
 
 #: src/pages/loginScreen.js:113
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: src/pages/productSearch.js:158
 msgid "Found this product in your clipboard"
@@ -210,12 +210,9 @@ msgstr "Ajustes Actualizan"
 
 #: src/pages/loginScreen.js:83
 #: src/pages/loginScreen.js:117
-msgid "Sign Up"
-msgstr ""
-
 #: src/pages/loginScreen.js:128
-msgid "Sign up"
-msgstr ""
+msgid "Sign Up"
+msgstr "Regístrate"
 
 #: src/pages/loginScreen.js:36
 msgid "Signup requires a valid password"
@@ -267,7 +264,7 @@ msgstr "La URL de su perfil de Muah.bio se ha copiado en su portapapeles"
 
 #: src/pages/loginScreen.js:102
 msgid "Your Password"
-msgstr ""
+msgstr "Tu contraseña"
 
 #: src/pages/settings.js:82
 msgid "Your Website"
@@ -291,7 +288,7 @@ msgstr "etc"
 
 #: src/pages/loginScreen.js:96
 msgid "hello@example.com"
-msgstr ""
+msgstr "hola@ejemplo.com"
 
 #: src/App.tsx:166
 #: src/pages/profile.js:166

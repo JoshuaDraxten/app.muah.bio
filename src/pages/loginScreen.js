@@ -125,7 +125,7 @@ const LoginScreen = ({ i18n, setUserInformation }) => {
                                     <Trans>Already have an account?</Trans> <Trans>Log In</Trans>
                                 </> }
                                 { screenMode === 1 && <>
-                                    <Trans>Dont have an account yet?</Trans> <Trans>Sign up</Trans>
+                                    <Trans>Don't have an account yet?</Trans> <Trans>Sign Up</Trans>
                                 </> }
                             </a>
                         </form>

@@ -84,8 +84,12 @@ msgid "Delete"
 msgstr "Delete"
 
 #: src/pages/loginScreen.js:128
-msgid "Dont have an account yet?"
-msgstr "Dont have an account yet?"
+msgid "Don't have an account yet?"
+msgstr "Don't have an account yet?"
+
+#: src/pages/loginScreen.js:128
+#~ msgid "Dont have an account yet?"
+#~ msgstr "Dont have an account yet?"
 
 #: src/pages/editPost.js:69
 msgid "Edit Product"
@@ -214,12 +218,13 @@ msgstr "Settings Updated"
 
 #: src/pages/loginScreen.js:83
 #: src/pages/loginScreen.js:117
+#: src/pages/loginScreen.js:128
 msgid "Sign Up"
 msgstr "Sign Up"
 
 #: src/pages/loginScreen.js:128
-msgid "Sign up"
-msgstr "Sign up"
+#~ msgid "Sign up"
+#~ msgstr "Sign up"
 
 #: src/pages/loginScreen.js:36
 msgid "Signup requires a valid password"

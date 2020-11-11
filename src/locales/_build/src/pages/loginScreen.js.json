@@ -24,6 +24,10 @@
       [
         "src/pages/loginScreen.js",
         117
+      ],
+      [
+        "src/pages/loginScreen.js",
+        128
       ]
     ]
   },
@@ -83,15 +87,7 @@
       ]
     ]
   },
-  "Dont have an account yet?": {
-    "origin": [
-      [
-        "src/pages/loginScreen.js",
-        128
-      ]
-    ]
-  },
-  "Sign up": {
+  "Don't have an account yet?": {
     "origin": [
       [
         "src/pages/loginScreen.js",
