@@ -247,7 +247,7 @@ const App = ({ i18n }) => {
                 userInformation={userInformation}
                 setUserInformation={setUserInformation}/>
             }/>
-            <Route render={() => <Redirect to={hasAffiliateSetup ? "/"+profile : "/"+affiliates} />} />
+            <Route render={() => <Redirect to={"/"+profile} />} />
           </IonRouterOutlet>
           
           <IonTabBar slot="bottom">
