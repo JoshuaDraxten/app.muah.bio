@@ -33,9 +33,10 @@ const LoginScreen = ({ i18n, setUserInformation }) => {
 
     const translateError = ( error ) => {
         const translatedError = {
+            "An email address is required": i18n._("An email address is required"),
             "Signup requires a valid password": i18n._("Signup requires a valid password"),
             "A user with this email address has already been registered": i18n._("A user with this email address has already been registered"),
-
+            "No user found with that email, or password invalid.": i18n._("No user found with that email, or password invalid."),
         }[error];
 
         if ( translatedError ) return translatedError;
@@ -46,28 +47,30 @@ const LoginScreen = ({ i18n, setUserInformation }) => {
         setIsLoading( true );
         if ( screenMode === 0 ) {
             window.auth.signup( email, password )
-            .catch( err => {
-                setIsLoading( false );
-                setError( translateError( err.json.msg ) )
-            })
             // We just created this account, so there is no user account associated with it
             .then( () => {
                 window.auth.login( email, password, true ).then( () => {
                     setUserInformation({ error: "User doesnt exist" })
                 })
              } )
+            .catch( err => {
+                setIsLoading( false );
+                console.log( err.json )
+                setError( translateError( err.json.msg || err.json.error_description ) )
+            })
         }
 
         if ( screenMode === 1 ) {
             window.auth.login( email, password, true )
-                .catch( err => {
-                    setIsLoading( false );
-                    setError( translateError( err.json.msg ) )
-                })
                 .then( () => {
                     getUser().then( response => {
                         setUserInformation( response )
                     })
+                })
+                .catch( err => {
+                    setIsLoading( false );
+                    console.log( err.json )
+                    setError( translateError( err.json.msg || err.json.error_description ) )
                 })
         }
 

@@ -3,7 +3,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        29
+        27
       ]
     ]
   },
@@ -11,11 +11,11 @@
     "origin": [
       [
         "src/pages/settings.js",
-        63
+        61
       ],
       [
         "src/pages/settings.js",
-        74
+        72
       ]
     ]
   },
@@ -23,7 +23,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        66
+        64
       ]
     ]
   },
@@ -31,7 +31,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        79
+        77
       ]
     ]
   },
@@ -39,7 +39,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        82
+        80
       ]
     ]
   },
@@ -47,7 +47,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        92
+        90
       ]
     ]
   },
@@ -55,7 +55,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        97
+        95
       ]
     ]
   },
@@ -63,7 +63,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        101
+        99
       ]
     ]
   },
@@ -71,7 +71,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        108
+        106
       ]
     ]
   },
@@ -79,7 +79,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        111
+        109
       ]
     ]
   },
@@ -87,7 +87,7 @@
     "origin": [
       [
         "src/pages/settings.js",
-        114
+        112
       ]
     ]
   }

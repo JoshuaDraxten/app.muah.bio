@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/loginScreen.js:37
+#: src/pages/loginScreen.js:38
 msgid "A user with this email address has already been registered"
 msgstr "A user with this email address has already been registered"
 
@@ -25,17 +25,17 @@ msgstr "A user with this email address has already been registered"
 msgid "Affiliate Accounts Updated. Go to your profile to start tagging products!"
 msgstr "Affiliate Accounts Updated. Go to your profile to start tagging products!"
 
-#: src/pages/settings.js:101
+#: src/pages/settings.js:99
 msgid "Affiliate Disclaimer Text"
 msgstr "Affiliate Disclaimer Text"
 
-#: src/App.tsx:189
+#: src/App.tsx:153
 #: src/pages/affiliateSettings.js:53
 #: src/pages/affiliateSettings.js:64
 msgid "Affiliates"
 msgstr "Affiliates"
 
-#: src/pages/loginScreen.js:125
+#: src/pages/loginScreen.js:135
 msgid "Already have an account?"
 msgstr "Already have an account?"
 
@@ -47,15 +47,19 @@ msgstr "Amazon Affiliate Account"
 msgid "Amazon Tracking ID"
 msgstr "Amazon Tracking ID"
 
-#: src/pages/settings.js:29
+#: src/pages/loginScreen.js:36
+msgid "An email address is required"
+msgstr "An email address is required"
+
+#: src/pages/settings.js:27
 msgid "Are you sure you want to log out?"
 msgstr "Are you sure you want to log out?"
 
-#: src/pages/settings.js:79
+#: src/pages/settings.js:77
 msgid "Bio Page Display"
 msgstr "Bio Page Display"
 
-#: src/pages/settings.js:92
+#: src/pages/settings.js:90
 msgid "Button Text"
 msgstr "Button Text"
 
@@ -83,7 +87,7 @@ msgstr "Creating your account"
 msgid "Delete"
 msgstr "Delete"
 
-#: src/pages/loginScreen.js:128
+#: src/pages/loginScreen.js:138
 msgid "Don't have an account yet?"
 msgstr "Don't have an account yet?"
 
@@ -111,7 +115,7 @@ msgstr "Edit Product"
 msgid "Edit {productName}"
 msgstr "Edit {productName}"
 
-#: src/pages/loginScreen.js:113
+#: src/pages/loginScreen.js:121
 msgid "Error"
 msgstr "Error"
 
@@ -131,9 +135,9 @@ msgstr "If you dont have an affiliate relationship with anyone, you can <0>apply
 msgid "Instagram account doesnt exist or you are on a computer blocked by Instagram"
 msgstr "Instagram account doesnt exist or you are on a computer blocked by Instagram"
 
-#: src/pages/loginScreen.js:84
-#: src/pages/loginScreen.js:118
-#: src/pages/loginScreen.js:125
+#: src/pages/loginScreen.js:87
+#: src/pages/loginScreen.js:126
+#: src/pages/loginScreen.js:135
 msgid "Log In"
 msgstr "Log In"
 
@@ -141,13 +145,17 @@ msgstr "Log In"
 #~ msgid "Log In or Sign Up"
 #~ msgstr "Log In or Sign Up"
 
-#: src/pages/settings.js:111
+#: src/pages/settings.js:109
 msgid "Log Out"
 msgstr "Log Out"
 
 #: src/App.tsx:122
 #~ msgid "Muah.bio is currently invite only. We'll send you an invite in time"
 #~ msgstr "Muah.bio is currently invite only. We'll send you an invite in time"
+
+#: src/pages/loginScreen.js:39
+msgid "No user found with that email, or password invalid."
+msgstr "No user found with that email, or password invalid."
 
 #: src/pages/editPost.js:206
 msgid "Ok"
@@ -169,7 +177,7 @@ msgstr "Preview Profile"
 msgid "Product name"
 msgstr "Product name"
 
-#: src/App.tsx:184
+#: src/App.tsx:148
 #: src/pages/profile.js:109
 #: src/pages/profile.js:147
 msgid "Profile"
@@ -188,7 +196,7 @@ msgid "Remember to <0>connect your affiliate accounts</0> in settings to add pro
 msgstr "Remember to <0>connect your affiliate accounts</0> in settings to add products!"
 
 #: src/pages/affiliateSettings.js:56
-#: src/pages/settings.js:66
+#: src/pages/settings.js:64
 msgid "Save"
 msgstr "Save"
 
@@ -206,19 +214,19 @@ msgstr "Search for products or paste url"
 msgid "Search for products to tag this post with using the search bar below"
 msgstr "Search for products to tag this post with using the search bar below"
 
-#: src/App.tsx:194
-#: src/pages/settings.js:63
-#: src/pages/settings.js:74
+#: src/App.tsx:158
+#: src/pages/settings.js:61
+#: src/pages/settings.js:72
 msgid "Settings"
 msgstr "Settings"
 
-#: src/pages/settings.js:114
+#: src/pages/settings.js:112
 msgid "Settings Updated"
 msgstr "Settings Updated"
 
-#: src/pages/loginScreen.js:83
-#: src/pages/loginScreen.js:117
-#: src/pages/loginScreen.js:128
+#: src/pages/loginScreen.js:86
+#: src/pages/loginScreen.js:125
+#: src/pages/loginScreen.js:138
 msgid "Sign Up"
 msgstr "Sign Up"
 
@@ -226,7 +234,7 @@ msgstr "Sign Up"
 #~ msgid "Sign up"
 #~ msgstr "Sign up"
 
-#: src/pages/loginScreen.js:36
+#: src/pages/loginScreen.js:37
 msgid "Signup requires a valid password"
 msgstr "Signup requires a valid password"
 
@@ -238,7 +246,7 @@ msgstr "Tagged Products"
 msgid "URL"
 msgstr "URL"
 
-#: src/pages/settings.js:97
+#: src/pages/settings.js:95
 msgid "Visit Website"
 msgstr "Visit Website"
 
@@ -258,11 +266,11 @@ msgstr "You can find your Amazon Tracking ID by going <0>here</0>"
 msgid "You can find your Rakuten Web Services Token by going to <0>Links > Web Services</0> page in the rakuten advertizing dashboard"
 msgstr "You can find your Rakuten Web Services Token by going to <0>Links > Web Services</0> page in the rakuten advertizing dashboard"
 
-#: src/pages/settings.js:108
+#: src/pages/settings.js:106
 msgid "Your Account"
 msgstr "Your Account"
 
-#: src/pages/loginScreen.js:92
+#: src/pages/loginScreen.js:100
 msgid "Your Email Address"
 msgstr "Your Email Address"
 
@@ -278,11 +286,11 @@ msgstr "Your Muah.bio profile URL has been copied to your clipboard"
 #~ msgid "Your Muah.bio profile has been copied to your clipboard"
 #~ msgstr "Your Muah.bio profile has been copied to your clipboard"
 
-#: src/pages/loginScreen.js:102
+#: src/pages/loginScreen.js:110
 msgid "Your Password"
 msgstr "Your Password"
 
-#: src/pages/settings.js:82
+#: src/pages/settings.js:80
 msgid "Your Website"
 msgstr "Your Website"
 
@@ -290,7 +298,7 @@ msgstr "Your Website"
 msgid "Your trial account expires in {daysTillTrialIsOver} days"
 msgstr "Your trial account expires in {daysTillTrialIsOver} days"
 
-#: src/App.tsx:168
+#: src/App.tsx:132
 msgid "affiliates"
 msgstr "affiliates"
 
@@ -302,18 +310,18 @@ msgstr "etc"
 #~ msgid "ex: Lips"
 #~ msgstr "ex: Lips"
 
-#: src/pages/loginScreen.js:96
+#: src/pages/loginScreen.js:104
 msgid "hello@example.com"
 msgstr "hello@example.com"
 
-#: src/App.tsx:166
+#: src/App.tsx:130
 #: src/pages/profile.js:166
 #: src/pages/profile.js:171
 #: src/pages/profile.js:176
 msgid "profile"
 msgstr "profile"
 
-#: src/App.tsx:167
+#: src/App.tsx:131
 msgid "settings"
 msgstr "settings"
 
