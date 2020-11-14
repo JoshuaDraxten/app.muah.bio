@@ -62,8 +62,8 @@ function copyTextToClipboard(text) {
   });
 }
 
-const PostPreview = ({ url, post, onClick }) => (
-  <Link onClick={onClick} to={url}
+const PostPreview = ({ url, post }) => (
+  <Link to={url}
     key={post.id}
     className={"photo-grid__photo" + (post.products.length!==0 ? " published" : "")}
     style={{ backgroundImage: `linear-gradient(white, white), url('${ post.media_url }')` }}
@@ -71,7 +71,7 @@ const PostPreview = ({ url, post, onClick }) => (
 )
 
 const Profile = ({ i18n, history, userInformation, username, posts, updatePost}) => {
-  let { postId } = useParams();
+  const { postId } = useParams();
   const openedPost = posts.map( post => post.id ).indexOf( postId );
   
   const [ showProfileUrlOptions, setShowProfileUrlOptions ] = useState({ opened: false, event: undefined });

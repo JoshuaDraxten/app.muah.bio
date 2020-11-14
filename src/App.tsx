@@ -182,7 +182,7 @@ const App = ({ i18n }) => {
 
   return (
     <IonApp>
-      <IonReactRouter>
+      <IonReactRouter location={window.location}>
         <IonTabs>
           <IonRouterOutlet>
             <Route path={`/:tab(${profile})/:postId?`} exact={true} render={props => <div>
@@ -203,7 +203,7 @@ const App = ({ i18n }) => {
                 userInformation={userInformation}
                 setUserInformation={setUserInformation}/>
             }/>
-            <Route render={() => <Redirect to={"/"+profile} />} />
+            <Redirect exact from="/" to={"/"+profile} />
           </IonRouterOutlet>
           
           <IonTabBar slot="bottom">
