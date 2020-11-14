@@ -31,19 +31,11 @@
       ]
     ]
   },
-  "Sign Up": {
+  "Start your 14 day trial": {
     "origin": [
       [
         "src/pages/loginScreen.js",
-        86
-      ],
-      [
-        "src/pages/loginScreen.js",
-        125
-      ],
-      [
-        "src/pages/loginScreen.js",
-        138
+        95
       ]
     ]
   },
@@ -51,7 +43,7 @@
     "origin": [
       [
         "src/pages/loginScreen.js",
-        87
+        96
       ],
       [
         "src/pages/loginScreen.js",
@@ -92,6 +84,18 @@
       [
         "src/pages/loginScreen.js",
         121
+      ]
+    ]
+  },
+  "Sign Up": {
+    "origin": [
+      [
+        "src/pages/loginScreen.js",
+        125
+      ],
+      [
+        "src/pages/loginScreen.js",
+        138
       ]
     ]
   },

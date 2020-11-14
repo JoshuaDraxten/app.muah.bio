@@ -83,8 +83,7 @@ const LoginScreen = ({ i18n, setUserInformation }) => {
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    { screenMode === 0 &&  <IonTitle><Trans>Sign Up</Trans></IonTitle> }
-                    { screenMode === 1 &&  <IonTitle><Trans>Log In</Trans></IonTitle> }
+                    <IonTitle>Muah.bio</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>
@@ -93,7 +92,8 @@ const LoginScreen = ({ i18n, setUserInformation }) => {
                         <form className="login-form" onSubmit={handleLogin}>
                             <div style={{ textAlign: "center" }}>
                                 <img style={{maxWidth: "33%"}} alt="" src="/images/icons-192.png"/>
-                                <h2>Muah.bio</h2>
+                                { screenMode === 0 &&  <h3><Trans>Start your 14 day trial</Trans></h3> }
+                                { screenMode === 1 &&  <h3><Trans>Log In</Trans></h3> }
                                 <br />
                             </div>
                             <IonItem>

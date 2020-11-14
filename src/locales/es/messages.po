@@ -127,7 +127,7 @@ msgstr "Si no tiene una relación de afiliado con nadie, puede <0>postularse a S
 msgid "Instagram account doesnt exist or you are on a computer blocked by Instagram"
 msgstr "Esta cuenta de Instagram no existe o estás en una computadora bloqueada por Instagram"
 
-#: src/pages/loginScreen.js:87
+#: src/pages/loginScreen.js:96
 #: src/pages/loginScreen.js:126
 #: src/pages/loginScreen.js:135
 msgid "Log In"
@@ -216,7 +216,6 @@ msgstr "Ajustes"
 msgid "Settings Updated"
 msgstr "Ajustes Actualizan"
 
-#: src/pages/loginScreen.js:86
 #: src/pages/loginScreen.js:125
 #: src/pages/loginScreen.js:138
 msgid "Sign Up"
@@ -225,6 +224,10 @@ msgstr "Regístrate"
 #: src/pages/loginScreen.js:37
 msgid "Signup requires a valid password"
 msgstr "El registro requiere una contraseña válida"
+
+#: src/pages/loginScreen.js:95
+msgid "Start your 14 day trial"
+msgstr "Comience su prueba de 14 días"
 
 #: src/pages/editPost.js:161
 msgid "Tagged Products"

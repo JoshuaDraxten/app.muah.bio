@@ -135,7 +135,7 @@ msgstr "If you dont have an affiliate relationship with anyone, you can <0>apply
 msgid "Instagram account doesnt exist or you are on a computer blocked by Instagram"
 msgstr "Instagram account doesnt exist or you are on a computer blocked by Instagram"
 
-#: src/pages/loginScreen.js:87
+#: src/pages/loginScreen.js:96
 #: src/pages/loginScreen.js:126
 #: src/pages/loginScreen.js:135
 msgid "Log In"
@@ -224,7 +224,6 @@ msgstr "Settings"
 msgid "Settings Updated"
 msgstr "Settings Updated"
 
-#: src/pages/loginScreen.js:86
 #: src/pages/loginScreen.js:125
 #: src/pages/loginScreen.js:138
 msgid "Sign Up"
@@ -237,6 +236,10 @@ msgstr "Sign Up"
 #: src/pages/loginScreen.js:37
 msgid "Signup requires a valid password"
 msgstr "Signup requires a valid password"
+
+#: src/pages/loginScreen.js:95
+msgid "Start your 14 day trial"
+msgstr "Start your 14 day trial"
 
 #: src/pages/editPost.js:161
 msgid "Tagged Products"
