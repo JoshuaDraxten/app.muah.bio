@@ -90,7 +90,7 @@ const Profile = ({ i18n, history, userInformation, username, posts, updatePost})
 
   console.log( userInformation, posts )
 
-  const daysTillTrialIsOver = 30 - Math.floor((new Date() - new Date( userInformation.createDate )) / ( 1000 * 60 * 60 * 24 ) )
+  const daysTillTrialIsOver = 14 - Math.floor((new Date() - new Date( userInformation.createDate )) / ( 1000 * 60 * 60 * 24 ) )
 
   const noPublishedPosts = posts.filter( post => post.products.length > 0 ).length === 0;
 
