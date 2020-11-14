@@ -37,7 +37,7 @@
 
 .trial-warning {
     position: fixed;
-    bottom: 12px;
+    bottom: calc( 12px + 2.5 * env(safe-area-inset-bottom) );
     z-index: 100;
     width: 100%;
     text-align: center;
