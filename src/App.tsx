@@ -189,6 +189,7 @@ const App = ({ i18n }) => {
               <Profile
                 {...props}
                 userInformation={userInformation}
+                hasAffiliateSetup={hasAffiliateSetup}
                 username={userInformation.instagram.username}
                 posts={userInformation.posts}
                 updatePost={updatePost} />

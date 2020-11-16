@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   IonContent,
   IonHeader,
@@ -11,7 +11,6 @@ import {
   IonButton,
   IonButtons,
   IonLabel,
-  IonToast,
   IonChip
 } from '@ionic/react';
 import './profile.css';
@@ -32,25 +31,25 @@ const PostPreview = ({ url, post }) => (
   ></Link>
 )
 
-const Profile = ({ i18n, history, userInformation, username, posts, updatePost}) => {
+const Profile = ({ i18n, hasAffiliateSetup, history, userInformation, username, posts, updatePost}) => {
+  // If there's a post id defined in the url, open that post
   const { postId } = useParams();
   const openedPost = posts.map( post => post.id ).indexOf( postId );
-  
-  const [ toastMessage, setToastMessage ] = useState("");
 
-  console.log( userInformation, posts )
-
-  const daysTillTrialIsOver = 14 - Math.floor((new Date() - new Date( userInformation.createDate )) / ( 1000 * 60 * 60 * 24 ) )
-
+  const hasProAccount = false;
+  const daysTillTrialIsOver = 10 - Math.floor((new Date() - new Date( userInformation.createDate )) / ( 1000 * 60 * 60 * 24 ) )
   const noPublishedPosts = posts.filter( post => post.products.length > 0 ).length === 0;
 
-  const hasAffiliateSetup = (
-    Object.keys(userInformation.settings.affiliatePrograms).length > 0 &&
-    (
-      userInformation.settings.affiliatePrograms.amazon.trackingId ||
-      userInformation.settings.affiliatePrograms.rakuten.token
-    )
-  );
+  let upgradeWarning = {};
+  if ( !hasProAccount ) {
+    if ( daysTillTrialIsOver > -1 ) {
+      upgradeWarning.message = i18n._("Your trial account expires in {daysTillTrialIsOver} days", {daysTillTrialIsOver})
+      upgradeWarning.color = "warning";
+    } else {
+      upgradeWarning.message = i18n._("Upgrade your account to keep using Muah.bio")
+      upgradeWarning.color = "danger"
+    }
+  }
 
   return (
     <>
@@ -65,13 +64,6 @@ const Profile = ({ i18n, history, userInformation, username, posts, updatePost})
         </IonToolbar>
       </IonHeader>
 
-      <IonToast
-        isOpen={toastMessage.length > 0}
-        onDidDismiss={() => setToastMessage("")}
-        message={toastMessage}
-        duration={1000}
-      />
-
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
@@ -84,12 +76,11 @@ const Profile = ({ i18n, history, userInformation, username, posts, updatePost})
             {!hasAffiliateSetup && <p><Trans>Remember to <b>connect your affiliate accounts</b> in settings to add products!</Trans></p>}
           </div>
         : null }
-        { daysTillTrialIsOver > -1 &&
+        { upgradeWarning.message &&
           <div className="trial-warning">
-            <IonChip color={"warning"}><Trans>
-              Your trial account expires in {daysTillTrialIsOver} days
-            </Trans></IonChip>
-          </div>}
+            <IonChip color={upgradeWarning.color}>{upgradeWarning.message}</IonChip>
+          </div>
+        }
         <IonGrid style={{maxWidth: 1000}}>
           <IonRow>
             {posts.map((post, index) => (
@@ -107,7 +98,6 @@ const Profile = ({ i18n, history, userInformation, username, posts, updatePost})
             closePost={() => history.push('/'+i18n._("profile")+'/')} />
         </IonModal> : null}
       </IonContent>
-
     </>
   );
 }

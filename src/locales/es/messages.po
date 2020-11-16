@@ -170,8 +170,8 @@ msgid "Product name"
 msgstr "Nombre de producto"
 
 #: src/App.tsx:148
-#: src/pages/profile.js:106
-#: src/pages/profile.js:128
+#: src/pages/profile.js:58
+#: src/pages/profile.js:70
 msgid "Profile"
 msgstr "Perfil"
 
@@ -183,7 +183,7 @@ msgstr "Cuenta de afiliado de Rakuten"
 msgid "Rakuten Web Services Token"
 msgstr "Token de Servicios Web de Rakuten"
 
-#: src/pages/profile.js:134
+#: src/pages/profile.js:76
 msgid "Remember to <0>connect your affiliate accounts</0> in settings to add products!"
 msgstr "Recuerde <0>conectar sus cuentas de afiliados</0> en la configuración para agregar productos."
 
@@ -237,7 +237,11 @@ msgstr "Productos Etiquetados"
 msgid "URL"
 msgstr "URL"
 
-#: src/pages/profile.js:112
+#: src/pages/profile.js:49
+msgid "Upgrade your account to keep using Muah.bio"
+msgstr "Actualice su cuenta para seguir usando Muah.bio"
+
+#: src/pages/profile.js:61
 msgid "View Your Page"
 msgstr "Ver Su Página"
 
@@ -245,7 +249,7 @@ msgstr "Ver Su Página"
 msgid "Visit Website"
 msgstr "Visitar sitio"
 
-#: src/pages/profile.js:133
+#: src/pages/profile.js:75
 msgid "Welcome to Muah.bio! Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
 msgstr "Bienvenido a Muah.bio! Las publicaciones en gris no tienen productos asociados y no se mostrarán en su página. Haga clic en una publicación para agregar productos."
 
@@ -274,8 +278,8 @@ msgid "Your Instagram Username"
 msgstr "Tu nombre de usuario de Instagram"
 
 #: src/pages/profile.js:84
-msgid "Your Muah.bio profile URL has been copied to your clipboard"
-msgstr "La URL de su perfil de Muah.bio se ha copiado en su portapapeles"
+#~ msgid "Your Muah.bio profile URL has been copied to your clipboard"
+#~ msgstr "La URL de su perfil de Muah.bio se ha copiado en su portapapeles"
 
 #: src/pages/loginScreen.js:110
 msgid "Your Password"
@@ -285,7 +289,7 @@ msgstr "Tu contraseña"
 msgid "Your Website"
 msgstr "Tu sitio web"
 
-#: src/pages/profile.js:139
+#: src/pages/profile.js:46
 msgid "Your trial account expires in {daysTillTrialIsOver} days"
 msgstr "Su cuenta de prueba vence en {daysTillTrialIsOver} días"
 
@@ -306,9 +310,9 @@ msgid "hello@example.com"
 msgstr "hola@ejemplo.com"
 
 #: src/App.tsx:130
-#: src/pages/profile.js:147
-#: src/pages/profile.js:152
-#: src/pages/profile.js:157
+#: src/pages/profile.js:88
+#: src/pages/profile.js:93
+#: src/pages/profile.js:98
 msgid "profile"
 msgstr "perfil"
 

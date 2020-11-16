@@ -178,8 +178,8 @@ msgid "Product name"
 msgstr "Product name"
 
 #: src/App.tsx:148
-#: src/pages/profile.js:106
-#: src/pages/profile.js:128
+#: src/pages/profile.js:58
+#: src/pages/profile.js:70
 msgid "Profile"
 msgstr "Profile"
 
@@ -191,7 +191,7 @@ msgstr "Rakuten Affiliate Account"
 msgid "Rakuten Web Services Token"
 msgstr "Rakuten Web Services Token"
 
-#: src/pages/profile.js:134
+#: src/pages/profile.js:76
 msgid "Remember to <0>connect your affiliate accounts</0> in settings to add products!"
 msgstr "Remember to <0>connect your affiliate accounts</0> in settings to add products!"
 
@@ -249,7 +249,11 @@ msgstr "Tagged Products"
 msgid "URL"
 msgstr "URL"
 
-#: src/pages/profile.js:112
+#: src/pages/profile.js:49
+msgid "Upgrade your account to keep using Muah.bio"
+msgstr "Upgrade your account to keep using Muah.bio"
+
+#: src/pages/profile.js:61
 msgid "View Your Page"
 msgstr "View Your Page"
 
@@ -257,7 +261,7 @@ msgstr "View Your Page"
 msgid "Visit Website"
 msgstr "Visit Website"
 
-#: src/pages/profile.js:133
+#: src/pages/profile.js:75
 msgid "Welcome to Muah.bio! Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
 msgstr "Welcome to Muah.bio! Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
 
@@ -286,8 +290,8 @@ msgid "Your Instagram Username"
 msgstr "Your Instagram Username"
 
 #: src/pages/profile.js:84
-msgid "Your Muah.bio profile URL has been copied to your clipboard"
-msgstr "Your Muah.bio profile URL has been copied to your clipboard"
+#~ msgid "Your Muah.bio profile URL has been copied to your clipboard"
+#~ msgstr "Your Muah.bio profile URL has been copied to your clipboard"
 
 #: src/pages/profile.js:82
 #~ msgid "Your Muah.bio profile has been copied to your clipboard"
@@ -301,7 +305,7 @@ msgstr "Your Password"
 msgid "Your Website"
 msgstr "Your Website"
 
-#: src/pages/profile.js:139
+#: src/pages/profile.js:46
 msgid "Your trial account expires in {daysTillTrialIsOver} days"
 msgstr "Your trial account expires in {daysTillTrialIsOver} days"
 
@@ -322,9 +326,9 @@ msgid "hello@example.com"
 msgstr "hello@example.com"
 
 #: src/App.tsx:130
-#: src/pages/profile.js:147
-#: src/pages/profile.js:152
-#: src/pages/profile.js:157
+#: src/pages/profile.js:88
+#: src/pages/profile.js:93
+#: src/pages/profile.js:98
 msgid "profile"
 msgstr "profile"
 

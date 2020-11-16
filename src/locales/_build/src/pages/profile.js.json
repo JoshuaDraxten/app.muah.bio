@@ -1,9 +1,17 @@
 {
-  "Your Muah.bio profile URL has been copied to your clipboard": {
+  "Your trial account expires in {daysTillTrialIsOver} days": {
     "origin": [
       [
         "src/pages/profile.js",
-        84
+        46
+      ]
+    ]
+  },
+  "Upgrade your account to keep using Muah.bio": {
+    "origin": [
+      [
+        "src/pages/profile.js",
+        49
       ]
     ]
   },
@@ -11,11 +19,11 @@
     "origin": [
       [
         "src/pages/profile.js",
-        106
+        58
       ],
       [
         "src/pages/profile.js",
-        128
+        70
       ]
     ]
   },
@@ -23,7 +31,7 @@
     "origin": [
       [
         "src/pages/profile.js",
-        112
+        61
       ]
     ]
   },
@@ -31,7 +39,7 @@
     "origin": [
       [
         "src/pages/profile.js",
-        133
+        75
       ]
     ]
   },
@@ -39,15 +47,7 @@
     "origin": [
       [
         "src/pages/profile.js",
-        134
-      ]
-    ]
-  },
-  "Your trial account expires in {daysTillTrialIsOver} days": {
-    "origin": [
-      [
-        "src/pages/profile.js",
-        139
+        76
       ]
     ]
   },
@@ -55,15 +55,15 @@
     "origin": [
       [
         "src/pages/profile.js",
-        147
+        88
       ],
       [
         "src/pages/profile.js",
-        152
+        93
       ],
       [
         "src/pages/profile.js",
-        157
+        98
       ]
     ]
   }
