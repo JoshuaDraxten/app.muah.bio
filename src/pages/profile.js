@@ -10,9 +10,6 @@ import {
   IonModal,
   IonButton,
   IonButtons,
-  IonPopover,
-  IonList,
-  IonItem,
   IonLabel,
   IonToast,
   IonChip
@@ -108,31 +105,15 @@ const Profile = ({ i18n, history, userInformation, username, posts, updatePost})
         <IonToolbar>
           <IonTitle><Trans>Profile</Trans></IonTitle>
           <IonButtons slot="end">
-              <IonButton>
-                <div onClick={openPopover}>muah.bio/{username}</div>
+              <IonButton
+                href={"https://muah.bio/"+username} target="_blank"
+                button onClick={()=>setShowProfileUrlOptions({open: false, event: undefined})}
+              >
+                <IonLabel><Trans>View Your Page</Trans></IonLabel>
               </IonButton>
             </IonButtons>
         </IonToolbar>
       </IonHeader>
-
-      <IonPopover
-        isOpen={showProfileUrlOptions.open}
-        event={showProfileUrlOptions.event}
-        onDidDismiss={()=>setShowProfileUrlOptions({open: false, event: undefined})}
-        cssClass='my-custom-class'
-      >
-        <IonList>
-          <IonItem button onClick={copyToUrlToClipboard}>
-            <IonLabel><Trans>Copy Url</Trans></IonLabel>
-          </IonItem>
-          <IonItem
-            href={"https://muah.bio/"+username} target="_blank"
-            button onClick={()=>setShowProfileUrlOptions({open: false, event: undefined})}
-          >
-            <IonLabel><Trans>Preview Profile</Trans></IonLabel>
-          </IonItem>
-        </IonList>
-      </IonPopover>
 
       <IonToast
         isOpen={toastMessage.length > 0}

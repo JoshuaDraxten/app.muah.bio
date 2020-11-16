@@ -76,8 +76,8 @@ msgid "Connect your instagram account to start tagging your posts"
 msgstr "Conecte su cuenta de Instagram para comenzar a etiquetar sus publicaciones"
 
 #: src/pages/profile.js:126
-msgid "Copy Url"
-msgstr "Copiar Url"
+#~ msgid "Copy Url"
+#~ msgstr "Copiar Url"
 
 #: src/pages/instagramSetup.js:105
 msgid "Creating your account"
@@ -162,16 +162,16 @@ msgid "Optional product tag (ex: lips)"
 msgstr "Etiqueta de producto opcional (p. Ej., Labios)"
 
 #: src/pages/profile.js:132
-msgid "Preview Profile"
-msgstr "Vista Previa"
+#~ msgid "Preview Profile"
+#~ msgstr "Vista Previa"
 
 #: src/pages/editPost.js:181
 msgid "Product name"
 msgstr "Nombre de producto"
 
 #: src/App.tsx:148
-#: src/pages/profile.js:109
-#: src/pages/profile.js:147
+#: src/pages/profile.js:106
+#: src/pages/profile.js:128
 msgid "Profile"
 msgstr "Perfil"
 
@@ -183,7 +183,7 @@ msgstr "Cuenta de afiliado de Rakuten"
 msgid "Rakuten Web Services Token"
 msgstr "Token de Servicios Web de Rakuten"
 
-#: src/pages/profile.js:153
+#: src/pages/profile.js:134
 msgid "Remember to <0>connect your affiliate accounts</0> in settings to add products!"
 msgstr "Recuerde <0>conectar sus cuentas de afiliados</0> en la configuración para agregar productos."
 
@@ -237,11 +237,15 @@ msgstr "Productos Etiquetados"
 msgid "URL"
 msgstr "URL"
 
+#: src/pages/profile.js:112
+msgid "View Your Page"
+msgstr "Ver Su Página"
+
 #: src/pages/settings.js:95
 msgid "Visit Website"
 msgstr "Visitar sitio"
 
-#: src/pages/profile.js:152
+#: src/pages/profile.js:133
 msgid "Welcome to Muah.bio! Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
 msgstr "Bienvenido a Muah.bio! Las publicaciones en gris no tienen productos asociados y no se mostrarán en su página. Haga clic en una publicación para agregar productos."
 
@@ -269,7 +273,7 @@ msgstr "Tu correo electrónico"
 msgid "Your Instagram Username"
 msgstr "Tu nombre de usuario de Instagram"
 
-#: src/pages/profile.js:87
+#: src/pages/profile.js:84
 msgid "Your Muah.bio profile URL has been copied to your clipboard"
 msgstr "La URL de su perfil de Muah.bio se ha copiado en su portapapeles"
 
@@ -281,7 +285,7 @@ msgstr "Tu contraseña"
 msgid "Your Website"
 msgstr "Tu sitio web"
 
-#: src/pages/profile.js:158
+#: src/pages/profile.js:139
 msgid "Your trial account expires in {daysTillTrialIsOver} days"
 msgstr "Su cuenta de prueba vence en {daysTillTrialIsOver} días"
 
@@ -302,9 +306,9 @@ msgid "hello@example.com"
 msgstr "hola@ejemplo.com"
 
 #: src/App.tsx:130
-#: src/pages/profile.js:166
-#: src/pages/profile.js:171
-#: src/pages/profile.js:176
+#: src/pages/profile.js:147
+#: src/pages/profile.js:152
+#: src/pages/profile.js:157
 msgid "profile"
 msgstr "perfil"
 

@@ -3,7 +3,7 @@
     "origin": [
       [
         "src/pages/profile.js",
-        87
+        84
       ]
     ]
   },
@@ -11,27 +11,19 @@
     "origin": [
       [
         "src/pages/profile.js",
-        109
+        106
       ],
       [
         "src/pages/profile.js",
-        147
+        128
       ]
     ]
   },
-  "Copy Url": {
+  "View Your Page": {
     "origin": [
       [
         "src/pages/profile.js",
-        126
-      ]
-    ]
-  },
-  "Preview Profile": {
-    "origin": [
-      [
-        "src/pages/profile.js",
-        132
+        112
       ]
     ]
   },
@@ -39,7 +31,7 @@
     "origin": [
       [
         "src/pages/profile.js",
-        152
+        133
       ]
     ]
   },
@@ -47,7 +39,7 @@
     "origin": [
       [
         "src/pages/profile.js",
-        153
+        134
       ]
     ]
   },
@@ -55,7 +47,7 @@
     "origin": [
       [
         "src/pages/profile.js",
-        158
+        139
       ]
     ]
   },
@@ -63,15 +55,15 @@
     "origin": [
       [
         "src/pages/profile.js",
-        166
+        147
       ],
       [
         "src/pages/profile.js",
-        171
+        152
       ],
       [
         "src/pages/profile.js",
-        176
+        157
       ]
     ]
   }
