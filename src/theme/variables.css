@@ -14,6 +14,8 @@ http://ionicframework.com/docs/theming/ */
   /* Custom */
   --ion-grid-padding: 0;
   --ion-grid-column-padding: 0;
+  --ion-background-color: #ffffff;
+  --ion-background-color-rgb: 255,255,255;
 
   /** primary **/
   --ion-color-primary: #3880ff;

@@ -1,0 +1,16 @@
+.payment-page {
+    height: 100%;;
+    padding: 20px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.payment-page form {
+    width: 100%;
+}
+.StripeElement {
+    background: #eee;
+    padding: 20px;
+    border-radius: 4px;
+    margin: 4px 2px 14px;
+}

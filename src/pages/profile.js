@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   IonContent,
   IonHeader,
@@ -14,6 +14,9 @@ import {
   IonChip
 } from '@ionic/react';
 import './profile.css';
+
+// Pages
+import UpgradeAccount from './upgradeAccount';
 import EditPost from './editPost'
 
 import { useParams } from 'react-router';
@@ -32,24 +35,32 @@ const PostPreview = ({ url, post }) => (
 )
 
 const Profile = ({ i18n, hasAffiliateSetup, history, userInformation, username, posts, updatePost}) => {
+  const [ upgradeModalIsOpen, setUpgradeModalIsOpen ] = useState( false );
   // If there's a post id defined in the url, open that post
   const { postId } = useParams();
   const openedPost = posts.map( post => post.id ).indexOf( postId );
 
   const hasProAccount = false;
-  const daysTillTrialIsOver = 10 - Math.floor((new Date() - new Date( userInformation.createDate )) / ( 1000 * 60 * 60 * 24 ) )
+  const daysTillTrialIsOver = 14 - Math.floor((new Date() - new Date( userInformation.createDate )) / ( 1000 * 60 * 60 * 24 ) )
   const noPublishedPosts = posts.filter( post => post.products.length > 0 ).length === 0;
 
-  let upgradeWarning = {};
-  if ( !hasProAccount ) {
-    if ( daysTillTrialIsOver > -1 ) {
-      upgradeWarning.message = i18n._("Your trial account expires in {daysTillTrialIsOver} days", {daysTillTrialIsOver})
-      upgradeWarning.color = "warning";
-    } else {
-      upgradeWarning.message = i18n._("Upgrade your account to keep using Muah.bio")
-      upgradeWarning.color = "danger"
+  const [ upgradeWarning, setUpgradeWarning ] = useState({});
+  useEffect(() => {
+    if ( !hasProAccount ) {
+      if ( daysTillTrialIsOver > -1 ) {
+        setUpgradeWarning({
+          message: i18n._("Your trial account expires in {daysTillTrialIsOver} days", {daysTillTrialIsOver}),
+          color: "warning"
+        });
+      } else {
+        setUpgradeWarning({
+          message: i18n._("Upgrade your account to keep using Muah.bio"),
+          color: "danger"
+        });
+        setUpgradeModalIsOpen( true );
+      }
     }
-  }
+  }, [ i18n, hasProAccount, daysTillTrialIsOver ])
 
   return (
     <>
@@ -77,7 +88,7 @@ const Profile = ({ i18n, hasAffiliateSetup, history, userInformation, username, 
           </div>
         : null }
         { upgradeWarning.message &&
-          <div className="trial-warning">
+          <div className="trial-warning" onClick={()=>setUpgradeModalIsOpen(true)}>
             <IonChip color={upgradeWarning.color}>{upgradeWarning.message}</IonChip>
           </div>
         }
@@ -90,13 +101,18 @@ const Profile = ({ i18n, hasAffiliateSetup, history, userInformation, username, 
             ))}
           </IonRow>
         </IonGrid>
-        { openedPost !== -1 ? <IonModal isOpen={openedPost !== -1} onDidDismiss={() => history.push('/'+i18n._("profile")+'/')}>
+        <IonModal isOpen={openedPost !== -1} onDidDismiss={() => history.push('/'+i18n._("profile")+'/')}>
           <EditPost
             userInformation={userInformation}
             post={posts[openedPost]}
             updatePost={updatePost}
             closePost={() => history.push('/'+i18n._("profile")+'/')} />
-        </IonModal> : null}
+        </IonModal>
+
+        <IonModal isOpen={upgradeModalIsOpen} onDidDismiss={()=>setUpgradeModalIsOpen(false)}>
+          <UpgradeAccount closeModal={() => setUpgradeModalIsOpen(false)} />
+        </IonModal>
+
       </IonContent>
     </>
   );
