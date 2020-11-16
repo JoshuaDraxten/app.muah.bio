@@ -24,41 +24,6 @@ import { Link } from 'react-router-dom';
 import { Trans } from '@lingui/macro';
 import { withI18n } from "@lingui/react"
 
-function fallbackCopyTextToClipboard(text) {
-  var textArea = document.createElement("textarea");
-  textArea.value = text;
-  
-  // Avoid scrolling to bottom
-  textArea.style.top = "0";
-  textArea.style.left = "0";
-  textArea.style.position = "fixed";
-
-  document.body.appendChild(textArea);
-  textArea.focus();
-  textArea.select();
-
-  try {
-    var successful = document.execCommand('copy');
-    var msg = successful ? 'successful' : 'unsuccessful';
-    console.log('Fallback: Copying text command was ' + msg);
-  } catch (err) {
-    console.error('Fallback: Oops, unable to copy', err);
-  }
-
-  document.body.removeChild(textArea);
-}
-function copyTextToClipboard(text) {
-  if (!navigator.clipboard) {
-    fallbackCopyTextToClipboard(text);
-    return;
-  }
-  navigator.clipboard.writeText(text).then(function() {
-    console.log('Async: Copying to clipboard was successful!');
-  }, function(err) {
-    console.error('Async: Could not copy text: ', err);
-  });
-}
-
 const PostPreview = ({ url, post }) => (
   <Link to={url}
     key={post.id}
@@ -71,19 +36,7 @@ const Profile = ({ i18n, history, userInformation, username, posts, updatePost})
   const { postId } = useParams();
   const openedPost = posts.map( post => post.id ).indexOf( postId );
   
-  const [ showProfileUrlOptions, setShowProfileUrlOptions ] = useState({ opened: false, event: undefined });
   const [ toastMessage, setToastMessage ] = useState("");
-
-  function openPopover( event ){
-    event.persist();
-    setShowProfileUrlOptions({open: true, event});
-  }
-
-  function copyToUrlToClipboard() {
-    copyTextToClipboard("https://muah.bio/"+username);
-    setToastMessage(i18n._("Your Muah.bio profile URL has been copied to your clipboard"));
-    setShowProfileUrlOptions({open: false, event: undefined})
-  }
 
   console.log( userInformation, posts )
 
@@ -105,10 +58,7 @@ const Profile = ({ i18n, history, userInformation, username, posts, updatePost})
         <IonToolbar>
           <IonTitle><Trans>Profile</Trans></IonTitle>
           <IonButtons slot="end">
-              <IonButton
-                href={"https://muah.bio/"+username} target="_blank"
-                button onClick={()=>setShowProfileUrlOptions({open: false, event: undefined})}
-              >
+              <IonButton href={"https://muah.bio/"+username} target="_blank">
                 <IonLabel><Trans>View Your Page</Trans></IonLabel>
               </IonButton>
             </IonButtons>
