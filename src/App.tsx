@@ -27,6 +27,7 @@ import getUser from './api/getUser';
 import addUserPost from "./api/addUserPost";
 import updateUserPost from './api/updateUserPost';
 import clientSideGetIGGosts from './api/clientSideGetIGPosts';
+import updateSubscriptionInDb from './api/updateSubscription';
 
 import { Route, Redirect } from "react-router-dom";
 
@@ -91,6 +92,16 @@ const App = ({ i18n }) => {
     });
   }
 
+  const updateSubscriptionInformation = subscription => {
+    
+    let userInformationCopy = { ...userInformation }
+    userInformationCopy.subscription = subscription; 
+    setUserInformation( userInformationCopy );
+    console.log( userInformationCopy )
+
+    updateSubscriptionInDb( subscription );
+  }
+
   const updatePost = ( postId, postData ) => {
     console.log("Calling update post")
     const { posts } = userInformation;
@@ -141,7 +152,6 @@ const App = ({ i18n }) => {
   // eslint-disable-next-line
   }, [userInformationIsNull])
 
-  console.log( window.auth.currentUser() )
   if ( window.auth.currentUser() === null ) {
     return <LoginScreen setUserInformation={userInfo => {setUserInformation(userInfo); setIsLoading(false)}} />;
   }
@@ -189,6 +199,7 @@ const App = ({ i18n }) => {
               <Profile
                 {...props}
                 userInformation={userInformation}
+                updateSubscriptionInformation={updateSubscriptionInformation}
                 hasAffiliateSetup={hasAffiliateSetup}
                 username={userInformation.instagram.username}
                 posts={userInformation.posts}

@@ -156,7 +156,7 @@ function EditPost({ i18n, userInformation, post, updatePost, closePost } ){
           onClick={ ()=>setExpandedHeader( x=>!x ) }
         ></div>
         { products.length !== 0 ? 
-          <div>
+          <div style={{paddingBottom: 50}}>
             <IonListHeader>
               <IonLabel><Trans>Tagged Products</Trans></IonLabel>
             </IonListHeader>

@@ -8,7 +8,8 @@ const splashScreenStyle = {
 }
 const splashScreenH2 = {
   fontSize: "48px",
-  margin: 0
+  margin: 0,
+  color: "var(--ion-text-color)"
 }
 
 export default () => {

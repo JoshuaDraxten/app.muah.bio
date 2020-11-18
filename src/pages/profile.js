@@ -11,9 +11,12 @@ import {
   IonButton,
   IonButtons,
   IonLabel,
-  IonChip
+  IonChip,
+  IonAlert
 } from '@ionic/react';
 import './profile.css';
+
+import Confetti from 'react-confetti';
 
 // Pages
 import UpgradeAccount from './upgradeAccount';
@@ -34,13 +37,28 @@ const PostPreview = ({ url, post }) => (
   ></Link>
 )
 
-const Profile = ({ i18n, hasAffiliateSetup, history, userInformation, username, posts, updatePost}) => {
-  const [ upgradeModalIsOpen, setUpgradeModalIsOpen ] = useState( false );
+const Profile = ({
+  i18n,
+  hasAffiliateSetup,
+  history,
+  userInformation,
+  username,
+  posts,
+  updatePost,
+  updateSubscriptionInformation
+}) => {
   // If there's a post id defined in the url, open that post
+  const [ showWelcomeConfetti, setShowWelcomeConfetti ] = useState(false);
   const { postId } = useParams();
   const openedPost = posts.map( post => post.id ).indexOf( postId );
+  const upgradeModalIsOpen = postId === i18n._("upgrade");
 
-  const hasProAccount = false;
+  const hasProAccount = (
+    // There's a subscription
+    userInformation.subscription &&
+    // And it hasn't expired
+    new Date(userInformation.subscription.current_period_end*1000) > new Date()
+  );
   const daysTillTrialIsOver = 14 - Math.floor((new Date() - new Date( userInformation.createDate )) / ( 1000 * 60 * 60 * 24 ) )
   const noPublishedPosts = posts.filter( post => post.products.length > 0 ).length === 0;
 
@@ -57,10 +75,13 @@ const Profile = ({ i18n, hasAffiliateSetup, history, userInformation, username, 
           message: i18n._("Upgrade your account to keep using Muah.bio"),
           color: "danger"
         });
-        setUpgradeModalIsOpen( true );
+        history.push(`/${i18n._("profile")}/${i18n._("upgrade")}`)
       }
+    } else {
+      setUpgradeWarning({});
+      setShowWelcomeConfetti( true );
     }
-  }, [ i18n, hasProAccount, daysTillTrialIsOver ])
+  }, [ i18n, hasProAccount, daysTillTrialIsOver, history ])
 
   return (
     <>
@@ -88,7 +109,7 @@ const Profile = ({ i18n, hasAffiliateSetup, history, userInformation, username, 
           </div>
         : null }
         { upgradeWarning.message &&
-          <div className="trial-warning" onClick={()=>setUpgradeModalIsOpen(true)}>
+          <div className="trial-warning" onClick={()=>history.push(`/${i18n._("profile")}/${i18n._("upgrade")}`)}>
             <IonChip color={upgradeWarning.color}>{upgradeWarning.message}</IonChip>
           </div>
         }
@@ -109,10 +130,23 @@ const Profile = ({ i18n, hasAffiliateSetup, history, userInformation, username, 
             closePost={() => history.push('/'+i18n._("profile")+'/')} />
         </IonModal>
 
-        <IonModal isOpen={upgradeModalIsOpen} onDidDismiss={()=>setUpgradeModalIsOpen(false)}>
-          <UpgradeAccount closeModal={() => setUpgradeModalIsOpen(false)} />
+        <IonModal isOpen={upgradeModalIsOpen} onDidDismiss={()=>history.push(`/${i18n._("profile")}/}`)}>
+          <UpgradeAccount
+            updateSubscriptionInformation={updateSubscriptionInformation}
+            stripeCustomerId={userInformation.stripeCustomerId}
+            closeModal={() => history.push(`/${i18n._("profile")}/`)}
+          />
         </IonModal>
-
+        { showWelcomeConfetti ? <>
+          <IonAlert
+            isOpen={true}
+            header={i18n._("You're all set up!")}
+            message={i18n._("Manage your subscription in the \"Settings\" tab")}
+            buttons={['OK']}
+            onDidDismiss={()=>setShowWelcomeConfetti(false)}
+          />
+          <Confetti />
+        </> : null }
       </IonContent>
     </>
   );

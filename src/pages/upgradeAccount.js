@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { arrowForward, closeCircle } from 'ionicons/icons';
+import createSubscription from '../api/createSubscription';
+
+import { closeCircle } from 'ionicons/icons';
 import {
+  IonLoading,
   IonButtons,
   IonButton,
   IonContent,
@@ -9,6 +12,7 @@ import {
 } from '@ionic/react';
 
 // Internationalization
+import { withI18n } from "@lingui/react"
 import { Trans } from '@lingui/macro';
 
 import { Elements as StripeElements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
@@ -17,38 +21,23 @@ import { loadStripe } from '@stripe/stripe-js';
 // Style
 import './upgradeAccount.css';
 
-// Make sure to call `loadStripe` outside of a component’s render to avoid
-// recreating the `Stripe` object on every render.
-const stripePromise = loadStripe('pk_test_JJ1eMdKN0Hp4UFJ6kWXWO4ix00jtXzq5XG');
+const retryInvoiceWithNewPaymentMethod = () => {}
 
-const CARD_OPTIONS = {
-  // iconStyle: 'solid',
-  // style: {
-  //   base: {
-  //     iconColor: '#c4f0ff',
-  //     color: '#fff',
-  //     fontWeight: 500,
-  //     fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
-  //     fontSize: '16px',
-  //     fontSmoothing: 'antialiased',
-  //     ':-webkit-autofill': {color: '#fce883'},
-  //     '::placeholder': {color: '#87bbfd'},
-  //   },
-  //   invalid: {
-  //     iconColor: '#ffc7ee',
-  //     color: '#ffc7ee',
-  //   },
-  // },
-};
+const stripePromise = loadStripe('pk_test_8TVPVl4EIEjHUXSOlc0fTClc00XQjq863Q');
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ stripeCustomerId, handleError, setIsLoading, closeModal, updateSubscriptionInformation }) => {
   const stripe = useStripe();
   const elements = useElements();
+
+  const priceId = "price_1HoaokGmFqrQMNciETkkmcWe";
+  var userLang = ( navigator.language || navigator.userLanguage);
+  const priceString = Intl.NumberFormat(userLang, {maximumSignificantDigits: 1, style: 'currency', currency: "usd" }).format(30)
 
   const handleSubmit = async (event) => {
     // We don't want to let default form submission happen here,
     // which would refresh the page.
     event.preventDefault();
+    setIsLoading(true);
 
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
@@ -56,37 +45,75 @@ const CheckoutForm = () => {
       return;
     }
 
-    const result = await stripe.confirmCardPayment('{CLIENT_SECRET}', {
-      payment_method: {
-        card: elements.getElement(CardElement),
+    // Get a reference to a mounted CardElement. Elements knows how
+    // to find your CardElement because there can only ever be one of
+    // each type of element.
+    const cardElement = elements.getElement(CardElement);
+
+    // If a previous payment was attempted, get the latest invoice
+    const latestInvoicePaymentIntentStatus = localStorage.getItem(
+      'latestInvoicePaymentIntentStatus'
+    );
+
+    // Payment was successful.
+    const onSubscriptionComplete = result => {
+      if (result.subscription.status === 'active') {
+
+        // Save subscription data to database
+        const { id, current_period_end, customer } = result.subscription;
+        const product = result.subscription.items.data[0].price.product;
+        
+        updateSubscriptionInformation({
+          id, current_period_end, customer, product
+        });
+
+        closeModal();
       }
+    }
+
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: cardElement,
     });
 
-    if (result.error) {
-      // Show error to your customer (e.g., insufficient funds)
-      console.log(result.error.message);
+    if (error) {
+      console.log('[createPaymentMethod error]', error);
+      handleError( error );
     } else {
-      // The payment has been processed!
-      if (result.paymentIntent.status === 'succeeded') {
-        // Show a success message to your customer
-        // There's a risk of the customer closing the window before callback
-        // execution. Set up a webhook or plugin to listen for the
-        // payment_intent.succeeded event that handles any business critical
-        // post-payment actions.
+      console.log('[PaymentMethod]', paymentMethod);
+      const paymentMethodId = paymentMethod.id;
+      if (latestInvoicePaymentIntentStatus === 'requires_payment_method') {
+        // Update the payment method and retry invoice payment
+        const invoiceId = localStorage.getItem('latestInvoiceId');
+        retryInvoiceWithNewPaymentMethod({
+          stripeCustomerId,
+          paymentMethodId,
+          invoiceId,
+          priceId,
+        });
+      } else {
+        // Create the subscription
+        createSubscription({
+          customerId: stripeCustomerId,
+          paymentMethodId,
+          priceId,
+          onSubscriptionComplete
+        }).catch(handleError)
       }
     }
   };
   
   return <form onSubmit={ handleSubmit }>
-      <CardElement options={CARD_OPTIONS} disabled={!stripe}/>
-      <IonButton type="submit" size="large" expand="block">
-        <Trans>Upgrade for $30/month</Trans>
-        {/* <IonIcon icon={arrowForward} /> */}
+      <CardElement disabled={!stripe}/>
+      <IonButton type="submit" size="large" expand="block" className="ion-text-wrap">
+        <Trans>Upgrade for {priceString}/month</Trans>
       </IonButton>
   </form>
 }
 
-export default ({ closeModal }) => {
+const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscriptionInformation }) => {
+  const [ isLoading, setIsLoading ] = useState( false );
+
   return <IonContent fullscreen>
     <div className=".header-buttons">
       <IonButtons slot="end" className="header-buttons">
@@ -103,9 +130,20 @@ export default ({ closeModal }) => {
       </div>
       <br />
       <StripeElements stripe={stripePromise}>
-        <CheckoutForm />
+        <CheckoutForm
+          stripeCustomerId={stripeCustomerId}
+          handleError={error => alert(error)}
+          setIsLoading={setIsLoading}
+          closeModal={closeModal}
+          updateSubscriptionInformation={updateSubscriptionInformation} />
       </StripeElements>
       <p style={{textAlign: 'center', fontSize: 12}}><Trans>Here we put information about our payment policy and the like</Trans></p>
     </div>
+    <IonLoading
+      isOpen={isLoading}
+      message={i18n._("Processing your payment")}
+    />
   </IonContent>
 }
+
+export default withI18n()(UpgradeAccount);

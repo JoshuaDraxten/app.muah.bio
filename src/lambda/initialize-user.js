@@ -1,11 +1,7 @@
-const fetch = require('node-fetch');
+const stripe = require('stripe')('sk_test_FbahxVVYcD4w8X5qzFjXvR8300fRDtI94e');
+
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://joshuad:!7PrMT6ww&LqZDxgRU@cluster0.5j0rh.mongodb.net/user_data?retryWrites=true&w=majority";
-
-/**
- * To use this function visit 
- * https://app.muah.bio/.netlify/functions/initialize-user?user_id=<userId>&ig_username=<ig_username>
- */
 
 let cachedDb = null;
 function connectToDatabase (uri) {
@@ -24,7 +20,11 @@ function connectToDatabase (uri) {
 }
 
 const generateUser = async ({ ig_username, email, posts }) => {
+  // Create the stripe user
+  const customer = await stripe.customers.create({ email });
+
   return {
+    stripeCustomerId: customer.id,
     posts,
     email,
     instagram: {
@@ -61,14 +61,21 @@ exports.handler = async ( event, context ) => {
 
     const newUser = await generateUser( { ig_username, email, posts } );
 
+    console.log( newUser )
+
+    // Insert the user into the database
     return collection.insertOne(newUser)
-        .catch( err => ({
-            statusCode: 500,
-            body: JSON.stringify(err)
-        }))
-        .then( () => ({
-            statusCode: 200,
-            body: JSON.stringify(newUser)
-        }));
+
+    // If there's an error, return that
+    .catch( err => ({
+        statusCode: 500,
+        body: JSON.stringify(err)
+    }))
+
+    // If there arent any issues, return the user
+    .then( () => ({
+        statusCode: 200,
+        body: JSON.stringify(newUser)
+    }));
 
 }
