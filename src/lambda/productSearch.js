@@ -2,7 +2,6 @@ const { addCachedSearchResult } = require('./helpers/addCachedSearchResult');
 const { getCachedSearchResult } = require('./helpers/getCachedSearchResult');
 const axios = require('axios');
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://joshuad:!7PrMT6ww&LqZDxgRU@cluster0.5j0rh.mongodb.net/user_data?retryWrites=true&w=majority";
 
 let cachedDb = null;
 function connectToDatabase (uri) {
@@ -63,7 +62,7 @@ async function searchAmazon( keyword ) {
 
 exports.handler = async ( event, context ) => {
     const keyword = event.queryStringParameters.keyword.toLowerCase();
-    const client = await connectToDatabase(uri);
+    const client = await connectToDatabase( process.env.MONGODB_URI );
 
     // Check if keyword is cached. If not, search for it
     const cacheResponse = await getCachedSearchResult({ client, keyword, domain: "amazon.com"});

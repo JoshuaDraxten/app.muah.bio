@@ -1,5 +1,4 @@
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://joshuad:!7PrMT6ww&LqZDxgRU@cluster0.5j0rh.mongodb.net/user_data?retryWrites=true&w=majority";
 
 const { uploadPhotoToCDN } = require('./helpers/upload-photo-to-cdn');
 
@@ -34,7 +33,7 @@ exports.handler = async ( event, context ) => {
 
     post.media_url = newMediaUrl
     
-    const client = await connectToDatabase(uri);
+    const client = await connectToDatabase(process.env.MONGODB_URI);
     const collection = client.db("Muah_bio").collection("users");
 
     const response = await collection.updateOne(

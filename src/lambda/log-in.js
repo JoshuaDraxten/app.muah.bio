@@ -1,6 +1,5 @@
 const { SHA256 } = require("sha2");
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://joshuad:!7PrMT6ww&LqZDxgRU@cluster0.5j0rh.mongodb.net/user_data?retryWrites=true&w=majority";
 
 let cachedDb = null;
 function connectToDatabase (uri) {
@@ -20,7 +19,7 @@ function connectToDatabase (uri) {
 
 exports.handler = async event => {
     const { usernameOrEmail, password } = event.queryStringParameters;
-    const client = await connectToDatabase(uri);
+    const client = await connectToDatabase(process.env.MONGODB_URI);
     const collection = client.db("Muah_bio").collection("users");
 
     const passwordEncrypted = SHA256(password).toString("base64"); 

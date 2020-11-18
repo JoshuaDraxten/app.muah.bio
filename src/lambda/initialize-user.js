@@ -1,7 +1,6 @@
-const stripe = require('stripe')('sk_test_FbahxVVYcD4w8X5qzFjXvR8300fRDtI94e');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://joshuad:!7PrMT6ww&LqZDxgRU@cluster0.5j0rh.mongodb.net/user_data?retryWrites=true&w=majority";
 
 let cachedDb = null;
 function connectToDatabase (uri) {
@@ -44,7 +43,7 @@ const generateUser = async ({ ig_username, email, posts }) => {
 exports.handler = async ( event, context ) => {
     const { email } = context.clientContext.user;
 
-    const client = await connectToDatabase(uri);
+    const client = await connectToDatabase( process.env.MONGODB_URI );
     const collection = client.db("Muah_bio").collection("users");
 
     let { ig_username, posts } = event.queryStringParameters;

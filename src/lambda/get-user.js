@@ -1,5 +1,4 @@
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://joshuad:!7PrMT6ww&LqZDxgRU@cluster0.5j0rh.mongodb.net/user_data?retryWrites=true&w=majority";
 
 let cachedDb = null;
 function connectToDatabase (uri) {
@@ -18,6 +17,7 @@ function connectToDatabase (uri) {
 }
 
 exports.handler = async ( event, context ) => {
+  console.log( process.env )
   const { user } = context.clientContext;
   if ( !user ) {
     return {
@@ -27,7 +27,7 @@ exports.handler = async ( event, context ) => {
   }
   const { email } = user;
 
-  const client = await connectToDatabase(uri);
+  const client = await connectToDatabase( process.env.MONGODB_URI );
   const collection = client.db("Muah_bio").collection("users");
 
   const userData = await collection.findOne( { email } );
