@@ -59,6 +59,11 @@ const Profile = ({
     // And it hasn't expired
     new Date(userInformation.subscription.current_period_end*1000) > new Date()
   );
+  
+  // Cache whether the user had a pro account at the start
+  // so that we can show a welcome screen to only new users  
+  const [ hadProAccountAtStart ] = useState(hasProAccount);
+
   const daysTillTrialIsOver = 14 - Math.floor((new Date() - new Date( userInformation.createDate )) / ( 1000 * 60 * 60 * 24 ) )
   const noPublishedPosts = posts.filter( post => post.products.length > 0 ).length === 0;
 
@@ -77,7 +82,7 @@ const Profile = ({
         });
         history.push(`/${i18n._("profile")}/${i18n._("upgrade")}`)
       }
-    } else {
+    } else if ( hasProAccount && !hadProAccountAtStart ) {
       setUpgradeWarning({});
       setShowWelcomeConfetti( true );
     }
@@ -145,7 +150,7 @@ const Profile = ({
             buttons={['OK']}
             onDidDismiss={()=>setShowWelcomeConfetti(false)}
           />
-          <Confetti />
+          <Confetti style={{zIndex: 200}} />
         </> : null }
       </IonContent>
     </>
