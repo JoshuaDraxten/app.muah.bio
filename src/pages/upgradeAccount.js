@@ -23,7 +23,11 @@ import './upgradeAccount.css';
 
 const retryInvoiceWithNewPaymentMethod = () => {}
 
-const stripePromise = loadStripe('pk_test_8TVPVl4EIEjHUXSOlc0fTClc00XQjq863Q');
+const isProd = window.location.origin === "https://app.muah.bio"
+const stripePromise = loadStripe( isProd ?
+  'pk_live_vV2XxZDJ7Vl9KFgqlR1TJ4Gj00IpeDf15Y' :
+  'pk_test_8TVPVl4EIEjHUXSOlc0fTClc00XQjq863Q'
+);
 
 const CheckoutForm = ({ stripeCustomerId, handleError, setIsLoading, closeModal, updateSubscriptionInformation }) => {
   const stripe = useStripe();
