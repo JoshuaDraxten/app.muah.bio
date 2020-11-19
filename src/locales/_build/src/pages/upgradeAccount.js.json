@@ -15,11 +15,11 @@
       ]
     ]
   },
-  "Here we put information about our payment policy and the like": {
+  "By signing up, you agree to our <0>TOS and privacy policy.</0>": {
     "origin": [
       [
         "src/pages/upgradeAccount.js",
-        140
+        141
       ]
     ]
   },
@@ -27,7 +27,7 @@
     "origin": [
       [
         "src/pages/upgradeAccount.js",
-        144
+        146
       ]
     ]
   }

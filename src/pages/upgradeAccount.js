@@ -137,7 +137,9 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
           closeModal={closeModal}
           updateSubscriptionInformation={updateSubscriptionInformation} />
       </StripeElements>
-      <p style={{textAlign: 'center', fontSize: 12}}><Trans>Here we put information about our payment policy and the like</Trans></p>
+      <p style={{textAlign: 'center', fontSize: 12}}>
+        <Trans>By signing up, you agree to our <a href="https://muah.bio/legal">TOS and privacy policy.</a></Trans>
+      </p>
     </div>
     <IonLoading
       isOpen={isLoading}

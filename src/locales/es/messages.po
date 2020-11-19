@@ -63,6 +63,10 @@ msgstr "Página de bio"
 msgid "Button Text"
 msgstr "Texto de botón"
 
+#: src/pages/upgradeAccount.js:141
+msgid "By signing up, you agree to our <0>TOS and privacy policy.</0>"
+msgstr "Al registrarse, acepta nuestros <0>Condiciones de servicio y política de privacidad.</0>"
+
 #: src/pages/editPost.js:198
 msgid "Cancel"
 msgstr "Cancelar"
@@ -119,10 +123,6 @@ msgstr "Encontré este producto en su portapapeles"
 #~ msgid "Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
 #~ msgstr "Las publicaciones en gris no tienen productos asociados y no se mostrarán en su página. Haga clic en una publicación para agregar productos."
 
-#: src/pages/upgradeAccount.js:140
-msgid "Here we put information about our payment policy and the like"
-msgstr ""
-
 #: src/pages/affiliateSettings.js:70
 msgid "If you dont have an affiliate relationship with anyone, you can <0>apply to Sephora</0> or <1>to Amazon</1>"
 msgstr "Si no tiene una relación de afiliado con nadie, puede <0>postularse a Sephora</0> o <1>a Amazon</1>"
@@ -151,7 +151,7 @@ msgstr "Administre su suscripción"
 
 #: src/pages/profile.js:149
 msgid "Manage your subscription in the \"Settings\" tab"
-msgstr "Administre su suscripción en la la pestaña \"Ajustes\"""
+msgstr "Administre su suscripción en la la pestaña \"Ajustes\"\""
 
 #: src/App.tsx:122
 #~ msgid "Muah.bio is currently invite only. We'll send you an invite in time"
@@ -177,7 +177,7 @@ msgstr "Etiqueta de producto opcional (p. Ej., Labios)"
 #~ msgid "Preview Profile"
 #~ msgstr "Vista Previa"
 
-#: src/pages/upgradeAccount.js:144
+#: src/pages/upgradeAccount.js:146
 msgid "Processing your payment"
 msgstr "Procesando su pago"
 

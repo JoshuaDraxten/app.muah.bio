@@ -63,6 +63,10 @@ msgstr "Bio Page Display"
 msgid "Button Text"
 msgstr "Button Text"
 
+#: src/pages/upgradeAccount.js:141
+msgid "By signing up, you agree to our <0>TOS and privacy policy.</0>"
+msgstr "By signing up, you agree to our <0>TOS and privacy policy.</0>"
+
 #: src/pages/editPost.js:198
 msgid "Cancel"
 msgstr "Cancel"
@@ -128,8 +132,8 @@ msgstr "Found this product in your clipboard"
 #~ msgstr "Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
 
 #: src/pages/upgradeAccount.js:140
-msgid "Here we put information about our payment policy and the like"
-msgstr "Here we put information about our payment policy and the like"
+#~ msgid "Here we put information about our payment policy and the like"
+#~ msgstr "Here we put information about our payment policy and the like"
 
 #: src/pages/affiliateSettings.js:70
 msgid "If you dont have an affiliate relationship with anyone, you can <0>apply to Sephora</0> or <1>to Amazon</1>"
@@ -185,7 +189,7 @@ msgstr "Optional product tag (ex: lips)"
 #~ msgid "Preview Profile"
 #~ msgstr "Preview Profile"
 
-#: src/pages/upgradeAccount.js:144
+#: src/pages/upgradeAccount.js:146
 msgid "Processing your payment"
 msgstr "Processing your payment"
 
