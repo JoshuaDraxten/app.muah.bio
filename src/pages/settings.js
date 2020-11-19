@@ -27,8 +27,9 @@ const SettingsPage = ({ i18n, userInformation, setUserInformation }) => {
     const confirmLogout = window.confirm( i18n._("Are you sure you want to log out?") );
     if ( !confirmLogout ) return;
   
-    window.auth.currentUser().logout();
-    window.location = window.location.origin;
+    window.auth.currentUser().logout().then(()=>{
+      window.location = window.location.origin;
+    });
   }
 
   // Defaults
@@ -117,7 +118,7 @@ const SettingsPage = ({ i18n, userInformation, setUserInformation }) => {
             <IonLabel><Trans>Your Account</Trans></IonLabel>
           </IonItemDivider>
           <br />
-          <IonButton expand="block"  disabled={!stripeUserPortal} href={stripeUserPortal} target="_blank">
+          <IonButton expand="block"  disabled={!stripeUserPortal || !stripeUserPortal.match(/^https/)} href={stripeUserPortal} target="_blank">
             <Trans>Manage Your Subscription</Trans>
           </IonButton>
           <br />

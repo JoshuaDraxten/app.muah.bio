@@ -53,6 +53,8 @@ const Profile = ({
   const openedPost = posts.map( post => post.id ).indexOf( postId );
   const upgradeModalIsOpen = postId === i18n._("upgrade");
 
+  console.log( userInformation )
+
   const hasProAccount = (
     // There's a subscription
     userInformation.subscription &&
