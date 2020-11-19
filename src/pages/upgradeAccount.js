@@ -21,7 +21,61 @@ import { loadStripe } from '@stripe/stripe-js';
 // Style
 import './upgradeAccount.css';
 
-const retryInvoiceWithNewPaymentMethod = () => {}
+function retryInvoiceWithNewPaymentMethod({
+  customerId,
+  paymentMethodId,
+  invoiceId,
+  handlePaymentThatRequiresCustomerAction,
+  onSubscriptionComplete,
+  handleError
+}) {
+  return (
+    fetch('/.netlify/functions/stripe-retry-invoice', {
+      method: 'post',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        customerId,
+        paymentMethodId,
+        invoiceId,
+      }),
+    })
+      .then((response) => response.json())
+      // If the card is declined, display an error to the user.
+      .then((result) => {
+        if (result.error) {
+          // The card had an error when trying to attach it to a customer.
+          throw result;
+        }
+        return result;
+      })
+      // Normalize the result to contain the object returned by Stripe.
+      // Add the additional details we need.
+      .then((result) => {
+        console.log( result )
+        return {
+          // Use the Stripe 'object' property on the
+          // returned result to understand what object is returned.
+          invoice: result,
+          paymentMethodId: paymentMethodId,
+          isRetry: true,
+        };
+      })
+      // Some payment methods require a customer to be on session
+      // to complete the payment process. Check the status of the
+      // payment intent to handle these actions.
+      .then(handlePaymentThatRequiresCustomerAction)
+      // No more actions required. Provision your service for the user.
+      .then(onSubscriptionComplete)
+      .catch((error) => {
+        // An error has happened. Display the failure to the user here.
+        // We utilize the HTML element we created.
+        handleError(error);
+      })
+  );
+}
+
 
 const isProd = window.location.origin === "https://app.muah.bio"
 const stripePromise = loadStripe( isProd ?
@@ -29,12 +83,25 @@ const stripePromise = loadStripe( isProd ?
   'pk_test_8TVPVl4EIEjHUXSOlc0fTClc00XQjq863Q'
 );
 
-const CheckoutForm = ({ stripeCustomerId, handleError, setIsLoading, closeModal, updateSubscriptionInformation }) => {
+const CheckoutForm = ({ stripeCustomerId, setIsLoading, closeModal, updateSubscriptionInformation }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const [ error, setError ] = useState('');
 
   var userLang = ( navigator.language || navigator.userLanguage);
   const priceString = Intl.NumberFormat(userLang, {maximumSignificantDigits: 1, style: 'currency', currency: "usd" }).format(30)
+
+  const handleError = error => {
+    if ( error.error ) error = error.error;
+
+    console.log(error);
+    if ( typeof error === "string" ) {
+      setError( error )
+    } else {
+      setError( error.message );
+    }
+    setIsLoading( false );
+  }
 
   const handleSubmit = async (event) => {
     // We don't want to let default form submission happen here,
@@ -60,7 +127,7 @@ const CheckoutForm = ({ stripeCustomerId, handleError, setIsLoading, closeModal,
 
     // Payment was successful.
     const onSubscriptionComplete = result => {
-      if (result.subscription.status === 'active') {
+      if (result && result.subscription.status === 'active') {
 
         // Save subscription data to database
         const { id, current_period_end, customer } = result.subscription;
@@ -71,6 +138,64 @@ const CheckoutForm = ({ stripeCustomerId, handleError, setIsLoading, closeModal,
         });
 
         closeModal();
+      }
+    }
+
+    function handlePaymentThatRequiresCustomerAction({
+      subscription,
+      invoice,
+      priceId,
+      paymentMethodId,
+      isRetry,
+    }) {
+      if (subscription && subscription.status === 'active') {
+        // Subscription is active, no customer actions required.
+        return { subscription, priceId, paymentMethodId };
+      }
+    
+      // If it's a first payment attempt, the payment intent is on the subscription latest invoice.
+      // If it's a retry, the payment intent will be on the invoice itself.
+      let paymentIntent = invoice ? invoice.payment_intent : subscription.latest_invoice.payment_intent;
+    
+      console.log("HERE2")
+      if (
+        paymentIntent.status === 'requires_action' ||
+        (isRetry === true && paymentIntent.status === 'requires_payment_method')
+      ) {
+        console.log("HERE")
+        return stripe
+          .confirmCardPayment(paymentIntent.client_secret, {
+            payment_method: paymentMethodId,
+          })
+          .then((result) => {
+            if (result.error) {
+              // Start code flow to handle updating the payment details.
+              // Display error message in your UI.
+              // The card was declined (i.e. insufficient funds, card has expired, etc).
+              handleError(result.error);
+              throw result;
+            } else {
+              if (result.paymentIntent.status === 'succeeded') {
+                // Show a success message to your customer.
+                // There's a risk of the customer closing the window before the callback.
+                // We recommend setting up webhook endpoints later in this guide.
+                return {
+                  priceId: priceId,
+                  subscription: subscription,
+                  invoice: invoice,
+                  paymentMethodId: paymentMethodId,
+                };
+              }
+            }
+          })
+          .catch((error) => {
+
+            console.log( error )
+            handleError(error);
+          });
+      } else {
+        // No customer action needed.
+        return { subscription, priceId, paymentMethodId };
       }
     }
 
@@ -89,16 +214,23 @@ const CheckoutForm = ({ stripeCustomerId, handleError, setIsLoading, closeModal,
         // Update the payment method and retry invoice payment
         const invoiceId = localStorage.getItem('latestInvoiceId');
         retryInvoiceWithNewPaymentMethod({
-          stripeCustomerId,
-          paymentMethodId,
-          invoiceId,
-        });
-      } else {
-        // Create the subscription
-        createSubscription({
           customerId: stripeCustomerId,
           paymentMethodId,
-          onSubscriptionComplete
+          invoiceId,
+          handlePaymentThatRequiresCustomerAction,
+          onSubscriptionComplete,
+          handleError
+        });
+      } else {
+        console.log("Create the subscription")
+        // Create the subscription
+        createSubscription({
+          handleError,
+          stripe,
+          customerId: stripeCustomerId,
+          paymentMethodId,
+          onSubscriptionComplete,
+          handlePaymentThatRequiresCustomerAction
         }).catch(handleError)
       }
     }
@@ -106,6 +238,7 @@ const CheckoutForm = ({ stripeCustomerId, handleError, setIsLoading, closeModal,
   
   return <form onSubmit={ handleSubmit }>
       <CardElement disabled={!stripe}/>
+      { error ? <div className="payment-error">{error}</div> : null }
       <IonButton type="submit" size="large" expand="block" className="ion-text-wrap">
         <Trans>Upgrade for {priceString}/month</Trans>
       </IonButton>
@@ -133,7 +266,6 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
       <StripeElements stripe={stripePromise}>
         <CheckoutForm
           stripeCustomerId={stripeCustomerId}
-          handleError={error => alert(error)}
           setIsLoading={setIsLoading}
           closeModal={closeModal}
           updateSubscriptionInformation={updateSubscriptionInformation} />
