@@ -1,41 +1,21 @@
 {
-  "Your trial account expires in {daysTillTrialIsOver} days": {
+  "upgrade": {
     "origin": [
       [
         "src/pages/profile.js",
-        46
-      ]
-    ]
-  },
-  "Upgrade your account to keep using Muah.bio": {
-    "origin": [
-      [
-        "src/pages/profile.js",
-        49
-      ]
-    ]
-  },
-  "Profile": {
-    "origin": [
-      [
-        "src/pages/profile.js",
-        58
+        54
       ],
       [
         "src/pages/profile.js",
-        70
-      ]
-    ]
-  },
-  "View Your Page": {
-    "origin": [
+        83
+      ],
       [
         "src/pages/profile.js",
-        61
+        117
       ]
     ]
   },
-  "Welcome to Muah.bio! Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products.": {
+  "Your trial account expires in {daysTillTrialIsOver} days": {
     "origin": [
       [
         "src/pages/profile.js",
@@ -43,11 +23,11 @@
       ]
     ]
   },
-  "Remember to <0>connect your affiliate accounts</0> in settings to add products!": {
+  "Upgrade your account to keep using Muah.bio": {
     "origin": [
       [
         "src/pages/profile.js",
-        76
+        80
       ]
     ]
   },
@@ -55,15 +35,83 @@
     "origin": [
       [
         "src/pages/profile.js",
-        88
+        83
       ],
       [
         "src/pages/profile.js",
-        93
+        117
       ],
+      [
+        "src/pages/profile.js",
+        125
+      ],
+      [
+        "src/pages/profile.js",
+        130
+      ],
+      [
+        "src/pages/profile.js",
+        135
+      ],
+      [
+        "src/pages/profile.js",
+        138
+      ],
+      [
+        "src/pages/profile.js",
+        142
+      ]
+    ]
+  },
+  "Profile": {
+    "origin": [
+      [
+        "src/pages/profile.js",
+        95
+      ],
+      [
+        "src/pages/profile.js",
+        107
+      ]
+    ]
+  },
+  "View Your Page": {
+    "origin": [
       [
         "src/pages/profile.js",
         98
+      ]
+    ]
+  },
+  "Welcome to Muah.bio! Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products.": {
+    "origin": [
+      [
+        "src/pages/profile.js",
+        112
+      ]
+    ]
+  },
+  "Remember to <0>connect your affiliate accounts</0> in settings to add products!": {
+    "origin": [
+      [
+        "src/pages/profile.js",
+        113
+      ]
+    ]
+  },
+  "You're all set up!": {
+    "origin": [
+      [
+        "src/pages/profile.js",
+        148
+      ]
+    ]
+  },
+  "Manage your subscription in the \"Settings\" tab": {
+    "origin": [
+      [
+        "src/pages/profile.js",
+        149
       ]
     ]
   }

@@ -25,11 +25,11 @@ msgstr "Ya se ha registrado un usuario con esta dirección de correo electrónic
 msgid "Affiliate Accounts Updated. Go to your profile to start tagging products!"
 msgstr "Cuentas de afiliados actualizadas. ¡Ve a tu perfil para empezar a etiquetar productos!"
 
-#: src/pages/settings.js:99
+#: src/pages/settings.js:110
 msgid "Affiliate Disclaimer Text"
 msgstr "Texto de exención de responsabilidad del afiliado"
 
-#: src/App.tsx:153
+#: src/App.tsx:160
 #: src/pages/affiliateSettings.js:53
 #: src/pages/affiliateSettings.js:64
 msgid "Affiliates"
@@ -55,11 +55,11 @@ msgstr "Se requiere una dirección de correo electrónico"
 msgid "Are you sure you want to log out?"
 msgstr "¿Estás segura de que quieres cerrar sesión?"
 
-#: src/pages/settings.js:77
+#: src/pages/settings.js:88
 msgid "Bio Page Display"
 msgstr "Página de bio"
 
-#: src/pages/settings.js:90
+#: src/pages/settings.js:101
 msgid "Button Text"
 msgstr "Texto de botón"
 
@@ -119,6 +119,10 @@ msgstr "Encontré este producto en su portapapeles"
 #~ msgid "Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
 #~ msgstr "Las publicaciones en gris no tienen productos asociados y no se mostrarán en su página. Haga clic en una publicación para agregar productos."
 
+#: src/pages/upgradeAccount.js:140
+msgid "Here we put information about our payment policy and the like"
+msgstr ""
+
 #: src/pages/affiliateSettings.js:70
 msgid "If you dont have an affiliate relationship with anyone, you can <0>apply to Sephora</0> or <1>to Amazon</1>"
 msgstr "Si no tiene una relación de afiliado con nadie, puede <0>postularse a Sephora</0> o <1>a Amazon</1>"
@@ -137,9 +141,17 @@ msgstr "Iniciar sesión"
 #~ msgid "Log In or Sign Up"
 #~ msgstr "Entrar o crear una cuenta"
 
-#: src/pages/settings.js:109
+#: src/pages/settings.js:124
 msgid "Log Out"
 msgstr "Cerrar sesión"
+
+#: src/pages/settings.js:121
+msgid "Manage Your Subscription"
+msgstr "Administre su suscripción"
+
+#: src/pages/profile.js:149
+msgid "Manage your subscription in the \"Settings\" tab"
+msgstr "Administre su suscripción en la la pestaña \"Ajustes\"""
 
 #: src/App.tsx:122
 #~ msgid "Muah.bio is currently invite only. We'll send you an invite in time"
@@ -165,13 +177,17 @@ msgstr "Etiqueta de producto opcional (p. Ej., Labios)"
 #~ msgid "Preview Profile"
 #~ msgstr "Vista Previa"
 
+#: src/pages/upgradeAccount.js:144
+msgid "Processing your payment"
+msgstr "Procesando su pago"
+
 #: src/pages/editPost.js:181
 msgid "Product name"
 msgstr "Nombre de producto"
 
-#: src/App.tsx:148
-#: src/pages/profile.js:58
-#: src/pages/profile.js:70
+#: src/App.tsx:155
+#: src/pages/profile.js:95
+#: src/pages/profile.js:107
 msgid "Profile"
 msgstr "Perfil"
 
@@ -183,12 +199,12 @@ msgstr "Cuenta de afiliado de Rakuten"
 msgid "Rakuten Web Services Token"
 msgstr "Token de Servicios Web de Rakuten"
 
-#: src/pages/profile.js:76
+#: src/pages/profile.js:113
 msgid "Remember to <0>connect your affiliate accounts</0> in settings to add products!"
 msgstr "Recuerde <0>conectar sus cuentas de afiliados</0> en la configuración para agregar productos."
 
 #: src/pages/affiliateSettings.js:56
-#: src/pages/settings.js:64
+#: src/pages/settings.js:75
 msgid "Save"
 msgstr "Guardiar"
 
@@ -206,13 +222,13 @@ msgstr "Buscar productos o pegar URL"
 msgid "Search for products to tag this post with using the search bar below"
 msgstr "Busque productos para etiquetar esta publicación usando la barra de búsqueda a continuación"
 
-#: src/App.tsx:158
-#: src/pages/settings.js:61
+#: src/App.tsx:165
 #: src/pages/settings.js:72
+#: src/pages/settings.js:83
 msgid "Settings"
 msgstr "Ajustes"
 
-#: src/pages/settings.js:112
+#: src/pages/settings.js:127
 msgid "Settings Updated"
 msgstr "Ajustes Actualizan"
 
@@ -237,19 +253,27 @@ msgstr "Productos Etiquetados"
 msgid "URL"
 msgstr "URL"
 
-#: src/pages/profile.js:49
+#: src/pages/upgradeAccount.js:109
+msgid "Upgrade for {priceString}/month"
+msgstr "Actualizar por {priceString}/mes"
+
+#: src/pages/upgradeAccount.js:129
+msgid "Upgrade your account"
+msgstr "Actualiza tu cuenta"
+
+#: src/pages/profile.js:80
 msgid "Upgrade your account to keep using Muah.bio"
 msgstr "Actualice su cuenta para seguir usando Muah.bio"
 
-#: src/pages/profile.js:61
+#: src/pages/profile.js:98
 msgid "View Your Page"
 msgstr "Ver Su Página"
 
-#: src/pages/settings.js:95
+#: src/pages/settings.js:106
 msgid "Visit Website"
 msgstr "Visitar sitio"
 
-#: src/pages/profile.js:75
+#: src/pages/profile.js:112
 msgid "Welcome to Muah.bio! Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
 msgstr "Bienvenido a Muah.bio! Las publicaciones en gris no tienen productos asociados y no se mostrarán en su página. Haga clic en una publicación para agregar productos."
 
@@ -265,7 +289,11 @@ msgstr "Puedes encontrar tu Número de Rastreo por Amazon <0>aqui</0>"
 msgid "You can find your Rakuten Web Services Token by going to <0>Links > Web Services</0> page in the rakuten advertizing dashboard"
 msgstr "Puede encontrar tu token de servicios web de Rakuten en la página <0>Enlaces > Servicios web</0> en el panel de publicidad de rakuten"
 
-#: src/pages/settings.js:106
+#: src/pages/profile.js:148
+msgid "You're all set up!"
+msgstr "¡Estás listo!"
+
+#: src/pages/settings.js:117
 msgid "Your Account"
 msgstr "Tu cuenta"
 
@@ -285,15 +313,15 @@ msgstr "Tu nombre de usuario de Instagram"
 msgid "Your Password"
 msgstr "Tu contraseña"
 
-#: src/pages/settings.js:80
+#: src/pages/settings.js:91
 msgid "Your Website"
 msgstr "Tu sitio web"
 
-#: src/pages/profile.js:46
+#: src/pages/profile.js:75
 msgid "Your trial account expires in {daysTillTrialIsOver} days"
 msgstr "Su cuenta de prueba vence en {daysTillTrialIsOver} días"
 
-#: src/App.tsx:132
+#: src/App.tsx:139
 msgid "affiliates"
 msgstr "afiliados"
 
@@ -309,16 +337,26 @@ msgstr "etc"
 msgid "hello@example.com"
 msgstr "hola@ejemplo.com"
 
-#: src/App.tsx:130
-#: src/pages/profile.js:88
-#: src/pages/profile.js:93
-#: src/pages/profile.js:98
+#: src/App.tsx:137
+#: src/pages/profile.js:83
+#: src/pages/profile.js:117
+#: src/pages/profile.js:125
+#: src/pages/profile.js:130
+#: src/pages/profile.js:135
+#: src/pages/profile.js:138
+#: src/pages/profile.js:142
 msgid "profile"
 msgstr "perfil"
 
-#: src/App.tsx:131
+#: src/App.tsx:138
 msgid "settings"
 msgstr "ajustes"
+
+#: src/pages/profile.js:54
+#: src/pages/profile.js:83
+#: src/pages/profile.js:117
+msgid "upgrade"
+msgstr "actualizarse"
 
 #: src/pages/instagramSetup.js:36
 msgid "{username} is not a valid instagram username"

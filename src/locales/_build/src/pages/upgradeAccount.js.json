@@ -1,0 +1,34 @@
+{
+  "Upgrade for {priceString}/month": {
+    "origin": [
+      [
+        "src/pages/upgradeAccount.js",
+        109
+      ]
+    ]
+  },
+  "Upgrade your account": {
+    "origin": [
+      [
+        "src/pages/upgradeAccount.js",
+        129
+      ]
+    ]
+  },
+  "Here we put information about our payment policy and the like": {
+    "origin": [
+      [
+        "src/pages/upgradeAccount.js",
+        140
+      ]
+    ]
+  },
+  "Processing your payment": {
+    "origin": [
+      [
+        "src/pages/upgradeAccount.js",
+        144
+      ]
+    ]
+  }
+}
