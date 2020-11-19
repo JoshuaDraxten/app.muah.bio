@@ -1,4 +1,5 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const priceId =process.env.SUBSCRIPTION_PRICE_ID
 
 exports.handler = async ( event, context ) => {
   const body = JSON.parse( event.body );
@@ -30,7 +31,7 @@ exports.handler = async ( event, context ) => {
   // Create the subscription
   const subscription = await stripe.subscriptions.create({
     customer: body.customerId,
-    items: [{ price: body.priceId }],
+    items: [{ price: priceId }],
     expand: ['latest_invoice.payment_intent'],
   });
   

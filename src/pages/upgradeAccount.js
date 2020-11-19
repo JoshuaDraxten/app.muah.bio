@@ -29,7 +29,6 @@ const CheckoutForm = ({ stripeCustomerId, handleError, setIsLoading, closeModal,
   const stripe = useStripe();
   const elements = useElements();
 
-  const priceId = "price_1HoaokGmFqrQMNciETkkmcWe";
   var userLang = ( navigator.language || navigator.userLanguage);
   const priceString = Intl.NumberFormat(userLang, {maximumSignificantDigits: 1, style: 'currency', currency: "usd" }).format(30)
 
@@ -89,14 +88,12 @@ const CheckoutForm = ({ stripeCustomerId, handleError, setIsLoading, closeModal,
           stripeCustomerId,
           paymentMethodId,
           invoiceId,
-          priceId,
         });
       } else {
         // Create the subscription
         createSubscription({
           customerId: stripeCustomerId,
           paymentMethodId,
-          priceId,
           onSubscriptionComplete
         }).catch(handleError)
       }

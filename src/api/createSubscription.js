@@ -1,4 +1,4 @@
-function createSubscription({ customerId, paymentMethodId, priceId, onSubscriptionComplete }) {
+function createSubscription({ customerId, paymentMethodId, onSubscriptionComplete }) {
   return (
     fetch('/.netlify/functions/stripe-create-subscription', {
       method: 'post',
@@ -7,8 +7,7 @@ function createSubscription({ customerId, paymentMethodId, priceId, onSubscripti
       },
       body: JSON.stringify({
         customerId: customerId,
-        paymentMethodId: paymentMethodId,
-        priceId: priceId,
+        paymentMethodId: paymentMethodId
       }),
     })
       .then((response) => {
@@ -27,7 +26,6 @@ function createSubscription({ customerId, paymentMethodId, priceId, onSubscripti
       .then((result) => {
         return {
           paymentMethodId: paymentMethodId,
-          priceId: priceId,
           subscription: result,
         };
       })
