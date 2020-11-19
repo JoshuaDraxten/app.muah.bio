@@ -86,7 +86,7 @@ const Profile = ({
       setUpgradeWarning({});
       setShowWelcomeConfetti( true );
     }
-  }, [ i18n, hasProAccount, daysTillTrialIsOver, history ])
+  }, [ i18n, hadProAccountAtStart, hasProAccount, daysTillTrialIsOver, history ])
 
   return (
     <>
