@@ -135,7 +135,7 @@ const Profile = ({
             closePost={() => history.push('/'+i18n._("profile")+'/')} />
         </IonModal>
 
-        <IonModal isOpen={upgradeModalIsOpen} onDidDismiss={()=>history.push(`/${i18n._("profile")}/}`)}>
+        <IonModal isOpen={upgradeModalIsOpen} onDidDismiss={()=>history.push(`/${i18n._("profile")}/`)}>
           <UpgradeAccount
             updateSubscriptionInformation={updateSubscriptionInformation}
             stripeCustomerId={userInformation.stripeCustomerId}
