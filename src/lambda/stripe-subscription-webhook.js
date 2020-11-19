@@ -1,7 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async ( e ) => {
-    const body = JSON.stringify( e.body );
+    const body = JSON.parse( e.body );
     const { headers } = e;
 
     // Retrieve the event by verifying the signature using the raw body and secret.
@@ -33,14 +33,18 @@ exports.handler = async ( e ) => {
         // Used to provision services after the trial has ended.
         // The status of the invoice will show up as paid. Store the status in your
         // database to reference when a user accesses your service to avoid hitting rate limits.
+        console.log(dataObject)
         break;
       case 'invoice.payment_failed':
         // If the payment fails or the customer does not have a valid payment method,
         //  an invoice.payment_failed event is sent, the subscription becomes past_due.
         // Use this webhook to notify your user that their payment has
         // failed and to retrieve new card details.
+        console.log(dataObject)
         break;
       case 'customer.subscription.deleted':
+        // TODO: Delete the subscriptioen object
+        console.log(dataObject)
         if (event.request != null) {
           // handle a subscription cancelled by your request
           // from above.
