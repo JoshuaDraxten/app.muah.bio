@@ -42,6 +42,8 @@ const SettingsPage = ({ i18n, userInformation, setUserInformation }) => {
   const [ didUpdateSettings, setDidUpdateSettings ] = useState( false );
   const userId = userInformation._id;
 
+  const [ stripeUserPortal, setStripeUserPortal ] = useState( window.stripeUserPortal );
+
   const saveSettings = () => {
     console.log("Saving...")
     const newSettings = { linkInBioPage, affiliatePrograms }
@@ -52,6 +54,15 @@ const SettingsPage = ({ i18n, userInformation, setUserInformation }) => {
     setUserInformation( userInformationCopy );
 
     setDidUpdateSettings(true);
+  }
+
+  // Save in global variable so we dont have to fetch the portal again
+  if (!window.stripeUserPortal) {
+    fetch("/.netlify/functions/stripe-get-user-portal?customerId="+userInformation.stripeCustomerId)
+    .then( async response => {
+        window.stripeUserPortal = await response.text();
+        setStripeUserPortal(window.stripeUserPortal)
+    });
   }
 
   return (
@@ -105,6 +116,10 @@ const SettingsPage = ({ i18n, userInformation, setUserInformation }) => {
           <IonItemDivider>
             <IonLabel><Trans>Your Account</Trans></IonLabel>
           </IonItemDivider>
+          <br />
+          <IonButton expand="block"  disabled={!stripeUserPortal} href={stripeUserPortal} target="_blank">
+            <Trans>Manage Your Subscription</Trans>
+          </IonButton>
           <br />
           <IonButton expand="block" color="danger" onClick={logOut}><Trans>Log Out</Trans></IonButton>
           <br /><br /><br /><br /><br />

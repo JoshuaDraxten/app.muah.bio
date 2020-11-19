@@ -17,7 +17,6 @@ function connectToDatabase (uri) {
 }
 
 exports.handler = async ( event, context ) => {
-  console.log( process.env )
   const { user } = context.clientContext;
   if ( !user ) {
     return {
