@@ -66,7 +66,9 @@ const Profile = ({
   // so that we can show a welcome screen to only new users  
   const [ hadProAccountAtStart ] = useState(hasProAccount);
 
-  const daysTillTrialIsOver = 14 - Math.floor((new Date() - new Date( userInformation.createDate )) / ( 1000 * 60 * 60 * 24 ) )
+  const daysTillTrialIsOver = userInformation.createDate ? 
+    14 - Math.floor((new Date() - new Date( userInformation.createDate )) / ( 1000 * 60 * 60 * 24 ) )
+    : 14;
   const noPublishedPosts = posts.filter( post => post.products.length > 0 ).length === 0;
 
   const [ upgradeWarning, setUpgradeWarning ] = useState({});
