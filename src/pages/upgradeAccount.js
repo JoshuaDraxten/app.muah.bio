@@ -76,6 +76,12 @@ function retryInvoiceWithNewPaymentMethod({
   );
 }
 
+const userLang = ( navigator.language || navigator.userLanguage);
+const numberFormatter = Intl.NumberFormat(userLang, {
+  // maximumSignificantDigits: 1,
+  style: 'currency',
+  currency: "usd"
+}).format
 
 const isProd = window.location.origin === "https://app.muah.bio"
 const stripePromise = loadStripe( isProd ?
@@ -88,8 +94,7 @@ const CheckoutForm = ({ stripeCustomerId, setIsLoading, closeModal, updateSubscr
   const elements = useElements();
   const [ error, setError ] = useState('');
 
-  var userLang = ( navigator.language || navigator.userLanguage);
-  const priceString = Intl.NumberFormat(userLang, {maximumSignificantDigits: 1, style: 'currency', currency: "usd" }).format(30)
+  const priceString = numberFormatter(50)
 
   const handleError = error => {
     if ( error.error ) error = error.error;
@@ -248,6 +253,8 @@ const CheckoutForm = ({ stripeCustomerId, setIsLoading, closeModal, updateSubscr
 const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscriptionInformation }) => {
   const [ isLoading, setIsLoading ] = useState( false );
 
+  const followers = 5300;
+
   return <IonContent fullscreen>
     <div className=".header-buttons">
       <IonButtons slot="end" className="header-buttons">
@@ -258,21 +265,45 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
     </div>
 
     <div className="payment-page">
-      <div style={{textAlign: "center"}}>
-        <img style={{maxWidth: "72px"}} alt="" src="/images/icons-192.png"/>
-        <h1><Trans>Upgrade your account</Trans></h1>
-      </div>
-      <br />
-      <StripeElements stripe={stripePromise}>
-        <CheckoutForm
-          stripeCustomerId={stripeCustomerId}
-          setIsLoading={setIsLoading}
-          closeModal={closeModal}
-          updateSubscriptionInformation={updateSubscriptionInformation} />
-      </StripeElements>
-      <p style={{textAlign: 'center', fontSize: 12}}>
-        <Trans>By signing up, you agree to our <a href="https://muah.bio/legal">TOS and privacy policy.</a></Trans>
-      </p>
+        <div style={{textAlign: "center"}}>
+          <img style={{maxWidth: "72px"}} alt="" src="/images/icons-192.png"/>
+          <h1><Trans>Upgrade your account</Trans></h1>
+        </div>
+        <div className="pricing-table">
+          <div className={"pricing-table__option" + ((followers < 5000) ? " selected" : "")}>
+            <h2>0 — 5k <Trans>followers</Trans><span className="divider"></span>{numberFormatter(5)}/<Trans>month</Trans></h2>
+            <p><Trans>Estimated minimum earnings</Trans>: {numberFormatter(75)}/<Trans>month</Trans></p>
+          </div>
+          <div className={"pricing-table__option" + ((followers > 5000 && followers < 50000) ? " selected" : "")}>
+            <h2>5k — 50k <Trans>followers</Trans><span className="divider"></span>{numberFormatter(50)}/<Trans>month</Trans></h2>
+            <p><Trans>Estimated minimum earnings</Trans>: {numberFormatter(450)}/<Trans>month</Trans></p>
+          </div>
+          <div className={"pricing-table__option" + ((followers > 50000 && followers < 200000) ? " selected" : "")}>
+            <h2>50k — 200k <Trans>followers</Trans><span className="divider"></span>{numberFormatter(200)}/<Trans>month</Trans></h2>
+            <p><Trans>Estimated minimum earnings</Trans>: {numberFormatter(1800)}/<Trans>month</Trans></p>
+          </div>
+          {((followers > 200000) ? <div className="pricing-table__option selected">
+            <h2>200k+ <Trans>followers</Trans><span className="divider"></span><Trans>Contact us</Trans></h2>
+            <p><Trans>Estimated minimum earnings</Trans>: {numberFormatter(20000)}/<Trans>month</Trans></p>
+          </div> : null)}
+        </div>
+      { followers < 200000 ?<>
+        <StripeElements stripe={stripePromise}>
+          <CheckoutForm
+            stripeCustomerId={stripeCustomerId}
+            setIsLoading={setIsLoading}
+            closeModal={closeModal}
+            updateSubscriptionInformation={updateSubscriptionInformation} />
+        </StripeElements>
+        <p style={{textAlign: 'center', fontSize: 12}}>
+          <Trans>By signing up, you agree to our <a href="https://muah.bio/legal">TOS and privacy policy.</a></Trans>
+        </p>
+      </>
+      : <div>
+        <IonButton href="mailto:josh@muah.bio" size="large" expand="block" className="ion-text-wrap">
+          <Trans>Contact us</Trans>
+        </IonButton>
+      </div> }
     </div>
     <IonLoading
       isOpen={isLoading}

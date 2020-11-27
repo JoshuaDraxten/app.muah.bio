@@ -11,7 +11,7 @@
 .StripeElement {
     background: #eee;
     padding: 20px;
-    border-radius: 4px;
+    border-radius: var(--mobile-border-radius);
     margin: 4px 2px 14px;
 }
 
@@ -22,4 +22,53 @@
 	margin: 12px 4px;
 	padding: px;
 	font-weight: bold;
+}
+
+.pricing-table h2 {
+    font-size: 14px;
+    /* font-weight: 900; */
+    margin: 0;
+    margin-bottom: 4px;
+}
+.pricing-table p {
+    font-size: 12px;
+    margin: 0;
+    display: none;
+}
+
+.pricing-table .divider::before {
+    content: ': ';
+}
+
+.pricing-table {
+    margin: 0 12px 20px;
+    text-align: center;
+    border: 2px solid var(--ion-color-medium-shade);
+    border-radius: var(--mobile-border-radius);
+    width: calc( 100% - 24px );
+}
+
+.pricing-table__option {
+    padding: 10px;
+    margin: 2px;
+    border-radius: var(--mobile-border-radius);
+}
+
+.pricing-table__option.selected {
+    background: var(--ion-color-primary);
+    border: solid 2px var(--ion-color-primary-shade); 
+    margin: 2px -12px;
+}
+.pricing-table__option:first-of-type.selected {
+    margin-top: -6px;
+}
+.pricing-table__option:last-of-type.selected {
+    margin-bottom: -6px;
+}
+.pricing-table__option.selected h2 {
+    font-size: 16px;
+    font-weight: 600;
+}
+.pricing-table__option.selected p {
+    display: block;
 }

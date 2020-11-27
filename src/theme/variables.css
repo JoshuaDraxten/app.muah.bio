@@ -9,6 +9,10 @@ http://ionicframework.com/docs/theming/ */
   }
 }
 
+.ios body {
+  --mobile-border-radius: 12px;
+}
+
 /** Ionic CSS Variables **/
 :root {
   /* Custom */
@@ -16,6 +20,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-grid-column-padding: 0;
   --ion-background-color: #ffffff;
   --ion-background-color-rgb: 255,255,255;
+  --mobile-border-radius: 4px;
 
   /** primary **/
   --ion-color-primary: #3880ff;

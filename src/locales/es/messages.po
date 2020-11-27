@@ -25,7 +25,7 @@ msgstr "Ya se ha registrado un usuario con esta dirección de correo electrónic
 msgid "Affiliate Accounts Updated. Go to your profile to start tagging products!"
 msgstr "Cuentas de afiliados actualizadas. ¡Ve a tu perfil para empezar a etiquetar productos!"
 
-#: src/pages/settings.js:110
+#: src/pages/settings.js:111
 msgid "Affiliate Disclaimer Text"
 msgstr "Texto de exención de responsabilidad del afiliado"
 
@@ -55,15 +55,15 @@ msgstr "Se requiere una dirección de correo electrónico"
 msgid "Are you sure you want to log out?"
 msgstr "¿Estás segura de que quieres cerrar sesión?"
 
-#: src/pages/settings.js:88
+#: src/pages/settings.js:89
 msgid "Bio Page Display"
 msgstr "Página de bio"
 
-#: src/pages/settings.js:101
+#: src/pages/settings.js:102
 msgid "Button Text"
 msgstr "Texto de botón"
 
-#: src/pages/upgradeAccount.js:141
+#: src/pages/upgradeAccount.js:295
 msgid "By signing up, you agree to our <0>TOS and privacy policy.</0>"
 msgstr "Al registrarse, acepta nuestros <0>Condiciones de servicio y política de privacidad.</0>"
 
@@ -78,6 +78,10 @@ msgstr "Conectar"
 #: src/pages/instagramSetup.js:86
 msgid "Connect your instagram account to start tagging your posts"
 msgstr "Conecte su cuenta de Instagram para comenzar a etiquetar sus publicaciones"
+
+#: src/pages/upgradeAccount.js:304
+msgid "Contact us"
+msgstr "Contacta con nosotros"
 
 #: src/pages/profile.js:126
 #~ msgid "Copy Url"
@@ -115,6 +119,12 @@ msgstr "Editar {productName}"
 msgid "Error"
 msgstr "Error"
 
+#: src/pages/upgradeAccount.js:275
+#: src/pages/upgradeAccount.js:279
+#: src/pages/upgradeAccount.js:283
+msgid "Estimated minimum earnings"
+msgstr "Ingresos mínimos estimados"
+
 #: src/pages/productSearch.js:158
 msgid "Found this product in your clipboard"
 msgstr "Encontré este producto en su portapapeles"
@@ -141,15 +151,15 @@ msgstr "Iniciar sesión"
 #~ msgid "Log In or Sign Up"
 #~ msgstr "Entrar o crear una cuenta"
 
-#: src/pages/settings.js:124
+#: src/pages/settings.js:125
 msgid "Log Out"
 msgstr "Cerrar sesión"
 
-#: src/pages/settings.js:121
+#: src/pages/settings.js:122
 msgid "Manage Your Subscription"
 msgstr "Administre su suscripción"
 
-#: src/pages/profile.js:149
+#: src/pages/profile.js:153
 msgid "Manage your subscription in the \"Settings\" tab"
 msgstr "Administre su suscripción en la la pestaña \"Ajustes\"\""
 
@@ -173,11 +183,15 @@ msgstr "Una cosa más"
 msgid "Optional product tag (ex: lips)"
 msgstr "Etiqueta de producto opcional (p. Ej., Labios)"
 
+#: src/pages/upgradeAccount.js:300
+msgid "Please contact us to discuss upgrading your account"
+msgstr "Comuníquese con nosotros para discutir la actualización de su cuenta."
+
 #: src/pages/profile.js:132
 #~ msgid "Preview Profile"
 #~ msgstr "Vista Previa"
 
-#: src/pages/upgradeAccount.js:146
+#: src/pages/upgradeAccount.js:310
 msgid "Processing your payment"
 msgstr "Procesando su pago"
 
@@ -186,8 +200,8 @@ msgid "Product name"
 msgstr "Nombre de producto"
 
 #: src/App.tsx:155
-#: src/pages/profile.js:95
-#: src/pages/profile.js:107
+#: src/pages/profile.js:99
+#: src/pages/profile.js:111
 msgid "Profile"
 msgstr "Perfil"
 
@@ -199,12 +213,12 @@ msgstr "Cuenta de afiliado de Rakuten"
 msgid "Rakuten Web Services Token"
 msgstr "Token de Servicios Web de Rakuten"
 
-#: src/pages/profile.js:113
+#: src/pages/profile.js:117
 msgid "Remember to <0>connect your affiliate accounts</0> in settings to add products!"
 msgstr "Recuerde <0>conectar sus cuentas de afiliados</0> en la configuración para agregar productos."
 
 #: src/pages/affiliateSettings.js:56
-#: src/pages/settings.js:75
+#: src/pages/settings.js:76
 msgid "Save"
 msgstr "Guardiar"
 
@@ -223,12 +237,12 @@ msgid "Search for products to tag this post with using the search bar below"
 msgstr "Busque productos para etiquetar esta publicación usando la barra de búsqueda a continuación"
 
 #: src/App.tsx:165
-#: src/pages/settings.js:72
-#: src/pages/settings.js:83
+#: src/pages/settings.js:73
+#: src/pages/settings.js:84
 msgid "Settings"
 msgstr "Ajustes"
 
-#: src/pages/settings.js:127
+#: src/pages/settings.js:128
 msgid "Settings Updated"
 msgstr "Ajustes Actualizan"
 
@@ -253,27 +267,27 @@ msgstr "Productos Etiquetados"
 msgid "URL"
 msgstr "URL"
 
-#: src/pages/upgradeAccount.js:109
+#: src/pages/upgradeAccount.js:248
 msgid "Upgrade for {priceString}/month"
 msgstr "Actualizar por {priceString}/mes"
 
-#: src/pages/upgradeAccount.js:129
+#: src/pages/upgradeAccount.js:270
 msgid "Upgrade your account"
 msgstr "Actualiza tu cuenta"
 
-#: src/pages/profile.js:80
+#: src/pages/profile.js:84
 msgid "Upgrade your account to keep using Muah.bio"
 msgstr "Actualice su cuenta para seguir usando Muah.bio"
 
-#: src/pages/profile.js:98
+#: src/pages/profile.js:102
 msgid "View Your Page"
 msgstr "Ver Su Página"
 
-#: src/pages/settings.js:106
+#: src/pages/settings.js:107
 msgid "Visit Website"
 msgstr "Visitar sitio"
 
-#: src/pages/profile.js:112
+#: src/pages/profile.js:116
 msgid "Welcome to Muah.bio! Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
 msgstr "Bienvenido a Muah.bio! Las publicaciones en gris no tienen productos asociados y no se mostrarán en su página. Haga clic en una publicación para agregar productos."
 
@@ -289,11 +303,11 @@ msgstr "Puedes encontrar tu Número de Rastreo por Amazon <0>aqui</0>"
 msgid "You can find your Rakuten Web Services Token by going to <0>Links > Web Services</0> page in the rakuten advertizing dashboard"
 msgstr "Puede encontrar tu token de servicios web de Rakuten en la página <0>Enlaces > Servicios web</0> en el panel de publicidad de rakuten"
 
-#: src/pages/profile.js:148
+#: src/pages/profile.js:152
 msgid "You're all set up!"
 msgstr "¡Estás listo!"
 
-#: src/pages/settings.js:117
+#: src/pages/settings.js:118
 msgid "Your Account"
 msgstr "Tu cuenta"
 
@@ -313,11 +327,11 @@ msgstr "Tu nombre de usuario de Instagram"
 msgid "Your Password"
 msgstr "Tu contraseña"
 
-#: src/pages/settings.js:91
+#: src/pages/settings.js:92
 msgid "Your Website"
 msgstr "Tu sitio web"
 
-#: src/pages/profile.js:75
+#: src/pages/profile.js:79
 msgid "Your trial account expires in {daysTillTrialIsOver} days"
 msgstr "Su cuenta de prueba vence en {daysTillTrialIsOver} días"
 
@@ -333,18 +347,34 @@ msgstr "etc"
 #~ msgid "ex: Lips"
 #~ msgstr "ej: Labios"
 
+#: src/pages/upgradeAccount.js:274
+#: src/pages/upgradeAccount.js:278
+#: src/pages/upgradeAccount.js:282
+#: src/pages/upgradeAccount.js:300
+msgid "followers"
+msgstr "seguidores"
+
 #: src/pages/loginScreen.js:104
 msgid "hello@example.com"
 msgstr "hola@ejemplo.com"
 
+#: src/pages/upgradeAccount.js:274
+#: src/pages/upgradeAccount.js:275
+#: src/pages/upgradeAccount.js:278
+#: src/pages/upgradeAccount.js:279
+#: src/pages/upgradeAccount.js:282
+#: src/pages/upgradeAccount.js:283
+msgid "month"
+msgstr "mes"
+
 #: src/App.tsx:137
-#: src/pages/profile.js:83
-#: src/pages/profile.js:117
-#: src/pages/profile.js:125
-#: src/pages/profile.js:130
-#: src/pages/profile.js:135
-#: src/pages/profile.js:138
+#: src/pages/profile.js:87
+#: src/pages/profile.js:121
+#: src/pages/profile.js:129
+#: src/pages/profile.js:134
+#: src/pages/profile.js:139
 #: src/pages/profile.js:142
+#: src/pages/profile.js:146
 msgid "profile"
 msgstr "perfil"
 
@@ -353,8 +383,8 @@ msgid "settings"
 msgstr "ajustes"
 
 #: src/pages/profile.js:54
-#: src/pages/profile.js:83
-#: src/pages/profile.js:117
+#: src/pages/profile.js:87
+#: src/pages/profile.js:121
 msgid "upgrade"
 msgstr "actualizarse"
 

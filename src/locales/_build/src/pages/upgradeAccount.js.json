@@ -3,7 +3,7 @@
     "origin": [
       [
         "src/pages/upgradeAccount.js",
-        109
+        248
       ]
     ]
   },
@@ -11,7 +11,71 @@
     "origin": [
       [
         "src/pages/upgradeAccount.js",
-        129
+        270
+      ]
+    ]
+  },
+  "followers": {
+    "origin": [
+      [
+        "src/pages/upgradeAccount.js",
+        274
+      ],
+      [
+        "src/pages/upgradeAccount.js",
+        278
+      ],
+      [
+        "src/pages/upgradeAccount.js",
+        282
+      ],
+      [
+        "src/pages/upgradeAccount.js",
+        300
+      ]
+    ]
+  },
+  "month": {
+    "origin": [
+      [
+        "src/pages/upgradeAccount.js",
+        274
+      ],
+      [
+        "src/pages/upgradeAccount.js",
+        275
+      ],
+      [
+        "src/pages/upgradeAccount.js",
+        278
+      ],
+      [
+        "src/pages/upgradeAccount.js",
+        279
+      ],
+      [
+        "src/pages/upgradeAccount.js",
+        282
+      ],
+      [
+        "src/pages/upgradeAccount.js",
+        283
+      ]
+    ]
+  },
+  "Estimated minimum earnings": {
+    "origin": [
+      [
+        "src/pages/upgradeAccount.js",
+        275
+      ],
+      [
+        "src/pages/upgradeAccount.js",
+        279
+      ],
+      [
+        "src/pages/upgradeAccount.js",
+        283
       ]
     ]
   },
@@ -19,7 +83,23 @@
     "origin": [
       [
         "src/pages/upgradeAccount.js",
-        141
+        295
+      ]
+    ]
+  },
+  "Please contact us to discuss upgrading your account": {
+    "origin": [
+      [
+        "src/pages/upgradeAccount.js",
+        300
+      ]
+    ]
+  },
+  "Contact us": {
+    "origin": [
+      [
+        "src/pages/upgradeAccount.js",
+        304
       ]
     ]
   },
@@ -27,7 +107,7 @@
     "origin": [
       [
         "src/pages/upgradeAccount.js",
-        146
+        310
       ]
     ]
   }

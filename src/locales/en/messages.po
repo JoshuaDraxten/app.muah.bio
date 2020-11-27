@@ -13,6 +13,15 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/pages/upgradeAccount.js:272
+#: src/pages/upgradeAccount.js:273
+#: src/pages/upgradeAccount.js:276
+#: src/pages/upgradeAccount.js:277
+#: src/pages/upgradeAccount.js:280
+#: src/pages/upgradeAccount.js:281
+#~ msgid "/month"
+#~ msgstr "/month"
+
 #: src/pages/loginScreen.js:38
 msgid "A user with this email address has already been registered"
 msgstr "A user with this email address has already been registered"
@@ -25,7 +34,7 @@ msgstr "A user with this email address has already been registered"
 msgid "Affiliate Accounts Updated. Go to your profile to start tagging products!"
 msgstr "Affiliate Accounts Updated. Go to your profile to start tagging products!"
 
-#: src/pages/settings.js:110
+#: src/pages/settings.js:111
 msgid "Affiliate Disclaimer Text"
 msgstr "Affiliate Disclaimer Text"
 
@@ -55,15 +64,15 @@ msgstr "An email address is required"
 msgid "Are you sure you want to log out?"
 msgstr "Are you sure you want to log out?"
 
-#: src/pages/settings.js:88
+#: src/pages/settings.js:89
 msgid "Bio Page Display"
 msgstr "Bio Page Display"
 
-#: src/pages/settings.js:101
+#: src/pages/settings.js:102
 msgid "Button Text"
 msgstr "Button Text"
 
-#: src/pages/upgradeAccount.js:141
+#: src/pages/upgradeAccount.js:295
 msgid "By signing up, you agree to our <0>TOS and privacy policy.</0>"
 msgstr "By signing up, you agree to our <0>TOS and privacy policy.</0>"
 
@@ -78,6 +87,10 @@ msgstr "Connect"
 #: src/pages/instagramSetup.js:86
 msgid "Connect your instagram account to start tagging your posts"
 msgstr "Connect your instagram account to start tagging your posts"
+
+#: src/pages/upgradeAccount.js:304
+msgid "Contact us"
+msgstr "Contact us"
 
 #: src/pages/profile.js:126
 #~ msgid "Copy Url"
@@ -119,9 +132,19 @@ msgstr "Edit Product"
 msgid "Edit {productName}"
 msgstr "Edit {productName}"
 
+#: src/pages/upgradeAccount.js:304
+#~ msgid "Email josh@muah.bio"
+#~ msgstr "Email josh@muah.bio"
+
 #: src/pages/loginScreen.js:121
 msgid "Error"
 msgstr "Error"
+
+#: src/pages/upgradeAccount.js:275
+#: src/pages/upgradeAccount.js:279
+#: src/pages/upgradeAccount.js:283
+msgid "Estimated minimum earnings"
+msgstr "Estimated minimum earnings"
 
 #: src/pages/productSearch.js:158
 msgid "Found this product in your clipboard"
@@ -153,15 +176,15 @@ msgstr "Log In"
 #~ msgid "Log In or Sign Up"
 #~ msgstr "Log In or Sign Up"
 
-#: src/pages/settings.js:124
+#: src/pages/settings.js:125
 msgid "Log Out"
 msgstr "Log Out"
 
-#: src/pages/settings.js:121
+#: src/pages/settings.js:122
 msgid "Manage Your Subscription"
 msgstr "Manage Your Subscription"
 
-#: src/pages/profile.js:149
+#: src/pages/profile.js:153
 msgid "Manage your subscription in the \"Settings\" tab"
 msgstr "Manage your subscription in the \"Settings\" tab"
 
@@ -185,11 +208,15 @@ msgstr "One more thing"
 msgid "Optional product tag (ex: lips)"
 msgstr "Optional product tag (ex: lips)"
 
+#: src/pages/upgradeAccount.js:300
+msgid "Please contact us to discuss upgrading your account"
+msgstr "Please contact us to discuss upgrading your account"
+
 #: src/pages/profile.js:132
 #~ msgid "Preview Profile"
 #~ msgstr "Preview Profile"
 
-#: src/pages/upgradeAccount.js:146
+#: src/pages/upgradeAccount.js:310
 msgid "Processing your payment"
 msgstr "Processing your payment"
 
@@ -198,8 +225,8 @@ msgid "Product name"
 msgstr "Product name"
 
 #: src/App.tsx:155
-#: src/pages/profile.js:95
-#: src/pages/profile.js:107
+#: src/pages/profile.js:99
+#: src/pages/profile.js:111
 msgid "Profile"
 msgstr "Profile"
 
@@ -211,12 +238,12 @@ msgstr "Rakuten Affiliate Account"
 msgid "Rakuten Web Services Token"
 msgstr "Rakuten Web Services Token"
 
-#: src/pages/profile.js:113
+#: src/pages/profile.js:117
 msgid "Remember to <0>connect your affiliate accounts</0> in settings to add products!"
 msgstr "Remember to <0>connect your affiliate accounts</0> in settings to add products!"
 
 #: src/pages/affiliateSettings.js:56
-#: src/pages/settings.js:75
+#: src/pages/settings.js:76
 msgid "Save"
 msgstr "Save"
 
@@ -235,12 +262,12 @@ msgid "Search for products to tag this post with using the search bar below"
 msgstr "Search for products to tag this post with using the search bar below"
 
 #: src/App.tsx:165
-#: src/pages/settings.js:72
-#: src/pages/settings.js:83
+#: src/pages/settings.js:73
+#: src/pages/settings.js:84
 msgid "Settings"
 msgstr "Settings"
 
-#: src/pages/settings.js:127
+#: src/pages/settings.js:128
 msgid "Settings Updated"
 msgstr "Settings Updated"
 
@@ -269,27 +296,27 @@ msgstr "Tagged Products"
 msgid "URL"
 msgstr "URL"
 
-#: src/pages/upgradeAccount.js:109
+#: src/pages/upgradeAccount.js:248
 msgid "Upgrade for {priceString}/month"
 msgstr "Upgrade for {priceString}/month"
 
-#: src/pages/upgradeAccount.js:129
+#: src/pages/upgradeAccount.js:270
 msgid "Upgrade your account"
 msgstr "Upgrade your account"
 
-#: src/pages/profile.js:80
+#: src/pages/profile.js:84
 msgid "Upgrade your account to keep using Muah.bio"
 msgstr "Upgrade your account to keep using Muah.bio"
 
-#: src/pages/profile.js:98
+#: src/pages/profile.js:102
 msgid "View Your Page"
 msgstr "View Your Page"
 
-#: src/pages/settings.js:106
+#: src/pages/settings.js:107
 msgid "Visit Website"
 msgstr "Visit Website"
 
-#: src/pages/profile.js:112
+#: src/pages/profile.js:116
 msgid "Welcome to Muah.bio! Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
 msgstr "Welcome to Muah.bio! Greyed out posts have no products associated with them and will not show up on your page. Click on a post to add products."
 
@@ -305,11 +332,11 @@ msgstr "You can find your Amazon Tracking ID by going <0>here</0>"
 msgid "You can find your Rakuten Web Services Token by going to <0>Links > Web Services</0> page in the rakuten advertizing dashboard"
 msgstr "You can find your Rakuten Web Services Token by going to <0>Links > Web Services</0> page in the rakuten advertizing dashboard"
 
-#: src/pages/profile.js:148
+#: src/pages/profile.js:152
 msgid "You're all set up!"
 msgstr "You're all set up!"
 
-#: src/pages/settings.js:117
+#: src/pages/settings.js:118
 msgid "Your Account"
 msgstr "Your Account"
 
@@ -333,11 +360,11 @@ msgstr "Your Instagram Username"
 msgid "Your Password"
 msgstr "Your Password"
 
-#: src/pages/settings.js:91
+#: src/pages/settings.js:92
 msgid "Your Website"
 msgstr "Your Website"
 
-#: src/pages/profile.js:75
+#: src/pages/profile.js:79
 msgid "Your trial account expires in {daysTillTrialIsOver} days"
 msgstr "Your trial account expires in {daysTillTrialIsOver} days"
 
@@ -353,18 +380,34 @@ msgstr "etc"
 #~ msgid "ex: Lips"
 #~ msgstr "ex: Lips"
 
+#: src/pages/upgradeAccount.js:274
+#: src/pages/upgradeAccount.js:278
+#: src/pages/upgradeAccount.js:282
+#: src/pages/upgradeAccount.js:300
+msgid "followers"
+msgstr "followers"
+
 #: src/pages/loginScreen.js:104
 msgid "hello@example.com"
 msgstr "hello@example.com"
 
+#: src/pages/upgradeAccount.js:274
+#: src/pages/upgradeAccount.js:275
+#: src/pages/upgradeAccount.js:278
+#: src/pages/upgradeAccount.js:279
+#: src/pages/upgradeAccount.js:282
+#: src/pages/upgradeAccount.js:283
+msgid "month"
+msgstr "month"
+
 #: src/App.tsx:137
-#: src/pages/profile.js:83
-#: src/pages/profile.js:117
-#: src/pages/profile.js:125
-#: src/pages/profile.js:130
-#: src/pages/profile.js:135
-#: src/pages/profile.js:138
+#: src/pages/profile.js:87
+#: src/pages/profile.js:121
+#: src/pages/profile.js:129
+#: src/pages/profile.js:134
+#: src/pages/profile.js:139
 #: src/pages/profile.js:142
+#: src/pages/profile.js:146
 msgid "profile"
 msgstr "profile"
 
@@ -373,8 +416,8 @@ msgid "settings"
 msgstr "settings"
 
 #: src/pages/profile.js:54
-#: src/pages/profile.js:83
-#: src/pages/profile.js:117
+#: src/pages/profile.js:87
+#: src/pages/profile.js:121
 msgid "upgrade"
 msgstr "upgrade"
 
