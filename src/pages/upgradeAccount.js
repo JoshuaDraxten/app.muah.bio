@@ -77,11 +77,9 @@ function retryInvoiceWithNewPaymentMethod({
 }
 
 const userLang = ( navigator.language || navigator.userLanguage);
-const numberFormatter = Intl.NumberFormat(userLang, {
-  // maximumSignificantDigits: 1,
-  style: 'currency',
-  currency: "usd"
-}).format
+const numberFormatter = ( number, currency ) => Intl.NumberFormat(userLang, {
+  style: 'currency', currency
+}).format(number)
 
 const isProd = window.location.origin === "https://app.muah.bio"
 const stripePromise = loadStripe( isProd ?
@@ -89,12 +87,12 @@ const stripePromise = loadStripe( isProd ?
   'pk_test_8TVPVl4EIEjHUXSOlc0fTClc00XQjq863Q'
 );
 
-const CheckoutForm = ({ stripeCustomerId, setIsLoading, closeModal, updateSubscriptionInformation }) => {
+const CheckoutForm = ({ activePlan, stripeCustomerId, setIsLoading, closeModal, updateSubscriptionInformation }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [ error, setError ] = useState('');
 
-  const priceString = numberFormatter(50)
+  const priceString = activePlan.cost
 
   const handleError = error => {
     if ( error.error ) error = error.error;
@@ -162,12 +160,10 @@ const CheckoutForm = ({ stripeCustomerId, setIsLoading, closeModal, updateSubscr
       // If it's a retry, the payment intent will be on the invoice itself.
       let paymentIntent = invoice ? invoice.payment_intent : subscription.latest_invoice.payment_intent;
     
-      console.log("HERE2")
       if (
         paymentIntent.status === 'requires_action' ||
         (isRetry === true && paymentIntent.status === 'requires_payment_method')
       ) {
-        console.log("HERE")
         return stripe
           .confirmCardPayment(paymentIntent.client_secret, {
             payment_method: paymentMethodId,
@@ -245,15 +241,83 @@ const CheckoutForm = ({ stripeCustomerId, setIsLoading, closeModal, updateSubscr
       <CardElement disabled={!stripe}/>
       { error ? <div className="payment-error">{error}</div> : null }
       <IonButton type="submit" size="large" expand="block" className="ion-text-wrap">
-        <Trans>Upgrade for {priceString}/month</Trans>
+        <Trans>Upgrade for {priceString}</Trans>
       </IonButton>
   </form>
 }
 
+const roiCalculator = ({
+  followers,
+  engagementRate,
+  averageProductPrice=40,
+  averageCommision,
+  currency
+}) => numberFormatter(followers*engagementRate*averageProductPrice*averageCommision, currency)
+
+const PricingTable = ({ pricingPlans, currency }) => {
+  return <div className="pricing-table">
+    {pricingPlans.map( ( plan, i ) => (plan.onlyShowIfSelected && !plan.isSelected) ? null : <div key={i} className={"pricing-table__option" + (plan.isSelected ? " selected" : "")}>
+        <h2>{plan.name}<span className="divider"></span>{plan.cost}</h2>
+        { plan.isSelected &&
+          <p><Trans>Estimated minimum earnings</Trans>: {roiCalculator({ ...plan.minimumStats, currency })}/<Trans>month</Trans></p>
+        }
+    </div>)}
+  </div>
+}
+
 const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscriptionInformation }) => {
   const [ isLoading, setIsLoading ] = useState( false );
+  const [ currency ] = useState( 'usd' );
+  const currencyName = currency === "mxn" ? i18n._("Mexican Pesos") : i18n._("US Dolars");
 
-  const followers = 5300;
+  const followers = 6342;
+
+  const pricingPlans = [
+    {
+      name: "0 — 5k " + i18n._("followers"),
+      isSelected: followers < 5000,
+      cost: (currency === "mxn" ? numberFormatter(100, "mxn") : numberFormatter(5, 'usd')) + "/" + i18n._("month"),
+      minimumStats: {
+        followers,
+        engagementRate: 0.05,
+        averageProductPrice: currency === "mxn" ? 200 : 20,
+        averageCommision: 0.06
+      }
+    }, {
+      name: "5k — 50k " + i18n._("followers"),
+      isSelected: followers >= 5000 && followers < 50000,
+      cost: (currency === "mxn" ? numberFormatter(1000, "mxn") : numberFormatter(50, 'usd')) + "/" + i18n._("month"),
+      minimumStats: {
+        followers,
+        engagementRate: 0.05,
+        averageProductPrice: currency === "mxn" ? 500 : 40,
+        averageCommision: 0.08
+      }
+    }, {
+      name: "50k — 200k " + i18n._("followers"),
+      isSelected: followers >= 50000 && followers < 200000,
+      cost: (currency === "mxn" ? numberFormatter(2500, "mxn") : numberFormatter(120, 'usd')) + "/" + i18n._("month"),
+      minimumStats: {
+        followers,
+        engagementRate: 0.05,
+        averageProductPrice: currency === "mxn" ? 500 : 40,
+        averageCommision: 0.08
+      }
+    }, {
+      name: "200k+ " + i18n._("followers"),
+      isSelected: followers > 200000,
+      cost: i18n._("Contact us"),
+      onlyShowIfSelected: true,
+      minimumStats: {
+        followers,
+        engagementRate: 0.05,
+        averageProductPrice: currency === "mxn" ? 500 : 40,
+        averageCommision: 0.08
+      }
+    }
+  ];
+  const activePlan = pricingPlans.find(plan => plan.isSelected);
+  console.log(activePlan  )
 
   return <IonContent fullscreen>
     <div className=".header-buttons">
@@ -265,31 +329,15 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
     </div>
 
     <div className="payment-page">
-        <div className="payment-page__header">
-          <img alt="" src="/images/icons-192.png"/>
-          <span><Trans>Upgrade your account</Trans></span>
-        </div>
-        <div className="pricing-table">
-          <div className={"pricing-table__option" + ((followers < 5000) ? " selected" : "")}>
-            <h2>0 — 5k <Trans>followers</Trans><span className="divider"></span>{numberFormatter(5)}/<Trans>month</Trans></h2>
-            <p><Trans>Estimated minimum earnings</Trans>: {numberFormatter(75)}/<Trans>month</Trans></p>
-          </div>
-          <div className={"pricing-table__option" + ((followers >= 5000 && followers < 50000) ? " selected" : "")}>
-            <h2>5k — 50k <Trans>followers</Trans><span className="divider"></span>{numberFormatter(50)}/<Trans>month</Trans></h2>
-            <p><Trans>Estimated minimum earnings</Trans>: {numberFormatter(450)}/<Trans>month</Trans></p>
-          </div>
-          <div className={"pricing-table__option" + ((followers >= 50000 && followers < 200000) ? " selected" : "")}>
-            <h2>50k — 200k <Trans>followers</Trans><span className="divider"></span>{numberFormatter(200)}/<Trans>month</Trans></h2>
-            <p><Trans>Estimated minimum earnings</Trans>: {numberFormatter(1800)}/<Trans>month</Trans></p>
-          </div>
-          {((followers >= 200000) ? <div className="pricing-table__option selected">
-            <h2>200k+ <Trans>followers</Trans><span className="divider"></span><Trans>Contact us</Trans></h2>
-            <p><Trans>Estimated minimum earnings</Trans>: {numberFormatter(20000)}/<Trans>month</Trans></p>
-          </div> : null)}
-        </div>
+      <div className="payment-page__header">
+        <img alt="" src="/images/icons-192.png"/>
+        <span><Trans>Upgrade your account</Trans></span>
+      </div>
+      <PricingTable currency={currency} pricingPlans={pricingPlans} />
       { followers < 200000 ?<>
         <StripeElements stripe={stripePromise}>
           <CheckoutForm
+            activePlan={activePlan}
             stripeCustomerId={stripeCustomerId}
             setIsLoading={setIsLoading}
             closeModal={closeModal}
@@ -297,6 +345,7 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
         </StripeElements>
         <p style={{textAlign: 'center', fontSize: 12}}>
           <Trans>By signing up, you agree to our <a href="https://muah.bio/legal">TOS and privacy policy.</a></Trans>
+          <span style={{ fontWeight: "bold", whiteSpace: 'nowrap' }}>&nbsp;<Trans>All prices are in {currencyName}.</Trans></span>
         </p>
       </>
       : <div>

@@ -44,6 +44,10 @@ msgstr "Affiliate Disclaimer Text"
 msgid "Affiliates"
 msgstr "Affiliates"
 
+#: src/pages/upgradeAccount.js:348
+msgid "All prices are in {currencyName}."
+msgstr "All prices are in {currencyName}."
+
 #: src/pages/loginScreen.js:135
 msgid "Already have an account?"
 msgstr "Already have an account?"
@@ -72,7 +76,7 @@ msgstr "Bio Page Display"
 msgid "Button Text"
 msgstr "Button Text"
 
-#: src/pages/upgradeAccount.js:295
+#: src/pages/upgradeAccount.js:347
 msgid "By signing up, you agree to our <0>TOS and privacy policy.</0>"
 msgstr "By signing up, you agree to our <0>TOS and privacy policy.</0>"
 
@@ -88,7 +92,8 @@ msgstr "Connect"
 msgid "Connect your instagram account to start tagging your posts"
 msgstr "Connect your instagram account to start tagging your posts"
 
-#: src/pages/upgradeAccount.js:304
+#: src/pages/upgradeAccount.js:309
+#: src/pages/upgradeAccount.js:353
 msgid "Contact us"
 msgstr "Contact us"
 
@@ -140,9 +145,7 @@ msgstr "Edit {productName}"
 msgid "Error"
 msgstr "Error"
 
-#: src/pages/upgradeAccount.js:275
-#: src/pages/upgradeAccount.js:279
-#: src/pages/upgradeAccount.js:283
+#: src/pages/upgradeAccount.js:262
 msgid "Estimated minimum earnings"
 msgstr "Estimated minimum earnings"
 
@@ -188,6 +191,10 @@ msgstr "Manage Your Subscription"
 msgid "Manage your subscription in the \"Settings\" tab"
 msgstr "Manage your subscription in the \"Settings\" tab"
 
+#: src/pages/upgradeAccount.js:271
+msgid "Mexican Pesos"
+msgstr "Mexican Pesos"
+
 #: src/App.tsx:122
 #~ msgid "Muah.bio is currently invite only. We'll send you an invite in time"
 #~ msgstr "Muah.bio is currently invite only. We'll send you an invite in time"
@@ -209,14 +216,14 @@ msgid "Optional product tag (ex: lips)"
 msgstr "Optional product tag (ex: lips)"
 
 #: src/pages/upgradeAccount.js:300
-msgid "Please contact us to discuss upgrading your account"
-msgstr "Please contact us to discuss upgrading your account"
+#~ msgid "Please contact us to discuss upgrading your account"
+#~ msgstr "Please contact us to discuss upgrading your account"
 
 #: src/pages/profile.js:132
 #~ msgid "Preview Profile"
 #~ msgstr "Preview Profile"
 
-#: src/pages/upgradeAccount.js:310
+#: src/pages/upgradeAccount.js:359
 msgid "Processing your payment"
 msgstr "Processing your payment"
 
@@ -296,11 +303,19 @@ msgstr "Tagged Products"
 msgid "URL"
 msgstr "URL"
 
-#: src/pages/upgradeAccount.js:248
-msgid "Upgrade for {priceString}/month"
-msgstr "Upgrade for {priceString}/month"
+#: src/pages/upgradeAccount.js:271
+msgid "US Dolars"
+msgstr "US Dolars"
 
-#: src/pages/upgradeAccount.js:270
+#: src/pages/upgradeAccount.js:244
+msgid "Upgrade for {priceString}"
+msgstr "Upgrade for {priceString}"
+
+#: src/pages/upgradeAccount.js:248
+#~ msgid "Upgrade for {priceString}/month"
+#~ msgstr "Upgrade for {priceString}/month"
+
+#: src/pages/upgradeAccount.js:334
 msgid "Upgrade your account"
 msgstr "Upgrade your account"
 
@@ -380,10 +395,10 @@ msgstr "etc"
 #~ msgid "ex: Lips"
 #~ msgstr "ex: Lips"
 
-#: src/pages/upgradeAccount.js:274
-#: src/pages/upgradeAccount.js:278
-#: src/pages/upgradeAccount.js:282
-#: src/pages/upgradeAccount.js:300
+#: src/pages/upgradeAccount.js:277
+#: src/pages/upgradeAccount.js:287
+#: src/pages/upgradeAccount.js:297
+#: src/pages/upgradeAccount.js:307
 msgid "followers"
 msgstr "followers"
 
@@ -391,12 +406,10 @@ msgstr "followers"
 msgid "hello@example.com"
 msgstr "hello@example.com"
 
-#: src/pages/upgradeAccount.js:274
-#: src/pages/upgradeAccount.js:275
-#: src/pages/upgradeAccount.js:278
+#: src/pages/upgradeAccount.js:262
 #: src/pages/upgradeAccount.js:279
-#: src/pages/upgradeAccount.js:282
-#: src/pages/upgradeAccount.js:283
+#: src/pages/upgradeAccount.js:289
+#: src/pages/upgradeAccount.js:299
 msgid "month"
 msgstr "month"
 
