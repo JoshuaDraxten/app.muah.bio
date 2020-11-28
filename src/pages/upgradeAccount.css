@@ -73,7 +73,8 @@
 
 .pricing-table__option.selected {
     background: var(--ion-color-primary);
-    border: solid 2px var(--ion-color-primary-shade); 
+    border: solid 2px var(--ion-color-primary-shade);
+    color: var(--ion-color-primary-contrast); 
     margin: 2px -12px;
 }
 .pricing-table__option:first-of-type.selected {

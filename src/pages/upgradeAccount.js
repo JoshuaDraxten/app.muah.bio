@@ -267,7 +267,8 @@ const PricingTable = ({ pricingPlans, currency }) => {
 
 const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscriptionInformation }) => {
   const [ isLoading, setIsLoading ] = useState( false );
-  const [ currency ] = useState( ( navigator.language || navigator.userLanguage).slice(3) === "MX" ? 'mxn' : 'usd' );
+  const currentCountry = ( navigator.language || navigator.userLanguage).slice(3);
+  const [ currency ] = useState( currentCountry === "MX" ? 'mxn' : 'usd' );
   const currencyName = currency === "mxn" ? i18n._("Mexican Pesos") : i18n._("US Dolars");
 
   const followers = 6342;
