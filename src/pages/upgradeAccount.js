@@ -345,7 +345,7 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
         </StripeElements>
         <p style={{textAlign: 'center', fontSize: 12}}>
           <Trans>By signing up, you agree to our <a href="https://muah.bio/legal">TOS and privacy policy.</a></Trans>
-          <span style={{ fontWeight: "bold", whiteSpace: 'nowrap' }}>&nbsp;<Trans>All prices are in {currencyName}.</Trans></span>
+          <span style={{ fontWeight: "bold", whiteSpace: 'nowrap' }}>&#32;<Trans>All prices are in {currencyName}.</Trans></span>
         </p>
       </>
       : <div>
