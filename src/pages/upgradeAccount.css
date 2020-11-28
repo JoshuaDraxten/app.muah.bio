@@ -8,6 +8,23 @@
 .payment-page form {
     width: 100%;
 }
+
+.payment-page__header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+.payment-page__header img {
+    height: 42px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.payment-page__header span {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 12px;
+}
+
 .StripeElement {
     background: #eee;
     padding: 20px;
@@ -71,4 +88,15 @@
 }
 .pricing-table__option.selected p {
     display: block;
+}
+
+@media screen and (min-width: 767px) {
+    .payment-page__header img {
+        height: 72px;
+    }
+    .payment-page__header span {
+        display: block;
+        margin-top: 20px;
+        font-size: 26px;
+    }
 }

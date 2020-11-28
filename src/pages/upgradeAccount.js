@@ -265,24 +265,24 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
     </div>
 
     <div className="payment-page">
-        <div style={{textAlign: "center"}}>
-          <img style={{maxWidth: "72px"}} alt="" src="/images/icons-192.png"/>
-          <h1><Trans>Upgrade your account</Trans></h1>
+        <div className="payment-page__header">
+          <img alt="" src="/images/icons-192.png"/>
+          <span><Trans>Upgrade your account</Trans></span>
         </div>
         <div className="pricing-table">
           <div className={"pricing-table__option" + ((followers < 5000) ? " selected" : "")}>
             <h2>0 — 5k <Trans>followers</Trans><span className="divider"></span>{numberFormatter(5)}/<Trans>month</Trans></h2>
             <p><Trans>Estimated minimum earnings</Trans>: {numberFormatter(75)}/<Trans>month</Trans></p>
           </div>
-          <div className={"pricing-table__option" + ((followers > 5000 && followers < 50000) ? " selected" : "")}>
+          <div className={"pricing-table__option" + ((followers >= 5000 && followers < 50000) ? " selected" : "")}>
             <h2>5k — 50k <Trans>followers</Trans><span className="divider"></span>{numberFormatter(50)}/<Trans>month</Trans></h2>
             <p><Trans>Estimated minimum earnings</Trans>: {numberFormatter(450)}/<Trans>month</Trans></p>
           </div>
-          <div className={"pricing-table__option" + ((followers > 50000 && followers < 200000) ? " selected" : "")}>
+          <div className={"pricing-table__option" + ((followers >= 50000 && followers < 200000) ? " selected" : "")}>
             <h2>50k — 200k <Trans>followers</Trans><span className="divider"></span>{numberFormatter(200)}/<Trans>month</Trans></h2>
             <p><Trans>Estimated minimum earnings</Trans>: {numberFormatter(1800)}/<Trans>month</Trans></p>
           </div>
-          {((followers > 200000) ? <div className="pricing-table__option selected">
+          {((followers >= 200000) ? <div className="pricing-table__option selected">
             <h2>200k+ <Trans>followers</Trans><span className="divider"></span><Trans>Contact us</Trans></h2>
             <p><Trans>Estimated minimum earnings</Trans>: {numberFormatter(20000)}/<Trans>month</Trans></p>
           </div> : null)}
