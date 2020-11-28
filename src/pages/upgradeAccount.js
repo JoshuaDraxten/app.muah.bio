@@ -78,7 +78,7 @@ function retryInvoiceWithNewPaymentMethod({
 
 const userLang = ( navigator.language || navigator.userLanguage);
 const numberFormatter = ( number, currency ) => Intl.NumberFormat(userLang, {
-  style: 'currency', currency
+  style: 'currency', currency, notation: 'compact'
 }).format(number)
 
 const isProd = window.location.origin === "https://app.muah.bio"
@@ -256,7 +256,7 @@ const roiCalculator = ({
 
 const PricingTable = ({ pricingPlans, currency }) => {
   return <div className="pricing-table">
-    {pricingPlans.map( ( plan, i ) => (plan.onlyShowIfSelected && !plan.isSelected) ? null : <div key={i} className={"pricing-table__option" + (plan.isSelected ? " selected" : "")}>
+    {pricingPlans.map( ( plan, i ) => (plan.hideOption) ? null : <div key={i} className={"pricing-table__option" + (plan.isSelected ? " selected" : "")}>
         <h2>{plan.name}<span className="divider"></span>{plan.cost}</h2>
         { plan.isSelected &&
           <p><Trans>Estimated minimum earnings</Trans>: {roiCalculator({ ...plan.minimumStats, currency })}/<Trans>month</Trans></p>
@@ -267,7 +267,7 @@ const PricingTable = ({ pricingPlans, currency }) => {
 
 const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscriptionInformation }) => {
   const [ isLoading, setIsLoading ] = useState( false );
-  const [ currency ] = useState( 'usd' );
+  const [ currency ] = useState( 'mxn' );
   const currencyName = currency === "mxn" ? i18n._("Mexican Pesos") : i18n._("US Dolars");
 
   const followers = 6342;
@@ -289,17 +289,28 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
       cost: (currency === "mxn" ? numberFormatter(1000, "mxn") : numberFormatter(50, 'usd')) + "/" + i18n._("month"),
       minimumStats: {
         followers,
-        engagementRate: 0.05,
+        engagementRate: 0.03,
+        averageProductPrice: currency === "mxn" ? 500 : 40,
+        averageCommision: 0.07
+      }
+    }, {
+      name: "50k — 100k " + i18n._("followers"),
+      isSelected: followers >= 50000 && followers < 100000,
+      cost: (currency === "mxn" ? numberFormatter(6000, "mxn") : numberFormatter(300, 'usd')) + "/" + i18n._("month"),
+      minimumStats: {
+        followers,
+        engagementRate: 0.02,
         averageProductPrice: currency === "mxn" ? 500 : 40,
         averageCommision: 0.08
       }
     }, {
-      name: "50k — 200k " + i18n._("followers"),
-      isSelected: followers >= 50000 && followers < 200000,
-      cost: (currency === "mxn" ? numberFormatter(2500, "mxn") : numberFormatter(120, 'usd')) + "/" + i18n._("month"),
+      name: "100k — 200k " + i18n._("followers"),
+      isSelected: followers >= 100000 && followers < 200000,
+      cost: (currency === "mxn" ? numberFormatter(12000, "mxn") : numberFormatter(600, 'usd')) + "/" + i18n._("month"),
+      hideOption: followers < 100000,
       minimumStats: {
         followers,
-        engagementRate: 0.05,
+        engagementRate: 0.02,
         averageProductPrice: currency === "mxn" ? 500 : 40,
         averageCommision: 0.08
       }
@@ -307,12 +318,12 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
       name: "200k+ " + i18n._("followers"),
       isSelected: followers > 200000,
       cost: i18n._("Contact us"),
-      onlyShowIfSelected: true,
+      hideOption: followers < 200000,
       minimumStats: {
         followers,
-        engagementRate: 0.05,
+        engagementRate: 0.01,
         averageProductPrice: currency === "mxn" ? 500 : 40,
-        averageCommision: 0.08
+        averageCommision: 0.09
       }
     }
   ];
