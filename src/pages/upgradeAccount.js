@@ -25,6 +25,7 @@ function retryInvoiceWithNewPaymentMethod({
   customerId,
   paymentMethodId,
   invoiceId,
+  priceId,
   handlePaymentThatRequiresCustomerAction,
   onSubscriptionComplete,
   handleError
@@ -37,6 +38,7 @@ function retryInvoiceWithNewPaymentMethod({
       },
       body: JSON.stringify({
         customerId,
+        priceId,
         paymentMethodId,
         invoiceId,
       }),
@@ -87,7 +89,7 @@ const stripePromise = loadStripe( isProd ?
   'pk_test_8TVPVl4EIEjHUXSOlc0fTClc00XQjq863Q'
 );
 
-const CheckoutForm = ({ activePlan, stripeCustomerId, setIsLoading, closeModal, updateSubscriptionInformation }) => {
+const CheckoutForm = ({ activePlan, stripeCustomerId, priceId, setIsLoading, closeModal, updateSubscriptionInformation }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [ error, setError ] = useState('');
@@ -147,7 +149,6 @@ const CheckoutForm = ({ activePlan, stripeCustomerId, setIsLoading, closeModal, 
     function handlePaymentThatRequiresCustomerAction({
       subscription,
       invoice,
-      priceId,
       paymentMethodId,
       isRetry,
     }) {
@@ -217,6 +218,7 @@ const CheckoutForm = ({ activePlan, stripeCustomerId, setIsLoading, closeModal, 
         retryInvoiceWithNewPaymentMethod({
           customerId: stripeCustomerId,
           paymentMethodId,
+          priceId,
           invoiceId,
           handlePaymentThatRequiresCustomerAction,
           onSubscriptionComplete,
@@ -224,10 +226,12 @@ const CheckoutForm = ({ activePlan, stripeCustomerId, setIsLoading, closeModal, 
         });
       } else {
         console.log("Create the subscription")
+        console.log( priceId )
         // Create the subscription
         createSubscription({
           handleError,
           stripe,
+          priceId,
           customerId: stripeCustomerId,
           paymentMethodId,
           onSubscriptionComplete,
@@ -265,13 +269,11 @@ const PricingTable = ({ pricingPlans, currency }) => {
   </div>
 }
 
-const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscriptionInformation }) => {
+const UpgradeAccount = ({ i18n, stripeCustomerId, followers=6000, closeModal, updateSubscriptionInformation }) => {
   const [ isLoading, setIsLoading ] = useState( false );
   const currentCountry = ( navigator.language || navigator.userLanguage).slice(3);
   const [ currency ] = useState( currentCountry === "MX" ? 'mxn' : 'usd' );
   const currencyName = currency === "mxn" ? i18n._("Mexican Pesos") : i18n._("US Dolars");
-
-  const followers = 6342;
 
   const pricingPlans = [
     {
@@ -285,8 +287,8 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
         averageCommision: 0.06
       },
       priceId: currency === "mxn" ?
-        ( isProd ? '' : 'price_1HsdcUGmFqrQMNciUAdTyK8O' ) :
-        ( isProd ? '' : 'price_1HsdIrGmFqrQMNcibE3nzcx7' )
+        ( isProd ? 'price_1HsepCGmFqrQMNcii3YS4tiS' : 'price_1HsdcUGmFqrQMNciUAdTyK8O' ) :
+        ( isProd ? 'price_1HsdKBGmFqrQMNci04zZOaT5' : 'price_1HsdIrGmFqrQMNcibE3nzcx7' )
     }, {
       name: "5k — 50k " + i18n._("followers"),
       isSelected: followers >= 5000 && followers < 50000,
@@ -298,8 +300,8 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
         averageCommision: 0.07
       },
       priceId: currency === "mxn" ?
-        ( isProd ? '' : 'price_1HsdeZGmFqrQMNciSmk4wPTR' ) :
-        ( isProd ? '' : 'price_1HsdQ0GmFqrQMNciYPy4Z3wM' )
+        ( isProd ? 'price_1HsepxGmFqrQMNciiYMAyCGS' : 'price_1HsdeZGmFqrQMNciSmk4wPTR' ) :
+        ( isProd ? 'price_1HsdQIGmFqrQMNci8wu6vgnU' : 'price_1HsdQ0GmFqrQMNciYPy4Z3wM' )
     }, {
       name: "50k — 100k " + i18n._("followers"),
       isSelected: followers >= 50000 && followers < 100000,
@@ -311,8 +313,8 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
         averageCommision: 0.08
       },
       priceId: currency === "mxn" ?
-        ( isProd ? '' : 'price_1HsdfOGmFqrQMNcipXduf5wn' ) :
-        ( isProd ? '' : 'price_1HsdXIGmFqrQMNci7M336hBH' )
+        ( isProd ? 'price_1HsesYGmFqrQMNcihV3SW2cH' : 'price_1HsdfOGmFqrQMNcipXduf5wn' ) :
+        ( isProd ? 'price_1HsdXgGmFqrQMNciIynqIDHC' : 'price_1HsdXIGmFqrQMNci7M336hBH' )
     }, {
       name: "100k — 200k " + i18n._("followers"),
       isSelected: followers >= 100000 && followers < 200000,
@@ -325,8 +327,8 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
         averageCommision: 0.08
       },
       priceId: currency === "mxn" ?
-        ( isProd ? '' : 'price_1HsdiZGmFqrQMNcinTH660oS' ) :
-        ( isProd ? '' : 'price_1HsdgZGmFqrQMNcidIHzLiNm' )
+        ( isProd ? 'price_1HsdplGmFqrQMNci6XbWtGAa' : 'price_1HsdiZGmFqrQMNcinTH660oS' ) :
+        ( isProd ? 'price_1HsdplGmFqrQMNcivGzBNPpO' : 'price_1HsdgZGmFqrQMNcidIHzLiNm' )
     }, {
       name: "200k+ " + i18n._("followers"),
       isSelected: followers > 200000,
@@ -362,6 +364,7 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
         <StripeElements stripe={stripePromise}>
           <CheckoutForm
             activePlan={activePlan}
+            priceId={activePlan.priceId}
             stripeCustomerId={stripeCustomerId}
             setIsLoading={setIsLoading}
             closeModal={closeModal}

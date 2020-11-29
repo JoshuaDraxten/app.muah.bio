@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import clientSideGetIGGosts from '../api/clientSideGetIGPosts';
+import clientSideGetIGInfo from '../api/clientSideGetIGInfo';
 
 import initializeUser from '../api/initializeUser';
 
@@ -39,7 +39,7 @@ const InstagramSetup = ({ i18n, setUserInformation }) => {
         setIsLoading( true );
         // Get the posts, if there is none, throw an error
         try {
-            let posts = await clientSideGetIGGosts( cleanedInstagramTag );
+            let { posts, followers } = await clientSideGetIGInfo( cleanedInstagramTag );
             
             // Add empty product array to each post
             posts = posts.map( post => ({...post, products: [] }) );
@@ -61,7 +61,7 @@ const InstagramSetup = ({ i18n, setUserInformation }) => {
             }
 
             console.log("Initializing user...")
-            let userInformation = await initializeUser({ posts, ig_username: instagramTag });
+            let userInformation = await initializeUser({ posts, ig_username: instagramTag, followers });
             
             userInformation.posts = uncachedPosts;
             setUserInformation( userInformation );

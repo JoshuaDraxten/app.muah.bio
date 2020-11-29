@@ -3,7 +3,7 @@ const logAndReturn = ( x ) => {
   return x
 }
 
-function createSubscription({ handlePaymentThatRequiresCustomerAction, customerId, paymentMethodId, onSubscriptionComplete, stripe, handleError }) {
+function createSubscription({ handlePaymentThatRequiresCustomerAction, priceId, customerId, paymentMethodId, onSubscriptionComplete, stripe, handleError }) {
   
   function handleRequiresPaymentMethod({
     subscription,
@@ -39,6 +39,7 @@ function createSubscription({ handlePaymentThatRequiresCustomerAction, customerI
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
+        priceId,
         customerId: customerId,
         paymentMethodId: paymentMethodId
       }),

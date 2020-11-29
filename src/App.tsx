@@ -26,7 +26,7 @@ import SplashScreen from './pages/splashScreen';
 import getUser from './api/getUser';
 import addUserPost from "./api/addUserPost";
 import updateUserPost from './api/updateUserPost';
-import clientSideGetIGGosts from './api/clientSideGetIGPosts';
+import clientSideGetIGInfo from './api/clientSideGetIGInfo';
 import updateSubscriptionInDb from './api/updateSubscription';
 
 import { Route, Redirect } from "react-router-dom";
@@ -126,7 +126,7 @@ const App = ({ i18n }) => {
     if ( userInformationIsNull ) return;
 
     // Load posts
-    clientSideGetIGGosts( userInformation.instagram.username ).then( posts => {
+    clientSideGetIGInfo( userInformation.instagram.username ).then( ({ posts, followers }) => {
       const existingIds = userInformation.posts.map( post => post.id );
 
       posts.forEach( (post, position) => {
@@ -136,6 +136,8 @@ const App = ({ i18n }) => {
           addPost({ post, position });
         }
       });
+
+      // TODO: Update follower count
 
     });
 

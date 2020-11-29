@@ -18,7 +18,7 @@ function connectToDatabase (uri) {
     });
 }
 
-const generateUser = async ({ ig_username, email, posts }) => {
+const generateUser = async ({ ig_username,followers, email, posts }) => {
   // Create the stripe user
   const customer = await stripe.customers.create({ email });
 
@@ -28,6 +28,7 @@ const generateUser = async ({ ig_username, email, posts }) => {
     email,
     instagram: {
       username: ig_username,
+      followers
     },
     settings: {
       linkInBioPage: {
@@ -46,7 +47,7 @@ exports.handler = async ( event, context ) => {
     const client = await connectToDatabase( process.env.MONGODB_URI );
     const collection = client.db("Muah_bio").collection("users");
 
-    let { ig_username, posts } = event.queryStringParameters;
+    let { ig_username, posts, followers } = event.queryStringParameters;
 
     posts = JSON.parse( posts )
     
@@ -58,7 +59,7 @@ exports.handler = async ( event, context ) => {
       }
     }
 
-    const newUser = await generateUser( { ig_username, email, posts } );
+    const newUser = await generateUser( { ig_username, followers, email, posts } );
 
     console.log( newUser )
 

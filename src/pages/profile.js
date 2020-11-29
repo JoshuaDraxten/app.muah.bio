@@ -141,6 +141,7 @@ const Profile = ({
 
         <IonModal isOpen={upgradeModalIsOpen} onDidDismiss={()=>history.push(`/${i18n._("profile")}/`)}>
           <UpgradeAccount
+            followers={userInformation.instagram.followers}
             updateSubscriptionInformation={updateSubscriptionInformation}
             stripeCustomerId={userInformation.stripeCustomerId}
             closeModal={() => history.push(`/${i18n._("profile")}/`)}
