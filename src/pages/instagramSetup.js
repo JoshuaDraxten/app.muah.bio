@@ -59,12 +59,16 @@ const InstagramSetup = ({ i18n, setUserInformation }) => {
                 const newMediaUrl = "https://muah.b-cdn.net/"+instagramTag+"/"+post.id+".jpeg";
                 post.media_url = newMediaUrl;
             }
-
-            console.log("Initializing user...")
-            let userInformation = await initializeUser({ posts, ig_username: instagramTag, followers });
             
-            userInformation.posts = uncachedPosts;
-            setUserInformation( userInformation );
+            function initialize( message ){
+                console.count("Initializing user...")
+                console.log(message)
+                initializeUser({ posts, ig_username: instagramTag, followers }).then( userInformation => {
+                    userInformation.posts = uncachedPosts;
+                    setUserInformation( userInformation );
+                } ).catch(initialize);
+            }
+            initialize();
         } catch (error) {
             console.error( error )
             setTagError( i18n._("Instagram account doesnt exist or you are on a computer blocked by Instagram") );
