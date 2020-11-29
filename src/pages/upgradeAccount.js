@@ -283,7 +283,10 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
         engagementRate: 0.05,
         averageProductPrice: currency === "mxn" ? 200 : 20,
         averageCommision: 0.06
-      }
+      },
+      priceId: currency === "mxn" ?
+        ( isProd ? '' : 'price_1HsdcUGmFqrQMNciUAdTyK8O' ) :
+        ( isProd ? '' : 'price_1HsdIrGmFqrQMNcibE3nzcx7' )
     }, {
       name: "5k — 50k " + i18n._("followers"),
       isSelected: followers >= 5000 && followers < 50000,
@@ -293,7 +296,10 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
         engagementRate: 0.03,
         averageProductPrice: currency === "mxn" ? 500 : 40,
         averageCommision: 0.07
-      }
+      },
+      priceId: currency === "mxn" ?
+        ( isProd ? '' : 'price_1HsdeZGmFqrQMNciSmk4wPTR' ) :
+        ( isProd ? '' : 'price_1HsdQ0GmFqrQMNciYPy4Z3wM' )
     }, {
       name: "50k — 100k " + i18n._("followers"),
       isSelected: followers >= 50000 && followers < 100000,
@@ -303,7 +309,10 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
         engagementRate: 0.02,
         averageProductPrice: currency === "mxn" ? 500 : 40,
         averageCommision: 0.08
-      }
+      },
+      priceId: currency === "mxn" ?
+        ( isProd ? '' : 'price_1HsdfOGmFqrQMNcipXduf5wn' ) :
+        ( isProd ? '' : 'price_1HsdXIGmFqrQMNci7M336hBH' )
     }, {
       name: "100k — 200k " + i18n._("followers"),
       isSelected: followers >= 100000 && followers < 200000,
@@ -314,7 +323,10 @@ const UpgradeAccount = ({ i18n, stripeCustomerId, closeModal, updateSubscription
         engagementRate: 0.02,
         averageProductPrice: currency === "mxn" ? 500 : 40,
         averageCommision: 0.08
-      }
+      },
+      priceId: currency === "mxn" ?
+        ( isProd ? '' : 'price_1HsdiZGmFqrQMNcinTH660oS' ) :
+        ( isProd ? '' : 'price_1HsdgZGmFqrQMNcidIHzLiNm' )
     }, {
       name: "200k+ " + i18n._("followers"),
       isSelected: followers > 200000,
