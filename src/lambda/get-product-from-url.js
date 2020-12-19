@@ -4,9 +4,12 @@ const firstThatsNotUndefined = ( arr, defaultValue=undefined ) => {
     return arr.filter( x => x ).concat([defaultValue])[0]
 }
 
+const capitalizeFirstLetter = str => str.charAt(0).toUpperCase() + str.slice(1)
+
 exports.handler = async event => {
     const { url } = event.queryStringParameters;
-    const metadata = await metaget.fetch( url );
+    const metadata = await metaget.fetch( url, { headers: { 'User-Agent': 'Googlebot' } } );
+    console.log( metadata )
 
     // const canonicanUrl = firstThatsNotUndefined([
     //     metadata['canonical'],
@@ -24,12 +27,14 @@ exports.handler = async event => {
     const name = firstThatsNotUndefined([
         metadata["twitter:title"],
         metadata["og:title"],
-        metadata["title"]
+        metadata["title"],
+        url .split('?')[0] .split('/').slice(-1)[0] .split('-').map(capitalizeFirstLetter).join(' ')
     ]);
 
     let image = firstThatsNotUndefined([
         metadata["twitter:image"],
-        metadata["og:image"]
+        metadata["og:image"],
+        new URL(url).origin+'/favicon.ico'
     ], "");
     
     if ( image.slice(0,1) === '/' ) {
@@ -47,7 +52,7 @@ exports.handler = async event => {
     let product = {
         retailer: { name: siteName },
         price,
-        name,
+        name: name?name:'',
         image,
         url
     }
