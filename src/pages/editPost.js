@@ -77,7 +77,7 @@ const SwipeableProduct = ({ i18n, product, index, removeProduct, setProductEdito
         <IonLabel className="ion-text-wrap">
           { product.tag ? <span className="tag">{product.tag}</span> : null }
           <h3>{product.name}</h3>
-          <p>{ product.retailer.name }{ formattedPrice }</p>
+          <p>{ product.retailer.name }{ formattedPrice }{product.couponCode ? " | "+i18n._("Discount Code: ")+product.couponCode : ""}</p>
         </IonLabel>
         <IonReorder slot="end" />
       </IonItem>
@@ -133,6 +133,7 @@ function EditPost({ i18n, userInformation, post, updatePost, closePost } ){
   }
   const sortableProductsList = products.map((product, i) => (
     <SwipeableProduct
+      i18n={i18n}
       product={product}
       index={i}
       removeProduct={removeProduct}
@@ -190,7 +191,19 @@ function EditPost({ i18n, userInformation, post, updatePost, closePost } ){
               name: 'tag',
               type: 'text',
               value: productEditor.product.tag,
-              placeholder: i18n._("Optional product tag (ex: lips)")
+              placeholder: i18n._("Product tag (ex: lips)")
+            },
+            {
+              name: 'couponCode',
+              type: 'text',
+              value: productEditor.product.couponCode,
+              placeholder: i18n._("Coupon Code")
+            },
+            {
+              name: 'couponDiscount',
+              type: 'text',
+              value: productEditor.product.couponDiscount,
+              placeholder: i18n._("Coupon Discount (ex: 10% off)")
             }
           ]}
           buttons={[
@@ -204,18 +217,22 @@ function EditPost({ i18n, userInformation, post, updatePost, closePost } ){
             },
             {
               text: i18n._("Ok"),
-              handler: ({ name, url, tag }) => {
+              handler: ({ name, url, tag, couponCode, couponDiscount }) => {
 
                 if (
                   name === productEditor.product.name &&
                   url === productEditor.product.url &&
-                  tag === productEditor.product.tag
+                  tag === productEditor.product.tag &&
+                  couponCode === productEditor.product.couponCode &&
+                  couponDiscount === productEditor.product.couponDiscount
                 ) return;
 
                 let productsClone = [...products];
                 productsClone[productEditor.productIndex].name = name;
                 productsClone[productEditor.productIndex].url = url;
                 productsClone[productEditor.productIndex].tag = tag;
+                productsClone[productEditor.productIndex].couponCode = couponCode;
+                productsClone[productEditor.productIndex].couponDiscount = couponDiscount;
                 setProductsInDb( productsClone );
               }
             }
