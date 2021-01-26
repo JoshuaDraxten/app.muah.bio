@@ -72,25 +72,25 @@ const Profile = ({
   const noPublishedPosts = posts.filter( post => post.products.length > 0 ).length === 0;
 
   const [ upgradeWarning, setUpgradeWarning ] = useState({});
-  useEffect(() => {
-    if ( !hasProAccount ) {
-      if ( daysTillTrialIsOver > -1 ) {
-        setUpgradeWarning({
-          message: i18n._("Your trial account expires in {daysTillTrialIsOver} days", {daysTillTrialIsOver}),
-          color: "warning"
-        });
-      } else {
-        setUpgradeWarning({
-          message: i18n._("Upgrade your account to keep using Muah.bio"),
-          color: "danger"
-        });
-        history.push(`/${i18n._("profile")}/${i18n._("upgrade")}`)
-      }
-    } else if ( hasProAccount && !hadProAccountAtStart ) {
-      setUpgradeWarning({});
-      setShowWelcomeConfetti( true );
-    }
-  }, [ i18n, hadProAccountAtStart, hasProAccount, daysTillTrialIsOver, history ])
+  // useEffect(() => {
+  //   if ( !hasProAccount ) {
+  //     if ( daysTillTrialIsOver > -1 ) {
+  //       setUpgradeWarning({
+  //         message: i18n._("Your trial account expires in {daysTillTrialIsOver} days", {daysTillTrialIsOver}),
+  //         color: "warning"
+  //       });
+  //     } else {
+  //       setUpgradeWarning({
+  //         message: i18n._("Upgrade your account to keep using Muah.bio"),
+  //         color: "danger"
+  //       });
+  //       history.push(`/${i18n._("profile")}/${i18n._("upgrade")}`)
+  //     }
+  //   } else if ( hasProAccount && !hadProAccountAtStart ) {
+  //     setUpgradeWarning({});
+  //     setShowWelcomeConfetti( true );
+  //   }
+  // }, [ i18n, hadProAccountAtStart, hasProAccount, daysTillTrialIsOver, history ])
 
   return (
     <>
