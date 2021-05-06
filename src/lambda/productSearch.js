@@ -28,7 +28,7 @@ async function searchAmazon( keyword ) {
 
         // make the http GET request to Rainforest API
         const response = await axios.get('https://api.rainforestapi.com/request', { params: {
-            api_key: "EFE5EC556B8F40CF9D84B8C9FB788BFD",
+            api_key: process.env.RAINFOREST_KEY,
             type: "search",
             amazon_domain: "amazon.com",
             category_id:"n:11058281",

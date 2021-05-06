@@ -7,7 +7,7 @@ const ftpConnectionInformation = {
     host: 'storage.bunnycdn.com',
     port: 21,
     user: 'muah',
-    password: '95bbf8a0-3d79-42ad-83b1e3a79f4e-0492-4299'
+    password: process.env.BUNNY_CDN_PASSWORD
 }
 
 exports.uploadPhotoToCDN =  async ({ url, folder, filename }) => {
